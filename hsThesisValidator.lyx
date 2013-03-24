@@ -1,0 +1,183 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language german-ch
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language polish
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\bullet 0 0 0 -1
+\bullet 1 0 8 -1
+\bullet 2 0 9 -1
+\bullet 3 0 6 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Softwareprojekt II - 
+\begin_inset Quotes pld
+\end_inset
+
+Untersuchung zu den Begriffen Gültigkeit und Beweisbarkeit in einer mathematisch
+en Theorie
+\begin_inset Quotes prd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Reto Hablützel, Max Schrimpf
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Einleitung
+\end_layout
+
+\begin_layout Subsection
+Aufgabenstellung
+\end_layout
+
+\begin_layout Quote
+Es soll augehend von einem gegebenen einfachen Axiomensystem (z.B “Gruppe”)
+ ein einfacher Satz einereits bewiesen werden und anderseits seine “Gültigkeit”
+ illustriert werden.
+ Ein Beweis soll entlang von gegebenen formalisierten Schlussregeln erfolgen,
+ von der Gültigkeit soll man sich mittels “durchrechnen” überzeugen, bei
+ unendlichen Strukturen mit einer zufallsgenerierten Auswahl von Fällen..
+ 
+\end_layout
+
+\begin_layout Standard
+Ausgehend von dieser vorgegebenen Aufgabenstellung soll in dieser Projektarbeit
+ eine Implementation erarbeitet werden mit der geforderten Fähigkeit die
+ Gültigkeit eines Axiomsystemes in den Grundsätzen zu bewisen.
+ Durch das Enorme Wachstum der Ausgangswerte 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Wie genau es wächst wär hier halt schon noch spannend...
+\end_layout
+
+\end_inset
+
+sind dabei schon relativ kleine Systeme mit bedeutendem Rechenaufwand verbunden.
+ Die genaue Ausgestaltung der Umsetzung und das Vorgehen war dabei durch
+ die offene Aufgabenstellung dem Projektteam überlassen.
+\end_layout
+
+\begin_layout Subsection
+Ausgangslage
+\end_layout
+
+\begin_layout Subsubsection
+Die Map und die Reduce Funktion
+\end_layout
+
+\begin_layout Section
+Umsetzung 
+\end_layout
+
+\begin_layout Subsection
+Map und der Reduce Funktion für die Aufgabenstellung
+\end_layout
+
+\begin_layout Subsubsection
+Prüfen derAxiome als Map Funktion
+\end_layout
+
+\begin_layout Standard
+Das CPU-intensive Prüfen der Axiome wurde als MAP-Funktion definiert.
+ Dabei werden den einzelnen Workern jeweils ein Bereich an Permutationen
+ und ein n als Input gegeben und sie liefern alle gefundenen 
+\end_layout
+
+\begin_layout Section
+Weiteres Vorgehen
+\end_layout
+
+\begin_layout Subsection
+Möglichkeiten der Vertiefung der Aufgabenstellung
+\end_layout
+
+\begin_layout Subsection
+Entscheidung
+\end_layout
+
+\end_body
+\end_document
