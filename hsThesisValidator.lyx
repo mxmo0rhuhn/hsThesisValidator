@@ -146,7 +146,158 @@ Ausgangslage
 \end_layout
 
 \begin_layout Subsubsection
-Die Map und die Reduce Funktion
+MapReduce
+\end_layout
+
+\begin_layout Standard
+MapReduce ist ein Framework, welches die parallele Verarbeitung grosser
+ Datenmengen vereinfachen soll und erstmals von Google beschrieben und implement
+iert wurde.
+ Google war mit dem Problem konfrontiert, dass sie sehr grossen Datenmengen
+ verarbeiten mussten.
+ Um ein Programm so zu schreiben, dass es auf einer verteilten Architektur
+ gut skaliert, muss sehr schnell viel Code geschrieben werden, der nichts
+ mit dem eigentlichen Problem zu tun hat.
+ Deshalb hat Google ein Framework entwickelt, welches es dem Benutzer erlaubt
+ sein Problem in zwei Phasen zu definieren und der Rest wird vom Framework
+ übernommen.
+ Dabei kümmert sich das Framework zum Beispiel darum, was passiert, wenn
+ eine Maschine im ausfällt oder wie die einzelnen Arbeittsschritte auf die
+ verschiedenen Maschinen aufgeteilt werden.
+\end_layout
+
+\begin_layout Standard
+Die zwei Phasen sind, wie der Name suggeriert, Map und Reduce (und eine
+ optionale Combiner Phase, aber diese ist zum Verständnis unwichtig).
+ In diesen Phasen werden im Wesentlichen die beiden Funktionen Map und Reduce
+ aufgerufen, welche hier kurz erklärt werden sollen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $map:(a->b)->A->B$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Map Funktion bildet eine Menge von Elementen elementweise auf eine neue
+ Menge ab.
+ Dazu muss ihr zwei Parameter übergeben werden – eine Funktion, welche eine
+ Element aus der Menge A auf ein Element in der Menge B abbildet und eine
+ Menge von Elementen A.
+ Dann wird die Funktion sukzessive auf die Elemente der Liste A angewendet
+ und somit die Menge B konstruiert, welche das Resultat ist.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $reduce:(b->c->c)->c->B->c$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Reduce Funktion bildet eine Menge B auf einen einzelnen Wert ab.
+ Dafür nimmt sie als ersten Parameter eine Funktion, welche einen Wert aus
+ der Menge B und einen Akkumulator als Parameter nimmt und einen Wert b
+ zurückgibt.
+ Der zweite Parameter der Reduce Funktion ist der initiale Wert für den
+ Akkumulator und der dritte ist die Menge B.
+ Dann wird die übergebene Funktion mit jedem Element aus der Menge B und
+ dem Akkumulator aufgerufen.
+ Dabei ist das Resulat der Funktion jeweils der neue Wert für den Akkumulator.
+ Sobald die ganze Liste traversiert wurde, ist der Wert vom Akkumulator
+ das Resultat.
+\end_layout
+
+\begin_layout Standard
+Der Benutzer vom MapReduce Framework, welches etwas berechnen will, muss
+ also eine Funktion schrieben, welche ein Element aus der Menge A auf ein
+ Element in der Menge B abbildet (Map Phase) und die Menge A bereitstellen.
+ Ausserdem muss eine Funktion geschrieben werden, welche für ein Element
+ aus der Menge B kombiniert mit einem Akkumulator auf ein Element aus der
+ Menge C abbildet (Reduce Phase).
+ Das MapReduce Framework kann dann zum Beispiel die erste Funktion mit einem
+ Element aus der Menge A zusammen an eine Maschine schicken.
+ Wie die Grafik
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+muss noch gezeichnet werden..
+\end_layout
+
+\end_inset
+
+ zur Map Funktion illustriert, gibt es keine Datenabhängigkeiten (1:1 Mapping),
+ weshalb jede Funktionsanwendung sehr gut auf verschiedenen Maschinen ausgeführt
+ werden kann.
+ Die Map Phase gilt als abgeschlossen, wenn sämtliche Elemente aus der Menge
+ A auf ein Element in der Menge B abgebildet wurden.
+ Dann kann das MapReduce Framework auf einer Maschine die Reduce-Phase durchführ
+en.
+ Hierbei ist wichtig zu bemerken, dass die Reduce Funktion nicht ganz so
+ optimal parallelisiert werden dann, da es Datenabhängigkeiten gibt.
+ Eine parallele Verarbeitung ist nur möglich, wenn die Reduce Funktion assoziati
+v ist.
+ Dann könnte die Reduce-Phase in einer Art Baum-Struktur ausgeführt werden
+ – darauf soll aber nicht weiter eingegangen werden.
+\end_layout
+
+\begin_layout Standard
+Folgendendes Beispiel soll die Idee von den zwei Phasen verdeutlichen.
+ Dafür definieren wir ein initiale Menge an Elementen A und je eine Funktion
+ für die Map Phase 
+\begin_inset Formula $f_{m}$
+\end_inset
+
+ und eine Funktion für die Reduce Phase 
+\begin_inset Formula $f_{r}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A={1,2,3,4}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $f_{m}\: x=x^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $f_{r}\: x\: a=x+a$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In diesem Beispiel werden in der Map Phase die Elemente aus der Menge A
+ quadriert.
+ Somit entsteht eine Menge B = {1, 4, 9, 16}.
+ In der Reduce Phase werden alle Elemente aus der Menge B aufaddiert
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Der initiale Akkumulator ist in diesem Fall das erste Element aus der Menge
+ B.
+\end_layout
+
+\end_inset
+
+.
+ Das Endresultat ist also 30.
 \end_layout
 
 \begin_layout Section
@@ -162,7 +313,7 @@ Prüfen derAxiome als Map Funktion
 \end_layout
 
 \begin_layout Standard
-Das CPU-intensive Prüfen der Axiome wurde als MAP-Funktion definiert.
+Das CPU-intensive Prüfen der Axiome wurde als MAP-Funktion definiert.
  Dabei werden den einzelnen Workern jeweils ein Bereich an Permutationen
  und ein n als Input gegeben und sie liefern alle gefundenen 
 \end_layout
