@@ -174,7 +174,17 @@ Die zwei Phasen sind, wie der Name suggeriert, Map und Reduce (und eine
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $map:(a->b)->A->B$
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Schreibweise: a ist ein Element aus einer Menge A
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $map:(a\rightarrow b)\rightarrow A\rightarrow B$
 \end_inset
 
 
@@ -192,7 +202,7 @@ Die Map Funktion bildet eine Menge von Elementen elementweise auf eine neue
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $reduce:(b->c->c)->c->B->c$
+\begin_inset Formula $reduce:(b\rightarrow c\rightarrow c)\rightarrow c\rightarrow B\rightarrow c$
 \end_inset
 
 
