@@ -316,18 +316,129 @@ Der initiale Akkumulator ist in diesem Fall das erste Element aus der Menge
 Umsetzung - Teil 1 Gültigkeit des Satzes zur Rechtsauslöschung in Gruppen
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Hier muss dringend noch die Genaue Aufgabe erklärt werden ...
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Map und der Reduce Funktion für die Aufgabenstellung
 \end_layout
 
 \begin_layout Subsubsection
-Prüfen derAxiome als Map Funktion
+Prüfen derAxiome als Map-Funktion
 \end_layout
 
 \begin_layout Standard
 Das CPU-intensive Prüfen der Axiome wurde als MAP-Funktion definiert.
  Dabei werden den einzelnen Workern jeweils ein Bereich an Permutationen
- und ein n als Input gegeben und sie liefern alle gefundenen 
+ der Additionstabelle und ein 
+\begin_inset Formula $n$
+\end_inset
+
+ im Sinne der derzeit vorhandenen Anzahl an verschiedenen Objekten als Input
+ gegeben.
+ Die Worker führen dann die Überprüfung der Axiome durch indem sie jeweils
+ für alle Additionstabellen in ihrem Bereich alle möglichen Inversentabellen
+ mit allen möglichen neutralen Elementen prüfen.
+\end_layout
+
+\begin_layout Standard
+Hierbei gibt es Vereinfachungen, die inhaltlich korrekt sind jedoch die
+ benötigte Rechenleistungen massiv reduzieren:
+\end_layout
+
+\begin_layout Itemize
+Sowohl die Additions- wie auch die Permutationstabelle werden nicht immer
+ vollständig vor der Prüfung der Axiome aufgestellt, sondern es wird eine
+ Funktion implementiert mit der zu einer gegebenen Permutationsnummer eines
+ beliebigen 
+\begin_inset Formula $n$
+\end_inset
+
+ das Ergebnis für ein bestimmtes Element zurückgibt.
+ Das heisst der Rechenaufwand wird substantiell reduziert da bei einer Prüfung
+ der Axiome im Normalfall nur ein quasi vernachlässigbarer Teil der Additionstab
+elle und, abhängig von Erfolg oder Misserfolg der Überprüfungen, auch nur
+ ein minimer Teil der Inversentabelle benötigt wird.
+\end_layout
+
+\begin_layout Itemize
+Für eine gegebene Additions- und Inversen-Tabellenkombination wird jeweils
+ nur das neutrale Element, das für den ersten Eintrag in der Inversentabelle
+ berechnet wurde, geprüft.
+ Da logischerweise nur ein neutrales Element für eine spezifische Kombination
+ aus Tabellen existiert, kann das Ergebnis der ersten Rechnung verwendet
+ werden, da dieses bereits alle anderen möglichen neutralen Elemente wiederlegt.
+ Auch diese Annahme reduziert substantiell die durchgeführten, nicht zielführend
+en Rechnungen.
+\end_layout
+
+\begin_layout Standard
+Die Ausgabe der Map-Funktion sind schlussendlich alle Gruppen auf die die
+ gegebenen Axiome zutreffen.
+ Eine Gruppe wird ausreichend durch 3 Zahlen beschrieben:
+\end_layout
+
+\begin_layout Itemize
+Die Nummer der Additionstabelle.
+ Aus Ihr lassen sich mit der oben beschriebenen Funktion alle Additionen,
+ die in der Gruppe möglich sind, herleiten.
+\end_layout
+
+\begin_layout Itemize
+Die Nummer der Inversentabelle.
+ Aus Ihr lassen sich mit der oben beschriebenen Funktion die Inversen zu
+ allen Elementen der Gruppe herleiten
+\end_layout
+
+\begin_layout Itemize
+Das neutrale Element der Gruppe
+\end_layout
+
+\begin_layout Standard
+Diese effiziente Speicherung ermöglicht das Vorhalten von enorm vielen Gruppen
+ ohne einen hohen Speicherbedarf.
+\end_layout
+
+\begin_layout Subsubsection
+Prüfen der Sätze als Reduce-Funktion
+\end_layout
+
+\begin_layout Standard
+In der Reduce-Phase wird für die, relativ zur Menge der möglichen Gruppen,
+ enorm kleine Menge an effektiven Gruppen der Satz jeweils geprüft.
+ Als Output gibt sie die Gruppen für die der Satz nicht zutrifft.
+ Da anzunehmen ist, dass somit der Output immer leer ist, kann er auch als
+ booleanscher Wahrheitswert interpretiert werden:
+\end_layout
+
+\begin_layout Itemize
+Wenn der Output leer ist, ist der Satz für die geprüften Gruppen wahr.
+\end_layout
+
+\begin_layout Itemize
+Wenn der Output nicht leer ist, ist der Satz für die geprüften Gruppen falsch
+ (was einer mathematischen Sensation gleich käme).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Foto 20.03.13 21 26 05.jpg
+	lyxscale 10
+	width 100text%
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
