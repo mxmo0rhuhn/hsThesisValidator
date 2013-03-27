@@ -1,0 +1,14 @@
+1. Bericht zum Software Projekt 2 von Max Schrimpf und Reto Hablützel.
+
+Wie wir am Meeting mit S. Mozafar kommuniziert haben, war für uns zu Beginn das erwartete Ergebnis nicht klar. Dies, auch nachdem wir bereits ein erstes Treffen mit Herrn Heuberger hatten. Im diesem ersten Treffen hat er uns Hauptsächlich die Idee der Gültigkeit erklärt, aber nachdem wir uns an die Aufgabe setzen wollten, zeigt sich, dass es zu wenig Fleisch am Knochen hatte.
+
+Aus diesem Grund haben wir einen ersten Teil prototypisch implementiert und ein weiteres Treffen mit Herrn Heuberger arrangiert. An diesem haben wir unsere Ungewissenheit angesprochen und wir konnten mit ihm den ersten Teil klar definieren. Ausserdem habe wir abgemacht, dass uns für den zweiten Teil drei Möglichkeiten zur Verfügung stehen: 1. Fokussierung auf MapReduce Framework, 2. Beweisbarkeit implementieren, 3 ?? (vergessen ?).
+
+Darauf haben wir an der Implementation vom Teil 1 weitergearbeitet und gleichzeitig die verschiedenen Möglichkeiten für den Teil 2 genauer angeschaut. Da wir bei den Möglichkeiten zwei und drei nicht sicher waren, was das für uns an Aufwand bedeuten würde und uns auch einige der Hintergründe (z.B. Compilerbau) fehen, haben wir uns dafür entschieden uns auf die Ausweiterung des MapReduce Framework zu fokussieren und dies auch so in unserer Dokumentation festzuhalten.
+
+Mit der Dokumentation haben wir bereits begonnen und einige Aspekte unserer Arbeit niedergeschrieben.
+
+Dokumentation: https://bitbucket.org/mo0rhuhn/hsthesisvalidator/src
+Code: https://bitbucket.org/mo0rhuhn/hsthesisvalidator/src
+Projektplanung: https://docs.google.com/spreadsheet/ccc?key=0AlzUEwhQyGbYdEZpRUktak1GeGE1Y2tpeHZYa3M1cFE
+
