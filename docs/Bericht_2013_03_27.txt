@@ -11,7 +11,7 @@ Nach dieser Klarstellung wurde die Implementation vom Teil 1 von uns gleichzeiti
 
 Mit der Dokumentation haben wir bereits begonnen und einige Aspekte unserer Arbeit niedergeschrieben.
 
-Dokumentation: https://bitbucket.org/mo0rhuhn/hsthesisvalidator/src
+Dokumentation: https://bitbucket.org/mo0rhuhn/hsthesisvalidator/docs
 Code: https://bitbucket.org/mo0rhuhn/hsthesisvalidator/src
 Projektplanung: https://docs.google.com/spreadsheet/ccc?key=0AlzUEwhQyGbYdEZpRUktak1GeGE1Y2tpeHZYa3M1cFE
 

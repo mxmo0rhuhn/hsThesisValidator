@@ -137,8 +137,10 @@ Wie genau es wächst wär hier halt schon noch spannend...
 \end_inset
 
 sind dabei schon relativ kleine Systeme mit bedeutendem Rechenaufwand verbunden.
- Die genaue Ausgestaltung der Umsetzung und das Vorgehen war dabei durch
- die offene Aufgabenstellung dem Projektteam überlassen.
+ Die genaue Schwerpunktsetzung bei der Umsetzung und das Vorgehen war dabei
+ durch die offene Aufgabenstellung dem Projektteam überlassen.
+ Vorgegeben war mur die Implementation eines automatisierten Gültigkeitsbeweises
+ des Satzes zur Rechtsauslöschung in Gruppen.
 \end_layout
 
 \begin_layout Subsection
@@ -311,7 +313,7 @@ Der initiale Akkumulator ist in diesem Fall das erste Element aus der Menge
 \end_layout
 
 \begin_layout Section
-Umsetzung 
+Umsetzung - Teil 1 Gültigkeit des Satzes zur Rechtsauslöschung in Gruppen
 \end_layout
 
 \begin_layout Subsection
@@ -336,8 +338,137 @@ Weiteres Vorgehen
 Möglichkeiten der Vertiefung der Aufgabenstellung
 \end_layout
 
+\begin_layout Subsubsection
+\noindent
+Erweiterung des MapReduce Frameworks
+\end_layout
+
+\begin_layout Standard
+\noindent
+Bei diesem Schwerpunkt wäre die Zielsetzung eine möglichst grosse Kapazität
+ Gültigkeiten zu beweisen mit dem MapReduce Framework und verteiltem Rechnen
+ zu erzielen.
+ Die enormen Datenmengen, die bereits bei kleinen Eingabewerten entstehen
+ sind auf einem einzelnen System quasi nicht zu bewältigen dabei ist primär
+ die Rechenzeit relevant.
+ Daher müssten Möglichkeiten gefunden werden um eine Menge an Inputwerten
+ zu anderen Computern zu senden, dort berechnen zu lassen und für das weitere
+ Vorgehen relevante Daten zu returnieren.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Anforderungen bei diesem Schwerpunkt wären primär die Handhabung von verteilten
+ Systemen, Design der Applikation und eine performante Umsetzung.
+\end_layout
+
+\begin_layout Subsubsection
+Freie Eingabe von auf Gültigkeit zu prüfenden Annahmen
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
+Hierbei läge das Hauptaugenmerk darauf quasi eine Eingabesprache für ein
+ automatisiertes Gültigkeitsbeweis-Programm zu erstellen.
+ Es müsste eine Möglichkeit gefunden werden dem Programm mathematische Strukture
+n mit bestimmten Eigenschaften, darauf gültige Axiome und daraus resultierend
+ zu prüfende Sätze zu übermitteln.
+ Dabei müsste, gleich ob interaktiv oder durch die Auswertung von Eingabedateien
+, eine Eingabesyntax definiert werden und, was wohl die wirkliche Problemstellun
+g des Schwerpunktes wäre, eine Auflösung der Syntax und eine darauf basierende
+ dynamische Umsezuung in ausführbaren Code.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Anforderungen bei diesem Schwerpunkt lägen primär in der theoretischen Informati
+k beim Thema Compilerbau sowie der dynamischen Generierung einer Interpretation
+ der Mathematischen Objekte, ihrem Einbinden und dem Ausführen in einer
+ Applikation zur schlussendlichen Gültigkeitsprüfung.
+\end_layout
+
+\begin_layout Subsubsection
+\noindent
+Automatisierte Beweisbarkeit
+\end_layout
+
+\begin_layout Standard
+\noindent
+In diesem Fall wäre das Ziel ein Framework zu erstellen welches mit einem
+ gegebenen Set aus mathematischen Operationen (zugelassenen Schlussregeln)
+ automatisch Sätze aus Eingaben (Sätzen und Axiomen) herleitet.
+ Die Operationen, die das System vornehmen könnten entsprächen den im Kalkül
+ zugelassenen Schlussregeln.
+ Ziel wäre es somit automatisiert mehr oder weniger sinnvolle Aussagen mathemati
+sch formell korrekt herzuleiten.
+ Dabei müssten Kriterien definiert werden mit denen die Unterscheidung von
+ formal korrekten aber irrelevanten und formal korrekten, relevanten Aussagen
+ möglich macht.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Anforderungen bei diesem Schwerpunkt wäre wieder die Interpretation der
+ in einer gegebenen Syntax vorliegenden Eingaben jedoch des weiteren das
+ Erkennen von neuen relevanten Schlussfolgerungen.
+ 
+\end_layout
+
 \begin_layout Subsection
 Entscheidung
+\end_layout
+
+\begin_layout Standard
+Der auf Anhieb spannendste Schwerpunkt stellte nach der ersten Bertrachtung
+ die 
+\begin_inset Quotes pld
+\end_inset
+
+Freie Eingabe von auf Gültigkeit zu prüfenden Annahmen
+\begin_inset Quotes prd
+\end_inset
+
+ dar.
+ Die in dem Schwerpunkt vorkommenden Themen wurdenweitestgehend im bisherigen
+ Studium noch nicht behandelt und böten somit eine gute Möglichkeit neues
+ kennenzulernen.
+ 
+\end_layout
+
+\begin_layout Standard
+Die Automatisierte Beweisbarkeit erschien bereits bei der ersten Betrachtung
+ als eine eher unwahrscheinliche Vertiefung, da der schlussendliche Nutzen
+ massiv in Frage gestellt werdern kann.
+ Es wäre zu befürchten, dass eine enorme Menge an Arbeitszeit und Herzblut
+ investiert würde um Schlussendlich eine Applikation zu erstellen welche
+ Mathematisch völlig irrelevante Sätze herleiten würde.
+ 
+\end_layout
+
+\begin_layout Standard
+Eine Erweiterung des MapReduce Framework erschien bereits nach der ersten
+ Analyse als überschaubares Problem im Sinne der Beherrschbarkeit der Problemste
+llung.
+ Zwar ist der mit der Vertiefung verbundene Aufand alles andere als als
+ klein zu erachten, jedoch sollten keine vollkommen unvorhergesehenen Fragestell
+ungen, zu denen ohne eine sehr grosse Menge an Vertiefung keine Lösung gefunden
+ werden könnte, auftreten.
+\end_layout
+
+\begin_layout Standard
+Das Kriterium der Beherrschbarkeit gab schlussendlich auch den Ausschlag
+ anstatt der Vertiefung Nr.
+ 2 eine Erweiterung des Frameworkes anzustreben.
+ Die Gefahr durch die enorme Komplexität am Ende nur eine mehr prototypisch
+ als sinnvolle Implementation eines Programmes zu erstellen schreckte uns
+ ab.
+ Desweiteren stellte die Idee mit der gegebenen Infrastruktur der Fachhochschule
+ eventuell eine grosse Menge an PCs für einen Feldversuch zu besitzen einen
+ grossen Ansporn dar.
 \end_layout
 
 \end_body
