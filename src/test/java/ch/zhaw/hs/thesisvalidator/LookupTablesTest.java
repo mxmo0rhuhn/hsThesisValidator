@@ -54,4 +54,9 @@ public class LookupTablesTest {
 			}
 		}
 	}
+	
+	@Test
+	public void shouldCreatePermsInOrder() {
+		Assert.assertEquals(1, LookupTables.map1d(0, 1, 2));
+	}
 }
