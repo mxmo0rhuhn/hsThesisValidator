@@ -34,7 +34,14 @@ public class AxiomMapperTest {
 	public void shouldSatisfyInverseAxiomForStandardModulo2() {
 		AxiomMapper mapper = new AxiomMapper();
 		// ich nehme an, die fuenfte permutation ist die intuitive additionstabelle der restklasse 2
-		assertTrue(mapper.inverse(2, 5, 0));
+		assertTrue(mapper.inverse(2, 6, 0));
+	}
+	
+	@Test
+	public void shouldSatisfyAssociativityAxiomForStandardModulo2() {
+		AxiomMapper mapper = new AxiomMapper();
+		// ich nehme an, die fuenfte permutation ist die intuitive additionstabelle der restklasse 2
+		assertTrue(mapper.associative(2, 6));
 	}
 
 	@Test

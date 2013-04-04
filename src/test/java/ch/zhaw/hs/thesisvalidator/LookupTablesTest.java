@@ -1,9 +1,11 @@
 package ch.zhaw.hs.thesisvalidator;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 public class LookupTablesTest {
@@ -20,7 +22,7 @@ public class LookupTablesTest {
 					num = LookupTables.map2d(x, y, perm, n) + num;
 				}
 			}
-			Assert.assertTrue(num + " was already in there", perms.add(num));
+			assertTrue(num + " was already in there", perms.add(num));
 		}
 	}
 
@@ -36,7 +38,7 @@ public class LookupTablesTest {
 					num = LookupTables.map2d(x, y, perm, n) + num;
 				}
 			}
-			Assert.assertTrue(num + " was already in there", perms.add(num));
+			assertTrue(num + " was already in there", perms.add(num));
 		}
 	}
 
@@ -50,13 +52,51 @@ public class LookupTablesTest {
 				for (int pos = 0; pos < n; pos++) {
 					vals = LookupTables.map1d(pos, perm, n) + vals;
 				}
-				Assert.assertTrue(perms.add(vals));
+				assertTrue(perms.add(vals));
 			}
+		}
+	}
+
+	@Test
+	public void shouldCreateIntuitiveInverseTableAtPredictablePosition() {
+		assertEquals(1, LookupTables.map1d(0, 1, 2));
+	}
+
+	@Test
+	public void shouldCreateIntuitiveAdditionTableAtPredictablePosition() {
+		String expected = "0110";
+		String actual = "";
+		// intuitive additionstabelle fuer restklasse 2 ist die fuenfte permutation
+		actual += LookupTables.map2d(1, 1, 6, 2);
+		actual += LookupTables.map2d(1, 0, 6, 2);
+		actual += LookupTables.map2d(0, 1, 6, 2);
+		actual += LookupTables.map2d(0, 0, 6, 2);
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void shouldCreate2dTablesInOrder() {
+		int mod = 3;
+		for (int perm = 0; perm < (int) Math.pow(Math.pow(mod, mod), mod); perm++) {
+			String mapped = "";
+			for (int x = 0; x < mod; x++) {
+				for (int y = 0; y < mod; y++) {
+					mapped = LookupTables.map2d(x, y, perm, mod) + mapped;
+				}
+			}
+			assertEquals(perm, Integer.parseInt(mapped, mod));
 		}
 	}
 	
 	@Test
-	public void shouldCreatePermsInOrder() {
-		Assert.assertEquals(1, LookupTables.map1d(0, 1, 2));
+	public void shouldCreate1dTableInOrder() {
+		int mod = 3;
+		for (int perm = 0; perm < Math.pow(mod, mod); perm++) {
+			String mapped = "";
+			for (int x = 0; x < mod; x++) {
+				mapped = LookupTables.map1d(x, perm, mod) + mapped;
+			}
+			assertEquals(perm, Integer.parseInt(mapped, mod));
+		}
 	}
 }
