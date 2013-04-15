@@ -48,22 +48,27 @@ public class AxiomMapper implements MapInstruction {
 	public void map(MapEmitter emitter, String input) {
 		final int modulo = readModulo(input);
 		final int startPerm = readStartPerm(input);
-		final int numPerm = readNumPerm(input);
+		final int offset = readOffset(input);
+
+		int maxPerms = (int) Math.pow(modulo, Math.pow(modulo, modulo));
+		if (startPerm + offset > maxPerms) {
+			throw new IllegalArgumentException("Number of Permutations: " + (startPerm + offset) + " > " + maxPerms);
+		}
 
 		// neutrales element pro inversen-permutation
 		final Map<Integer, Integer> neutrals = findNeutrals(modulo);
-		int perm = 0; // additions permutation / relativ
-		while (perm < numPerm) {
+		
+		for (int perm = 0; perm < offset; perm++) {
+			int aPerm = perm + startPerm; // additions permutation
+			
 			for (Map.Entry<Integer, Integer> ipn : neutrals.entrySet()) {
-				int iPerm = ipn.getKey();
-				int e = ipn.getValue();
+				int iPerm = ipn.getKey(); // inversen permutation
+				int e = ipn.getValue(); // neutrales element
 
-				int aPerm = perm + startPerm;
 				if (checkAxioms(modulo, aPerm, e)) {
 					emitter.emitIntermediateMapResult(Integer.toString(modulo), aPerm + "," + iPerm);
 				}
 			}
-			perm++;
 		}
 	}
 
@@ -208,7 +213,7 @@ public class AxiomMapper implements MapInstruction {
 	 * 
 	 * @see AxiomMapper#map(MapEmitter, String)
 	 */
-	public int readNumPerm(String perms) {
+	public int readOffset(String perms) {
 		return Integer.parseInt(perms.split(",")[2]);
 	}
 

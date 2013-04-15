@@ -17,8 +17,8 @@ public class LookupTablesTest {
 		Set<String> perms = new HashSet<String>(elems);
 		for (int perm = 0; perm < elems; perm++) {
 			String num = "";
-			for (int x = 0; x < 3; x++) {
-				for (int y = 0; y < 3; y++) {
+			for (int y = 0; y < n; y++) {
+				for (int x = 0; x < n; x++) {
 					num = LookupTables.map2d(x, y, perm, n) + num;
 				}
 			}
@@ -64,24 +64,38 @@ public class LookupTablesTest {
 
 	@Test
 	public void shouldCreateIntuitiveAdditionTableAtPredictablePosition() {
-		String expected = "0110";
-		String actual = "";
 		// intuitive additionstabelle fuer restklasse 2 ist die fuenfte permutation
-		actual += LookupTables.map2d(1, 1, 6, 2);
-		actual += LookupTables.map2d(1, 0, 6, 2);
-		actual += LookupTables.map2d(0, 1, 6, 2);
-		actual += LookupTables.map2d(0, 0, 6, 2);
-		assertEquals(expected, actual);
+		assertEquals(0, LookupTables.map2d(1, 1, 6, 2));
+		assertEquals(1, LookupTables.map2d(1, 0, 6, 2));
+		assertEquals(1, LookupTables.map2d(0, 1, 6, 2));
+		assertEquals(0, LookupTables.map2d(0, 0, 6, 2));
 	}
+	
+	@Test
+	public void shouldCreateOneAsSecondTableForMod2() {
+		assertEquals(1, LookupTables.map2d(1, 1, 1, 2));
+		assertEquals(0, LookupTables.map2d(1, 0, 1, 2));
+		assertEquals(0, LookupTables.map2d(0, 1, 1, 2));
+		assertEquals(0, LookupTables.map2d(0, 0, 1, 2));
+	}
+	
+	@Test
+	public void shouldCreateThreeAsFourthTableForMod2() {
+		assertEquals(1, LookupTables.map2d(1, 1, 3, 2));
+		assertEquals(0, LookupTables.map2d(1, 0, 3, 2));
+		assertEquals(1, LookupTables.map2d(0, 1, 3, 2));
+		assertEquals(0, LookupTables.map2d(0, 0, 3, 2));
+	}
+
 
 	@Test
 	public void shouldCreate2dTablesInOrder() {
 		int mod = 3;
 		for (int perm = 0; perm < (int) Math.pow(Math.pow(mod, mod), mod); perm++) {
 			String mapped = "";
-			for (int x = 0; x < mod; x++) {
-				for (int y = 0; y < mod; y++) {
-					mapped = LookupTables.map2d(x, y, perm, mod) + mapped;
+			for (int y = 0; y < mod; y++) {
+				for (int x = 0; x < mod; x++) {
+					mapped += LookupTables.map2d(x, y, perm, mod);
 				}
 			}
 			assertEquals(perm, Integer.parseInt(mapped, mod));
