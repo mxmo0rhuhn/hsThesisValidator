@@ -3,7 +3,6 @@ package ch.zhaw.hs.thesisvalidator;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.Map;
 
@@ -46,7 +45,40 @@ public class AxiomMapperTest {
 	
 	@Test
 	public void shouldOnlyYieldResultsFromRange() {
-		fail("implement me");
+		final MapEmitter emitter = this.context.mock(MapEmitter.class);
+		AxiomMapper mapper = new AxiomMapper();
+		this.context.checking(new Expectations() {{
+			oneOf(emitter).emitIntermediateMapResult("2", "9,0");
+			oneOf(emitter).emitIntermediateMapResult("2", "9,3");
+			oneOf(emitter).emitIntermediateMapResult("2", "15,3");
+		}});
+		mapper.map(emitter, "2,8,8");
+		this.context.assertIsSatisfied();
+	}
+	
+	@Test
+	public void shouldOnlyYieldResultsFromRange2() {
+		final MapEmitter emitter = this.context.mock(MapEmitter.class);
+		AxiomMapper mapper = new AxiomMapper();
+		this.context.checking(new Expectations() {{
+			oneOf(emitter).emitIntermediateMapResult("2", "7,3");
+		}});
+		mapper.map(emitter, "2,7,1");
+		this.context.assertIsSatisfied();
+	}
+	
+	@Test
+	public void shouldOnlyYieldResultsFromRange3() {
+		final MapEmitter emitter = this.context.mock(MapEmitter.class);
+		AxiomMapper mapper = new AxiomMapper();
+		this.context.checking(new Expectations() {{
+			oneOf(emitter).emitIntermediateMapResult("2", "0,0");
+			oneOf(emitter).emitIntermediateMapResult("2", "1,0");
+			oneOf(emitter).emitIntermediateMapResult("2", "3,0");
+			oneOf(emitter).emitIntermediateMapResult("2", "3,3");
+		}});
+		mapper.map(emitter, "2,0,6");
+		this.context.assertIsSatisfied();
 	}
 
 	@Test
