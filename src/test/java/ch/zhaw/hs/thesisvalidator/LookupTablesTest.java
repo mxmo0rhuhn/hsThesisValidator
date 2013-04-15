@@ -70,7 +70,21 @@ public class LookupTablesTest {
 		assertEquals(1, LookupTables.map2d(0, 1, 6, 2));
 		assertEquals(0, LookupTables.map2d(0, 0, 6, 2));
 	}
-	
+
+	@Test
+	public void shouldProduceIntuitiveAdditionsTableAtPredictablePositionForMod3() {
+		// intuitive additionstabelle fuer restklasse 3 (2+1=0, 1+1=2, etc), also: 012120201
+		assertEquals(0, LookupTables.map2d(0, 0, 4069, 3));
+		assertEquals(1, LookupTables.map2d(1, 0, 4069, 3));
+		assertEquals(2, LookupTables.map2d(2, 0, 4069, 3));
+		assertEquals(1, LookupTables.map2d(0, 1, 4069, 3));
+		assertEquals(2, LookupTables.map2d(1, 1, 4069, 3));
+		assertEquals(0, LookupTables.map2d(2, 1, 4069, 3));
+		assertEquals(2, LookupTables.map2d(0, 2, 4069, 3));
+		assertEquals(0, LookupTables.map2d(1, 2, 4069, 3));
+		assertEquals(1, LookupTables.map2d(2, 2, 4069, 3));
+	}
+
 	@Test
 	public void shouldCreateOneAsSecondTableForMod2() {
 		assertEquals(1, LookupTables.map2d(1, 1, 1, 2));
@@ -78,7 +92,7 @@ public class LookupTablesTest {
 		assertEquals(0, LookupTables.map2d(0, 1, 1, 2));
 		assertEquals(0, LookupTables.map2d(0, 0, 1, 2));
 	}
-	
+
 	@Test
 	public void shouldCreateThreeAsFourthTableForMod2() {
 		assertEquals(1, LookupTables.map2d(1, 1, 3, 2));
@@ -86,7 +100,6 @@ public class LookupTablesTest {
 		assertEquals(1, LookupTables.map2d(0, 1, 3, 2));
 		assertEquals(0, LookupTables.map2d(0, 0, 3, 2));
 	}
-
 
 	@Test
 	public void shouldCreate2dTablesInOrder() {
@@ -101,7 +114,7 @@ public class LookupTablesTest {
 			assertEquals(perm, Integer.parseInt(mapped, mod));
 		}
 	}
-	
+
 	@Test
 	public void shouldCreate1dTableInOrder() {
 		int mod = 3;

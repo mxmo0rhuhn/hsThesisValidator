@@ -8,12 +8,15 @@ import java.util.Map;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
+import org.jmock.integration.junit4.JMock;
 import org.jmock.integration.junit4.JUnit4Mockery;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import ch.zhaw.mapreduce.MapEmitter;
 
+@RunWith(JMock.class)
 public class AxiomMapperTest {
 	
 	private Mockery context;
@@ -40,7 +43,6 @@ public class AxiomMapperTest {
 			oneOf(emitter).emitIntermediateMapResult("2", "15,3");
 		}});
 		mapper.map(emitter, "2,0,16");
-		this.context.assertIsSatisfied();
 	}
 	
 	@Test
@@ -53,7 +55,6 @@ public class AxiomMapperTest {
 			oneOf(emitter).emitIntermediateMapResult("2", "15,3");
 		}});
 		mapper.map(emitter, "2,8,8");
-		this.context.assertIsSatisfied();
 	}
 	
 	@Test
@@ -64,7 +65,6 @@ public class AxiomMapperTest {
 			oneOf(emitter).emitIntermediateMapResult("2", "7,3");
 		}});
 		mapper.map(emitter, "2,7,1");
-		this.context.assertIsSatisfied();
 	}
 	
 	@Test
@@ -78,7 +78,6 @@ public class AxiomMapperTest {
 			oneOf(emitter).emitIntermediateMapResult("2", "3,3");
 		}});
 		mapper.map(emitter, "2,0,6");
-		this.context.assertIsSatisfied();
 	}
 
 	@Test
@@ -113,6 +112,18 @@ public class AxiomMapperTest {
 		AxiomMapper mapper = new AxiomMapper();
 		// ich nehme an, die fuenfte permutation ist die intuitive additionstabelle der restklasse 2
 		assertTrue(mapper.associative(2, 6));
+	}
+
+	@Test
+	public void shouldSatisfyInverseAxiomForStandardModulo3() {
+		AxiomMapper mapper = new AxiomMapper();
+		assertTrue(mapper.inverse(3, 4069, 0));
+	}
+	
+	@Test
+	public void shouldSatisfyAssociativityAxiomForStandardModulo3() {
+		AxiomMapper mapper = new AxiomMapper();
+		assertTrue(mapper.associative(3, 4069));
 	}
 
 	@Test
