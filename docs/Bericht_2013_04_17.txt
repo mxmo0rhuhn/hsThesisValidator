@@ -1,0 +1,16 @@
+2. Bericht zum Software Projekt 2 von Max Schrimpf und Reto Hablützel.
+ 
+Nachdem wir letzte Woche die erste Iteration mit etwas Verspätung abschliessen konnten, haben wir diese Woche schon einiges an der zweiten Iteration arbeiten können. Zwar ist aus der Ersten noch eine kleine mathematische Fragestellung offen (Antwort von Herrn Heuberger ausstehend), jedoch besitzt diese keine Auswirkungen auf das restliche Projekt  und  hält uns somit nicht auf. 
+Abgesehen von der Implementation  konnten wir unsere Dokumentation, vor allem hinsichtlich der mathematischen Hintergründe, etwas erweitern. Was die zweite Iteration betrifft wollen wir unseren Fokus auf folgende Punkte setzen:
+1.     Reschedulability - auch nach dem Ausfall eines rechnenden Clients soll die Aufgabe fertiggestellt werden
+2.     High-Level Design für verteilte Berechnung - Interaktion von Client und Server, Persistenz, Datenhaltung 
+ 
+Wichtig ist hierbei anzumerken, dass der zweite Teil unseres Projekts – also die Erweiterung am MapReduce Framework selbst – in einem separaten Repository stattfinden wird. Das ursprüngliche Repository (hsThesisValidator) ist nur der Client Code, den wir schlussendlich als MapReduce Berechnung ausführen wollen.
+ 
+Weil diese und die folgende Woche sogenannte blaue Woche sind, hoffen wir, in dieser Iteration unseren Zeitrücksprung wieder gut zu machen.
+ 
+Dokumentation: https://bitbucket.org/mo0rhuhn/hsthesisvalidator/src
+Code: https://bitbucket.org/mo0rhuhn/hsthesisvalidator/src
+MapReduce Framework: https://bitbucket.org/mo0rhuhn/map-reduce/overview
+Projektplanung: https://docs.google.com/spreadsheet/ccc?key=0AlzUEwhQyGbYdEZpRUktak1GeGE1Y2tpeHZYa3M1cFE
+
