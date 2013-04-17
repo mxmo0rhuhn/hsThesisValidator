@@ -348,6 +348,43 @@ Der initiale Akkumulator ist in diesem Fall das erste Element aus der Menge
  Das Endresultat ist also 30.
 \end_layout
 
+\begin_layout Subsection
+Abgeleitete Aufgabenstellung
+\end_layout
+
+\begin_layout Standard
+Basierend auf unserem Wissen aus den Algebra - Vorlesungen sowie unserem
+ Interesse für verteilte Berechnungen und dem bestehenden MapReduce Framework,
+ haben wir uns mit Herrn Heuberger so geeinigt, dass wir in einem ersten
+ Teil die Prüfung eines Satzes für ein bestimmtes Axiomsystem als MapReduce
+ Problem formulieren und dieses dann mit unserem Framework ausführen.
+ Die konkrete Aufgabenstellung für den zweiten Teil haben wir zu beginn
+ noch offen gelassen.
+ Einen Variantenvergleich ist im Kapitel 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Möglichkeiten-der-Vertiefung"
+
+\end_inset
+
+ 
+\begin_inset Quotes pld
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sub:Möglichkeiten-der-Vertiefung"
+
+\end_inset
+
+
+\begin_inset Quotes prd
+\end_inset
+
+ zu finden.
+\end_layout
+
 \begin_layout Section
 Umsetzung - Teil 1 Gültigkeit des Satzes zur Rechtsauslöschung in Gruppen
 \end_layout
@@ -483,6 +520,13 @@ Weiteres Vorgehen
 
 \begin_layout Subsection
 Möglichkeiten der Vertiefung der Aufgabenstellung
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Möglichkeiten-der-Vertiefung"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
