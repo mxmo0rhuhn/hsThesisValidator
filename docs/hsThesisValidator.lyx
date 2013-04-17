@@ -147,8 +147,44 @@ sind dabei schon relativ kleine Systeme mit bedeutendem Rechenaufwand verbunden.
 Ausgangslage
 \end_layout
 
+\begin_layout Standard
+Wir haben uns im Rahmen einer Vertifungsarbeit zum Thema Algorithmen und
+ Datenstrukturen bereits mit dem Thema MapReduce beschäftigt.
+ Damals haben wir anhand des wohlbekannten Paradigma (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:MapReduce"
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sub:MapReduce"
+
+\end_inset
+
+) unser eigenes Framework für MapReduce Berechnungen implementiert.
+ Aufgrund der beschränkten zur Verfügung stehenden Zeit, haben wir uns damals
+ auf die Ausführung auf einem einzelnen Rechner mit mehreren Threads beschränkt,
+ anstatt ein ganzes Computernetz zu verwenden.
+ Ausserdem gab es weitere technische Limitierungen.
+ Zum Beispiel konnte unser Framework nicht mit dem Szenario umgehen, dass
+ ein Thread abnormal terminiert.
+ Ein solches Konzept wäre insbesondere interessant im Ausblick auf eine
+ echt verteilte Berechnung, da in einem Netzwerk immer wieder eine einzelne
+ Maschine aussteigt.
+\end_layout
+
 \begin_layout Subsubsection
 MapReduce
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:MapReduce"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -273,7 +309,7 @@ Folgendendes Beispiel soll die Idee von den zwei Phasen verdeutlichen.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $A={1,2,3,4}$
+\begin_inset Formula $A=\left\{ 1,2,3,4\right\} $
 \end_inset
 
 
