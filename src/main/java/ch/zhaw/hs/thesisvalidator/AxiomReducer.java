@@ -38,10 +38,11 @@ public class AxiomReducer implements ReduceInstruction {
 	 * 
 	 * @see LookupTables
 	 */
+
 	@Override
-	public void reduce(ReduceEmitter emitter, String sMod, Iterator<KeyValuePair> groups) {
+	public void reduce(ReduceEmitter emitter, String sMod, Iterator<KeyValuePair<String, String>> groups) {
 		while (groups.hasNext()) {
-			KeyValuePair group = groups.next();
+			KeyValuePair<String, String> group = groups.next();
 			int aPerm = readAPerm(group.getValue());
 			int mod = Integer.parseInt(sMod);
 			sentences: for (int a = 0; a < mod; a++) {
