@@ -389,6 +389,35 @@ reference "sub:Möglichkeiten-der-Vertiefung"
 Umsetzung - Teil 1 Gültigkeit des Satzes zur Rechtsauslöschung in Gruppen
 \end_layout
 
+\begin_layout Subsection
+Ausgangslage
+\end_layout
+
+\begin_layout Subsubsection
+Gruppe
+\end_layout
+
+\begin_layout Standard
+Eine Gruppe ist eine algebraische Struktur bestehend aus einer Menge S und
+ einer Verknüpfung 
+\begin_inset Formula $\diamond$
+\end_inset
+
+, welche die folgenden Axiome erfüllt:
+\end_layout
+
+\begin_layout Itemize
+Assoziativität: 
+\begin_inset Formula $\forall a,b,c.\:\left(a\diamond b\right)\diamond c\:=a\diamond\left(b\diamond c\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Neutrales Element: 
+\end_layout
+
 \begin_layout Standard
 \begin_inset Note Note
 status open
