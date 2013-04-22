@@ -57,10 +57,10 @@ public class AxiomMapper implements MapInstruction {
 
 		// neutrales element pro inversen-permutation
 		final Map<Integer, Integer> neutrals = findNeutrals(modulo);
-		
+
 		for (int perm = 0; perm < offset; perm++) {
 			int aPerm = perm + startPerm; // additions permutation
-			
+
 			for (Map.Entry<Integer, Integer> ipn : neutrals.entrySet()) {
 				int iPerm = ipn.getKey(); // inversen permutation
 				int e = ipn.getValue(); // neutrales element
@@ -109,7 +109,33 @@ public class AxiomMapper implements MapInstruction {
 	 * @return flase, wenn mindestens eines der Axiome nicht für sämtliche Elemente gilt. Sonst true.
 	 */
 	public boolean checkAxioms(final int modulo, final int perm, final int neutral) {
-		return inverse(modulo, perm, neutral) && associative(modulo, perm);
+		return neutral(modulo, perm, neutral) && inverse(modulo, perm, neutral) && associative(modulo, perm);
+	}
+
+	/**
+	 * Prüft, ob das neutrale Element die Axiome, welches für das neutrale Element gelten müssen, gilt.
+	 * 
+	 * @param modulo
+	 *            Restklasse
+	 * @param perm
+	 *            perm-te Permutation
+	 * @param e
+	 *            vermeindlich neutrales Element
+	 * @return true, wenn das neutrale Element wirklich das neutrale ist
+	 */
+	public boolean neutral(final int modulo, final int perm, final int e) {
+		// Es gibt ein e für das gilt: Es gibt ein a für das gilt: a * e = e * a = a
+		for (int a = 0; a < modulo; a++) {
+			int b = LookupTables.map2d(a, e, perm, modulo);
+			if (a != b) {
+				return false;
+			}
+			int c = LookupTables.map2d(e, a, perm, modulo);
+			if (a != c) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**

@@ -99,6 +99,25 @@ public class AxiomMapperTest {
 		Map<Integer, Integer> neutrals = mapper.findNeutrals(2);
 		assertFalse(neutrals.containsKey(2));
 	}
+	
+	@Test
+	public void shouldSatisfyNeutralElementForStandardModulo2() {
+		AxiomMapper mapper = new AxiomMapper();
+		assertTrue(mapper.neutral(2, 6, 0));
+	}
+	
+	@Test
+	public void shouldNotSatisfyNotNeutralElementForStandardModulo2() {
+		AxiomMapper mapper = new AxiomMapper();
+		assertFalse(mapper.neutral(2, 6, 1));
+	}
+	
+	@Test
+	public void shouldNotSatisfyAnyNeutralInAllZeroMappingForMod2() {
+		AxiomMapper mapper = new AxiomMapper();
+		assertFalse(mapper.neutral(2, 0, 0));
+		assertFalse(mapper.neutral(2, 0, 1));
+	}
 
 	@Test
 	public void shouldSatisfyInverseAxiomForStandardModulo2() {
@@ -113,6 +132,28 @@ public class AxiomMapperTest {
 		// ich nehme an, die fuenfte permutation ist die intuitive additionstabelle der restklasse 2
 		assertTrue(mapper.associative(2, 6));
 	}
+	
+	@Test
+	public void shouldSatisfyNeutralElementForStandardModulo3() {
+		AxiomMapper mapper = new AxiomMapper();
+		assertTrue(mapper.neutral(3, 4069, 0));
+	}
+
+	@Test
+	public void shouldNotSatisfyNotNeutralElementForStandardModulo3() {
+		AxiomMapper mapper = new AxiomMapper();
+		assertFalse(mapper.neutral(3, 4069, 1));
+		assertFalse(mapper.neutral(3, 4069, 2));
+	}
+	
+	@Test
+	public void shouldNotSatisfyAnyNeutralInAllZeroMappingForMod3() {
+		AxiomMapper mapper = new AxiomMapper();
+		assertFalse(mapper.neutral(3, 0, 0));
+		assertFalse(mapper.neutral(3, 0, 1));
+		assertFalse(mapper.neutral(3, 0, 2));
+	}
+
 
 	@Test
 	public void shouldSatisfyInverseAxiomForStandardModulo3() {
