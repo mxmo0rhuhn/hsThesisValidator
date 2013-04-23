@@ -31,16 +31,8 @@ public class AxiomMapperTest {
 		final MapEmitter emitter = this.context.mock(MapEmitter.class);
 		AxiomMapper mapper = new AxiomMapper();
 		this.context.checking(new Expectations() {{
-			oneOf(emitter).emitIntermediateMapResult("2", "0,0");
-			oneOf(emitter).emitIntermediateMapResult("2", "1,0");
-			oneOf(emitter).emitIntermediateMapResult("2", "3,0");
-			oneOf(emitter).emitIntermediateMapResult("2", "3,3");
 			oneOf(emitter).emitIntermediateMapResult("2", "6,0");
-			oneOf(emitter).emitIntermediateMapResult("2", "6,3");
-			oneOf(emitter).emitIntermediateMapResult("2", "7,3");
-			oneOf(emitter).emitIntermediateMapResult("2", "9,0");
 			oneOf(emitter).emitIntermediateMapResult("2", "9,3");
-			oneOf(emitter).emitIntermediateMapResult("2", "15,3");
 		}});
 		mapper.map(emitter, "2,0,16");
 	}
@@ -50,9 +42,7 @@ public class AxiomMapperTest {
 		final MapEmitter emitter = this.context.mock(MapEmitter.class);
 		AxiomMapper mapper = new AxiomMapper();
 		this.context.checking(new Expectations() {{
-			oneOf(emitter).emitIntermediateMapResult("2", "9,0");
 			oneOf(emitter).emitIntermediateMapResult("2", "9,3");
-			oneOf(emitter).emitIntermediateMapResult("2", "15,3");
 		}});
 		mapper.map(emitter, "2,8,8");
 	}
@@ -62,9 +52,9 @@ public class AxiomMapperTest {
 		final MapEmitter emitter = this.context.mock(MapEmitter.class);
 		AxiomMapper mapper = new AxiomMapper();
 		this.context.checking(new Expectations() {{
-			oneOf(emitter).emitIntermediateMapResult("2", "7,3");
+			oneOf(emitter).emitIntermediateMapResult("2", "6,0");
 		}});
-		mapper.map(emitter, "2,7,1");
+		mapper.map(emitter, "2,6,1");
 	}
 	
 	@Test
@@ -72,10 +62,7 @@ public class AxiomMapperTest {
 		final MapEmitter emitter = this.context.mock(MapEmitter.class);
 		AxiomMapper mapper = new AxiomMapper();
 		this.context.checking(new Expectations() {{
-			oneOf(emitter).emitIntermediateMapResult("2", "0,0");
-			oneOf(emitter).emitIntermediateMapResult("2", "1,0");
-			oneOf(emitter).emitIntermediateMapResult("2", "3,0");
-			oneOf(emitter).emitIntermediateMapResult("2", "3,3");
+			never(emitter);
 		}});
 		mapper.map(emitter, "2,0,6");
 	}
@@ -226,7 +213,7 @@ public class AxiomMapperTest {
 		AxiomMapper mapper = new AxiomMapper();
 		final MapEmitter emitter = this.context.mock(MapEmitter.class);
 		this.context.checking(new Expectations() {{ 
-			oneOf(emitter).emitIntermediateMapResult("2", "15,3");
+			never(emitter);
 		}});
 		mapper.map(emitter, "2,16,0");
 		mapper.map(emitter, "2,15,1");
