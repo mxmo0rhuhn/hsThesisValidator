@@ -211,7 +211,7 @@ Die zwei Phasen sind, wie der Name suggeriert, Map und Reduce (und eine
  aufgerufen, welche hier kurz erklärt werden sollen.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Verse
 \begin_inset Foot
 status open
 
@@ -239,7 +239,7 @@ Die Map Funktion bildet eine Menge von Elementen elementweise auf eine neue
  
 \end_layout
 
-\begin_layout Standard
+\begin_layout Verse
 \begin_inset Formula $reduce:(b\rightarrow c\rightarrow c)\rightarrow c\rightarrow B\rightarrow c$
 \end_inset
 
@@ -308,21 +308,21 @@ Folgendendes Beispiel soll die Idee von den zwei Phasen verdeutlichen.
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Verse
 \begin_inset Formula $A=\left\{ 1,2,3,4\right\} $
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Verse
 \begin_inset Formula $f_{m}\: x=x^{2}$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Verse
 \begin_inset Formula $f_{r}\: x\: a=x+a$
 \end_inset
 
@@ -416,19 +416,117 @@ Assoziativität:
 
 \begin_layout Itemize
 Neutrales Element: 
+\begin_inset Formula $\exists e.\:\forall a.\:\left(a\diamond e=e\diamond a=a\right)$
+\end_inset
+
+
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
+\begin_layout Itemize
+Inverses Element
+\begin_inset Foot
 status open
 
 \begin_layout Plain Layout
-Hier muss dringend noch die Genaue Aufgabe erklärt werden ...
+Hierbei ist e das neutrale Element
+\end_layout
+
+\end_inset
+
+: 
+\begin_inset Formula $\forall a.\:\exists b.\:\left(a\diamond b=e\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Es gibt verschiedene Strukturen, die diese Eigenschaften haben.
+ Ein Beispiel davon ist die Restklasse 3 mit einer Operation definiert als:
+ 
+\begin_inset Formula $x\diamond y=(x+y)\,\%\,3$
+\end_inset
+
+, also die gewöhnliche Addition in dieser Restklasse.
+ Für diese Struktur kann man nun beweisen, dass sie eine Gruppe ist, indem
+ man sich überzeugt, dass die Addition assoziativ ist, dass ein neutrales
+ Element existiert (nämlich 0) und dass jedes Element ein inverses Element
+ hat, mit welchem es auf die 0 abbildet (z.B.
+ 
+\begin_inset Formula $1\diamond2=0$
+\end_inset
+
+).
+ Es gibt weit mehr Strukturen, die als Gruppe eingestuft werden und mit
+ ausprobieren findet man einige.
+ Diese mechanische Arbeit, also das Suchen solcher Strukturen, könnte uns
+ ein Computer abnehmen und genau das ist ein Teil unserer Arbeit.
+ Natürlich gibt es unendlich viele Möglichkeiten, weshalb wir diese Aufgabe
+ zwar einschränken werden müssen, aber um trotzdem eine möglichst hohe Rechenpow
+er zur Verfügung zu haben, haben wir uns entschieden, die Suche mit unserem
+ MapReduce Framework auszuführen.
+\end_layout
+
+\begin_layout Subsubsection
+Satz
+\end_layout
+
+\begin_layout Quotation
+Ein Satz oder Theorem ist in der Mathematik eine widerspruchsfreie logische
+ Aussage, die mittels eines Beweises als wahr erkannt, das heißt, aus Axiomen
+ und bereits bekannten Sätzen hergeleitet werden kann.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Aus Wikipedia, der freien Enzyklopädie: http://de.wikipedia.org/wiki/Satz_(Mathema
+tik)
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Nachdem wir mittels dem MapReduce Framework irgendwelche Strukturen gefunden
+ habe, welche (evt.
+ per Zufall) die Axiome einer Gruppe erfüllen, können wir in einem zweiten
+ Schritt noch prüfen, ob für diese auch bestimmte Sätze zutreffen.
+ Im Gegensatz zu den Gruppen-Axiomen gibt es keine definierte Menge an Sätzen,
+ welche für eine Gruppe gültig sind.
+ Es werden ständig neue Sätze gefunden und ausserdem existieren Sätze, für
+ die noch nicht allgemeingültig bewiesen werden konnte, dass sie für sämtliche
+ Gruppen gelten - es wurde aber auch noch kein Gegenbespiel gefunden.
+ Während wir mit dem MapReduce Framework zwar keine allgemeingültigen Beweise
+ führen können, können wir aber mit sehr viel Rechenpower nach Gegenbespielen
+ suchen, also bestimmte Konstellationen von Mengen und Verknüpfungen auf
+ diesen, welche zwar eine Gruppe sind, aber einen bestimmten Satz nicht
+ erfüllen.
+ Ein Beispiel eines Satzes, ist der Satz der Rechtsauslöschung:
+\end_layout
+
+\begin_layout Verse
+\begin_inset Formula $\forall a,b,c.\: b\diamond a=c\diamond a\Rightarrow b=c$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sämtliche Strukturen, welche die Axiome der Gruppe erfüllen, erfüllen auch
+ diesen Satz.
+ Den Beweis dazu findet man online
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+http://www.proofwiki.org/wiki/Cancellation_Laws
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
