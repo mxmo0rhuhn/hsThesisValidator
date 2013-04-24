@@ -789,5 +789,89 @@ Das Kriterium der Beherrschbarkeit gab schlussendlich auch den Ausschlag
  grossen Ansporn dar.
 \end_layout
 
+\begin_layout Section
+Umsetzung - Teil 2 MapReduce Framework zur verteilten Berechnung
+\end_layout
+
+\begin_layout Subsection
+Master/Task/Worker/Plugins
+\end_layout
+
+\begin_layout Standard
+Der Master ist ein Server, welcher die Aufgaben (Tasks) und Worker verwaltet.
+ Ein Task ist eine abstrakte Einheit, welche von einem Worker erledigt werden
+ kann, also entweder ein Teil einer Map- oder Reduce-Berechnung.
+ Im klassischen MapReduce, wie es von Google beschrieben wurde, ist ein
+ Worker eine Maschine.
+ Somit verteilt eine Hauptmaschine (Master) die verschiedenen Aufgaben an
+ verschiedene Rechner in einem Netzwerk.
+ In unserer Implementation ist aber ein Worker nicht zwingend eine anderen
+ Maschine, sondern wir haben diese Einheit abstrahiert.
+ In der ersten Version unseres Frameworks gab es nur eine Art von Workern
+ - Threads - aber mittlerweile kann via Plugin irgendeine Art von Worker
+ dem Master übergeben werden.
+ Die konkrete Verwaltung wird dabei vom Pool übernommen, welcher den Status
+ der Worker kennt (z.B.
+ beschäftigt, frei, unauffindbar, etc) und weiss, welche Tasks gerade zu
+ erledigen sind.Ein Plugin ist Stück Code, welches eine Worker-Technologie
+ zur Verfügung stellt.
+ Somit gibt es also zum Beispiel ein Plugin, welches Threads als Worker
+ zur Verfügung stellt und ein Plugin, welches andere Rechner über eine Socket-Ve
+rbindung zur Verfügung stellt.
+ Dies wurde so abstrahiert, dass in Zukunft auch weitere Arten von Workern
+ hinzugeügt werden können.
+ Denkbar wäre zum Beispiel CUDA (NVidia Grafikkarten) oder Android Smartphones.
+\end_layout
+
+\begin_layout Subsection
+Ablauf
+\end_layout
+
+\begin_layout Standard
+Wenn eine Berechnung mit dem MapReduce Framework ausgeführt werden soll,
+ ist der Ablauf folgendermassen (vereinfacht): Der Benutzer implementiert
+ die beiden Interfaces MapInstruction und ReduceInstruction (sowie optional
+ eine CombinerInstruction, aber diese soll zur Vereinfachung weggelassen
+ werden) und erstellt zusammen mit einer Menge an Input einen MapReduceTask.
+ Dieser MapReduceTask ist die ursprüngliche Berechnungseinheit, welche dem
+ Master zur Berechnung übergeben wird.Daraus kann dann der Master die Map-
+ und Reduce Instruktionen extrahieren und erstellt zunächst aus je einem
+ Teil vom Input und einer Instanz der MapInstruction einen MapTask.
+ Somit entstehen für eine MapReduce Berechnung mehrere MapTasks, welche
+ dem Pool vom Master zur Verarbeitung übergeben werden.
+ Gleichzeitig wird vorausgesetzt, dass dem Pool durch ein oder mehrere Plugins
+ bereits Worker zur Verfügung gestellt worden sind (donaten).
+ Somit kann der Pool einen auszuführenden MapTask einem verfügbaren Worker
+ übergeben.
+ Wenn dieser Worker eine andere Maschine im Netz abstrahiert, würde das
+ bedeuten, dass dieser MapTask auf einem anderen Rechner ausgeführt wird.Um
+ diesen Task auszuführen, muss ein Kontext erstellt werden, in welchem der
+ Task ausgeführt werden kann, denn ein Task (Map sowie Reduce) arbeitet
+ jeweils gegen ein Emitter, in welchem die Zwischenresultate abgespeichert
+ werden können.
+ Aus der Sicht einer Instruktion (Map sowie Reduce) ist es also transparent,
+ wo sie ausgeführt wird.
+ Sie muss lediglich in den Kontext emitten.Sobald die Berechnung (z.B.
+ auf einem anderen Rechner) ausgeführt wurde, meldet sich der Worker wieder
+ beim Pool, dass er wieder bereit ist, Aufgaben anzunehmen.
+ Also könnte eine ganze Berechnung entweder von einem einzelnen Worker in
+ mehreren Schritten ausgeführt werden oder auf mehrere Worker aufgeteilt,
+ je nach dem wie schnell ein einzelner ist.
+ Gleichzeitig prüft der Master kontinuierlich, ob alle MapTasks ausgeführt
+ worden sind.Sobald alle MapTasks für eine Berechnung ausgeführt worden sind,
+ beginnt der Master alle Resultate zu sammeln und schliesst somit die Map-Phase
+ ab.
+ Darauf folgt die Combiner-Phase, in welcher die Resultate der Map-Phase
+ nach Schlüssel gruppiert werden und somit auf die Reduce-Phase vorbereitet.
+ Da vor der Shuffle-Phase alle MapTasks ausgeführt werden sein müssen, gilt
+ dies als Bottleneck von MapReduce.Nach der Shuffle-Phase beginnt der Master
+ damit die einzelnen ReduceTasks, bestehend aus einer Instanz der ReduceInstruct
+ion und einem Teil der Shuffle Resultate, zu erstellen und diese wieder
+ dem Pool zu übergeben.
+ Dann beginnt der Pool wieder diese ReduceTasks den verfügbaren Worker zuzuteile
+n und der Master wartet wiederum auf deren Fertigstellung.
+ Sobald auch diese fertig sind, ist die ganze MapReduce Berechnung fertig.
+\end_layout
+
 \end_body
 \end_document
