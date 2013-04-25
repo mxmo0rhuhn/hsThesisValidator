@@ -530,11 +530,7 @@ http://www.proofwiki.org/wiki/Cancellation_Laws
 \end_layout
 
 \begin_layout Subsection
-Finden von Gruppen mittels Computer
-\end_layout
-
-\begin_layout Subsubsection
-Generieren von Gruppen und möglichen Verknüpfungen
+Generieren von Gruppen mittels Computer
 \end_layout
 
 \begin_layout Standard
@@ -1053,8 +1049,201 @@ Für die Restklasse 2 gibt es also 4 mögliche Wertetabellen und für eine
 \end_layout
 
 \begin_layout Standard
-Schlussendlich gibt es in jeder Gruppe ein neutrales Element.
- ES GIBT ABER DANN noch DIE KONSTELLATIONEN
+Das neutrale Element ist einfach zu finden, weil jedes Element als neutrales
+ gelten kann.
+\end_layout
+
+\begin_layout Standard
+Schlussendlich suchen wir Gruppen indem wir eine zweistellige Verknüpfung,
+ eine einstellige Verknüpfung und ein neutrales Element zusammen auf die
+ Axiome überprüfen.
+ Dazu prüfen wir jede Kombination dieser drei Komponenten in der Map Phase.
+ Die genaue Formulierung dieses Problems als Map Funktion ist im nächsten
+ Abschnitt beschrieben.
+\end_layout
+
+\begin_layout Subsubsection
+Implementationsdetails zur Generierung sämtlicher Wertetabellen
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Klasse LookupTables im Projekt hsThesisValidator
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Bereits für die Restklasse 3 gibt es bei der zweistelligen Verknüpfung tausende
+ von Möglichkeiten.
+ Die Restklasse 4 passt wahrscheinlich schon nicht mehr in den Hauptspeicher
+ eines Computers.
+ Da wir diese Berechnung verteilen müssen wir also einerseits einen Algorithmus
+ finden, der sich auf verschiedene Rechner aufteilen lässt, sodass jeder
+ Rechner eine Teilmenge der Wertetabellen überprüfen kann, und diese Teilmenge
+ sollte nicht zu viel Speicher verbrauchen.
+ Auf dem Master alle Wertetabellen zu generieren und diese dann an die verschied
+enen Worker (Rechner) über das Netz zu schicken ist also nicht praktikabel.
+\end_layout
+
+\begin_layout Standard
+Nehmen wir als Beispiel die Restklasse 2.
+ Bei genauerer Betrachtung einer Wertetablle sieht man, dass diese anstatt
+ zweidimensional auch eindimensional interpretiert werden können.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\diamond$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+a
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+b
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+c
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+d
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Eindimensional sähe die abgebildete Wertetabelle folgendermassen aus: 
+\begin_inset Formula $\diamond=\left\{ a,b,c,d\right\} $
+\end_inset
+
+.
+ Vor allem in der Restklasse 2 kann man sich leicht überzeugen, dass sämtliche
+ Kombinationen die Binärwerte der Zahlen zwischen 0 und 15 sind: z.B.
+ 
+\begin_inset Formula $0=\left\{ 0,0,0,0\right\} $
+\end_inset
+
+(alles bildet auf 0 ab) oder 
+\begin_inset Formula $6=\left\{ 0,1,1,0\right\} $
+\end_inset
+
+ (die intuitive Addition der Restklasse 2).
+ In der zweidimensionalen Wertetabelle konnten wir die Funktionswerte mithilfe
+ der x und y Indizes ablesen.
+ Diese x und y Werte können mit der folgenden Funktion auf den Index in
+ der Binärrepräsentation abgebildet werden: 
+\begin_inset Formula $f_{trans2}\left(x,y\right)=y*2+x$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wäre man als Beispiel in der sechsten Wertetabelle an der Abbildung 
+\begin_inset Formula $1\diamond0$
+\end_inset
+
+ interessiert, würde das 
+\begin_inset Formula $x=1,\: y=0$
+\end_inset
+
+ entsprechen.
+ Transformiert auf die eindimensionale Repräsentation ergibt dies die Binärreprä
+sentation 0110 und für den Index 
+\begin_inset Formula $f_{trans2}\left(1,0\right)=1$
+\end_inset
+
+.
+ Also das zweite Element der Binärrepräsentation, was eine eins ist - wir
+ in der Wertetabelle.
 \end_layout
 
 \begin_layout Subsection
