@@ -1,0 +1,16 @@
+3. Bericht zum Software Projekt 2 von Max Schrimpf und Reto Hablützel.
+
+Nachdem wir diese Iteration mit dem Wissen, dass wir knapp im Zeitplan sind, begonnen haben, war diese wohl eine der arbeitsintensivsten. Wir waren uns zwar von Anfang an bewusst, dass dies kein einfaches Projekt werden wird, haben uns aber trotzdem in der Planung unterschätzt.
+
+Wir haben in dieser Iteration vor allem am API und der verteilen Berechung gearbeitet und die Dokumentation (vor allem in Form von Grafiken, die wir später in das Hauptdokument intergrieren werden) auf dem neusten Stand gehalten. Was die Implementation betrifft verwenden wir weiterhin durchs Band das Dependency Injection Framework 'Guice' von Google und können unsere Code so sauber strukturieren und optimal testen. Ausserdem verwenden wir für den Remote Producde Call (Master - Worker) SIMON.
+
+Wir sind uns desweiteren bewusst, dass wir in dieser Iteration deutlich mehr gearbeitet haben als der vorgesehen Aufwand. Da wir aber sehr engagiert und gewillt sind, diese Projekt vollständig umzusetzen, möchten wir lieber etwas mehr Zeit investieren als den Scope zu reduzieren.
+
+Das nächste Treffen mit Herrn Heuberger ist am kommenden Montag, den 13. Mai.
+ 
+Dokumentation: https://bitbucket.org/mo0rhuhn/hsthesisvalidator/src
+Code: https://bitbucket.org/mo0rhuhn/hsthesisvalidator/src
+MapReduce Framework: https://bitbucket.org/mo0rhuhn/map-reduce/overview
+Projektplanung: https://docs.google.com/spreadsheet/ccc?key=0AlzUEwhQyGbYdEZpRUktak1GeGE1Y2tpeHZYa3M1cFE
+SIMON: http://dev.root1.de
+Guice: https://code.google.com/p/google-guice
