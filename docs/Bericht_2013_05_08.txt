@@ -1,10 +1,11 @@
 3. Bericht zum Software Projekt 2 von Max Schrimpf und Reto Hablützel.
 
-Nachdem wir diese Iteration mit dem Wissen, dass wir knapp im Zeitplan sind, begonnen haben, war diese wohl eine der arbeitsintensivsten. Wir waren uns zwar von Anfang an bewusst, dass dies kein einfaches Projekt werden wird, haben uns aber trotzdem in der Planung unterschätzt.
+Da wir diese Iteration mit dem Wissen, dass wir knapp im Zeitplan sind, begonnen haben, war sie wohl eine der arbeitsintensivsten. Zwar waren wir uns von Anfang an bewusst, dass die von uns gewählte Spezialisierung kein einfaches Projekt werden würde, dennoch hatten wir uns zu Beginn in der Planung massiv verkalkuliert.
 
-Wir haben in dieser Iteration vor allem am API und der verteilen Berechung gearbeitet und die Dokumentation (vor allem in Form von Grafiken, die wir später in das Hauptdokument intergrieren werden) auf dem neusten Stand gehalten. Was die Implementation betrifft verwenden wir weiterhin durchs Band das Dependency Injection Framework 'Guice' von Google und können unsere Code so sauber strukturieren und optimal testen. Ausserdem verwenden wir für den Remote Producde Call (Master - Worker) SIMON.
+Inhaltlich haben wir uns in dieser Iteration vor allem am API und der verteilen Berechnung gewidmet. Des Weiteren war, gerade auch nachdem wir das alte Projekt mehr und mehr wieder kennenlernten, uns eine aktuelle Dokumentation (vor allem in Form von Grafiken, die wir später in das Hauptdokument integrieren werden) sehr wichtig. Was die Implementation betrifft, verwenden wir weiterhin durchs Band Googles Dependency Injection Framework 'Guice' womit wir unseren Code so sauber strukturieren und optimal testen können. Weiterhin verwenden wir für den Remote Producde Call (Master - Worker) SIMON.
 
-Wir sind uns desweiteren bewusst, dass wir in dieser Iteration deutlich mehr gearbeitet haben als der vorgesehen Aufwand. Da wir aber sehr engagiert und gewillt sind, diese Projekt vollständig umzusetzen, möchten wir lieber etwas mehr Zeit investieren als den Scope zu reduzieren.
+Zwar sind uns absolut dessen bewusst, dass wir in dieser Iteration deutlich mehr gearbeitet haben als der vorgesehen Aufwand des Software-Projekts vorsieht, da wir aber sehr gewillt sind, dieses höchstgeradig spannende und lehrreiche Projekt vollständig umzusetzen, möchten wir uns lieber stärker engagieren und mehr Zeit investieren als den Scope zu reduzieren.
+Ein vollständiges Framework zur verteilten Berechnung von Daten zu implementieren bietet aus diversen Aspekten der Software-Entwicklung spannende Aspekte an denen verschiedenste Patterns, Designs uvm. ausprobieren und einmal selbst implementieren können. Auch reizt uns die Vorstellung das Framework wenn es schlussendlich fertig ist mit der Applikation einmal auf Skalierbarkeit etc. zu testen.
 
 Das nächste Treffen mit Herrn Heuberger ist am kommenden Montag, den 13. Mai.
  
