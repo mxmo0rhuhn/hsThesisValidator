@@ -40,9 +40,9 @@ public class AxiomReducer implements ReduceInstruction {
 	 */
 
 	@Override
-	public void reduce(ReduceEmitter emitter, String sMod, Iterator<KeyValuePair<String, String>> groups) {
+	public void reduce(ReduceEmitter emitter, String sMod, Iterator<KeyValuePair> groups) {
 		while (groups.hasNext()) {
-			KeyValuePair<String, String> group = groups.next();
+			KeyValuePair group = groups.next();
 			int aPerm = readAPerm(group.getValue());
 			int mod = Integer.parseInt(sMod);
 			sentences: for (int a = 0; a < mod; a++) {
