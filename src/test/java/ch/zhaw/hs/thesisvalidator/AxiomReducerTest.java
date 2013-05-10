@@ -95,8 +95,8 @@ public class AxiomReducerTest {
 		assertEquals(10, new AxiomReducer().readAPerm("9,10"));
 	}
 
-	private Iterator<KeyValuePair<String, String>> i(final int mod, final int... aperms) {
-		return new Iterator<KeyValuePair<String, String>>() {
+	private Iterator<KeyValuePair> i(final int mod, final int... aperms) {
+		return new Iterator<KeyValuePair>() {
 
 			int index = 0;
 

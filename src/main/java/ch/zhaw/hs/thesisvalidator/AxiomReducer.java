@@ -43,13 +43,13 @@ public class AxiomReducer implements ReduceInstruction {
 	public void reduce(ReduceEmitter emitter, String sMod, Iterator<KeyValuePair> groups) {
 		while (groups.hasNext()) {
 			KeyValuePair group = groups.next();
-			int aPerm = readAPerm(group.getValue());
+			int aPerm = readAPerm((String) group.getValue());
 			int mod = Integer.parseInt(sMod);
 			sentences: for (int a = 0; a < mod; a++) {
 				for (int b = 0; b < mod; b++) {
 					for (int c = 0; c < mod; c++) {
 						if (!cancellation(mod, aPerm, a, b, c)) {
-							emitter.emit(group.getValue());
+							emitter.emit((String) group.getValue());
 							break sentences;
 						}
 					}
