@@ -8,6 +8,8 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import ch.zhaw.hs.thesisvalidator.model.LookupTables;
+
 public class LookupTablesTest {
 
 	@Test

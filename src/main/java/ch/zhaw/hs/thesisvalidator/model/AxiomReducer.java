@@ -1,4 +1,4 @@
-package ch.zhaw.hs.thesisvalidator;
+package ch.zhaw.hs.thesisvalidator.model;
 
 import java.util.Iterator;
 

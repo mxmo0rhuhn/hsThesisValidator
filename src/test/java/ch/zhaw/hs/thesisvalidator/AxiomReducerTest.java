@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import ch.zhaw.hs.thesisvalidator.model.AxiomReducer;
 import ch.zhaw.mapreduce.KeyValuePair;
 import ch.zhaw.mapreduce.ReduceEmitter;
 
