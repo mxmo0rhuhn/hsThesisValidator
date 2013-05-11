@@ -1,6 +1,8 @@
 package ch.zhaw.hs.thesisvalidator.controller;
 
 import ch.zhaw.hs.thesisvalidator.model.ThesisValidator;
+import ch.zhaw.hs.thesisvalidator.view.ConsoleObserver;
+import ch.zhaw.hs.thesisvalidator.view.HTMLObserver;
 import ch.zhaw.mapreduce.MapReduceFactory;
 
 /**
@@ -21,10 +23,14 @@ public class ProjectLauncher {
 	 */
 	public static void main(String[] args) {
 		MapReduceFactory.getMapReduce().start();
-
+		
 		int startValue = 1;
 		int stopValue = 1;
 
+		ThesisValidator validator = new ThesisValidator();
+		validator.addObserver(new HTMLObserver());
+		validator.addObserver(new ConsoleObserver());
+		
 		switch (args.length) {
 		case 2:
 			try {
@@ -39,8 +45,10 @@ public class ProjectLauncher {
 				System.err.println("Argument 0 must be an integer");
 				System.exit(1);
 			}
-			new ThesisValidator(startValue, stopValue);
+			
+			validator.start(startValue, stopValue);
 			break;
+			
 		case 1:
 			try {
 				stopValue = Integer.parseInt(args[0]);
@@ -48,13 +56,15 @@ public class ProjectLauncher {
 				System.err.println("Argument 0 must be an integer");
 				System.exit(1);
 			}
-			new ThesisValidator(stopValue);
+			
+			validator.start(1, stopValue);
 			break;
+			
 		default:
-			new ThesisValidator();
+			validator.startForever();
 			break;
 		}
-
+		
 		MapReduceFactory.getMapReduce().stop();
 	}
 }

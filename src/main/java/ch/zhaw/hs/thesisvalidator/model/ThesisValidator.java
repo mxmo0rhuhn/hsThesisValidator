@@ -3,16 +3,45 @@
  */
 package ch.zhaw.hs.thesisvalidator.model;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Observable;
+
+import ch.zhaw.mapreduce.MapReduce;
+import ch.zhaw.mapreduce.MapReduceFactory;
+
 /**
  * @author Max
  * 
  */
-public class ThesisValidator {
+public class ThesisValidator extends Observable{
+
+	private final MapReduce computer;
+	// Ein die Grösse der einzelnen zu berechnenden Teile
+	private static final int OFFSET = 10000;
+	
+	public ThesisValidator() {
+		computer = MapReduceFactory.getMapReduce().newMRTask(new AxiomMapper() , new AxiomReducer(), null, configureMRTask());
+	}
 
 	/**
-	 * Erstellt ein neues, bis zur manuellen beendigung laufendes Programm.
+	 * Berechnet ein gewisses Intervall an Restklassen
+	 * 
+	 * @param startValue
+	 *            der Wert, bei dem die Berechnung gestartet werden soll.
+	 * @param stopValue
+	 *            der Wert, bei dem die Berechnung gestoppt werden soll.
 	 */
-	public ThesisValidator() {
+	public void start(int startValue, int stopValue) {
+		for (int i = startValue; i <= stopValue; i++) {
+			compute(i);
+		}
+	}
+
+	/**
+	 * Berechnet bis zur manuellen Beendigung 
+	 */
+	public void startForever() {
 		while (true) {
 			int i = 1;
 			compute(i);
@@ -20,32 +49,26 @@ public class ThesisValidator {
 		}
 	}
 
-	/**
-	 * Erstellt ein neues, bis zu einem gewissen stopwert laufendes Programm.
-	 * 
-	 * @param stopValue
-	 *            der Wert bei dem die Berechnung gestoppt werden soll.
-	 */
-	public ThesisValidator(int stopValue) {
-		this(1, stopValue);
+	private Map<String, String> configureMRTask() {
+		
+		Map<String, String> myConfig = new HashMap<String, String>();
+//		myConfig.put("rescheduleStartPercentage", "intValue");
+//		myConfig.put("rescheduleEvery", "intValue");
+//		myConfig.put("waitTime", "intValue");
+		
+//		... könnten hier eingestellt werden
+//		Defaults sind:
+//		rescheduleStartPercentage = 90%
+//		rescheduleEvery = 10 durchläufe
+//		waitTime = 1000 millisekunden
+ 
+		return myConfig;
 	}
-
-	/**
-	 * Erstellt ein neues ab einem gewissen Wert bis zu einem Stopwert laufendes Programm.
-	 * 
-	 * @param startValue
-	 *            der Wert, bei dem die Berechnung gestartet werden soll.
-	 * @param stopValue
-	 *            der Wert, bei dem die Berechnung gestoppt werden soll.
-	 */
-	public ThesisValidator(int startValue, int stopValue) {
-		for (int i = startValue; i <= stopValue; i++) {
-			compute(i);
-		}
-	}
-
-	private void compute(int i) {
-		// TODO do the magic
-
+	
+	private void compute(int residue) {
+		Map<String, String> results = computer.runMapReduceTask(new ResidueIterator(residue, OFFSET));
+		
+	    super.setChanged(); 
+	    super.notifyObservers(results); 
 	}
 }
