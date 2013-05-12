@@ -41,7 +41,7 @@ public class ConsoleOutput extends JFrame {
 		setLocationRelativeTo(null);
 		setTitle("Log");
 		setSize(new Dimension(800, 300));
-		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 

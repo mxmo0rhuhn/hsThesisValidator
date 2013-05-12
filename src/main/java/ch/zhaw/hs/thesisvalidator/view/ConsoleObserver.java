@@ -19,6 +19,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Set;
 
+import ch.zhaw.hs.thesisvalidator.model.AxiomMapper;
 import ch.zhaw.hs.thesisvalidator.model.ThesisValidator;
 
 /**
@@ -56,7 +57,7 @@ public class ConsoleObserver implements Observer {
 		printStreams("----------------------------------------------------------------");
 		printStreams("Restklasse: " + curResidue);
 		printStreams("Untersuchte Permutationen: "
-				+ ThesisValidator.calculatePermutations(curResidue));
+				+ AxiomMapper.calculateMaxPermutations(curResidue));
 		curResidue++;
 
 		Date stopTSD = new Date();

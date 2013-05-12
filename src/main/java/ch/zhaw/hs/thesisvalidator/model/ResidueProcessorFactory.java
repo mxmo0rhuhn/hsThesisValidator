@@ -31,5 +31,4 @@ public class ResidueProcessorFactory implements ShuffleProcessorFactory {
 	public Runnable getNewRunnable(Iterator<Entry<String, List<KeyValuePair>>> results) {
 		return new HTMLFormatter(outDirectory, results);
 	}
-
 }

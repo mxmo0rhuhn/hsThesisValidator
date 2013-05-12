@@ -17,6 +17,16 @@ import ch.zhaw.mapreduce.MapInstruction;
  */
 public class AxiomMapper implements MapInstruction {
 	
+	/**
+	 * Gibt zu einer restklasse die Anzahl an möglichen Permutationen zurück
+	 * @param residue die Restklasse
+	 * @return die anzahl mödlicher Permutationen
+	 */
+	public static int calculateMaxPermutations(int residue) {
+		// Diese Formel ist eine Annahme... 
+		return (int) Math.pow(residue, (int) Math.pow(residue, residue));
+	}
+	
 	private static final Logger LOG = Logger.getLogger(AxiomMapper.class.getName());
 
 	/**
@@ -54,7 +64,7 @@ public class AxiomMapper implements MapInstruction {
 		final int startPerm = readStartPerm(input);
 		final int offset = readOffset(input);
 
-		int maxPerms = (int) Math.pow(modulo, Math.pow(modulo, modulo));
+		int maxPerms = calculateMaxPermutations(modulo);
 		if (startPerm + offset > maxPerms) {
 			throw new IllegalArgumentException("Number of Permutations: " + (startPerm + offset) + " > " + maxPerms);
 		}
