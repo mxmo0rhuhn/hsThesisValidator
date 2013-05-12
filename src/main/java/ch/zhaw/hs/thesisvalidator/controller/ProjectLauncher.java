@@ -1,5 +1,7 @@
 package ch.zhaw.hs.thesisvalidator.controller;
 
+import java.io.File;
+
 import ch.zhaw.hs.thesisvalidator.model.ThesisValidator;
 import ch.zhaw.hs.thesisvalidator.view.ConsoleObserver;
 import ch.zhaw.hs.thesisvalidator.view.HTMLObserver;
@@ -22,49 +24,45 @@ public class ProjectLauncher {
 	 *            fest definierter Start-Wert.
 	 */
 	public static void main(String[] args) {
+		new ProjectLauncher();
+	}
+
+	public ProjectLauncher() {
 		MapReduceFactory.getMapReduce().start();
-		
+
+		File outDirectory = null;
 		int startValue = 1;
 		int stopValue = 1;
 
 		ThesisValidator validator = new ThesisValidator();
 		validator.addObserver(new HTMLObserver());
 		validator.addObserver(new ConsoleObserver());
-		
-		switch (args.length) {
-		case 2:
-			try {
-				startValue = Integer.parseInt(args[1]);
-			} catch (NumberFormatException e) {
-				System.err.println("Argument 1 must be an integer");
-				System.exit(1);
-			}
-			try {
-				stopValue = Integer.parseInt(args[0]);
-			} catch (NumberFormatException e) {
-				System.err.println("Argument 0 must be an integer");
-				System.exit(1);
-			}
-			
-			validator.start(startValue, stopValue);
-			break;
-			
-		case 1:
-			try {
-				stopValue = Integer.parseInt(args[0]);
-			} catch (NumberFormatException e) {
-				System.err.println("Argument 0 must be an integer");
-				System.exit(1);
-			}
-			
-			validator.start(1, stopValue);
-			break;
-			
-		default:
-			validator.startForever();
-			break;
+
+		try {
+			startValue = Integer.parseInt(System.getProperty("start"));
+		} catch (Exception e) {
+			startValue = 1;
 		}
-		
+
+		try {
+			outDirectory = new File(System.getProperty("path"));
+			if (!outDirectory.isDirectory()) {
+				throw new IllegalArgumentException(outDirectory.isDirectory()
+						+ " is not a Directory!");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
+
+		try {
+			stopValue = Integer.parseInt(System.getProperty("stop"));
+			validator.start(startValue, stopValue);
+
+		} catch (Exception e) {
+			validator.startForever(startValue);
+		}
+
 		MapReduceFactory.getMapReduce().stop();
 	}
 }

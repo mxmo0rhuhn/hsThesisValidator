@@ -40,10 +40,11 @@ public class ThesisValidator extends Observable{
 
 	/**
 	 * Berechnet bis zur manuellen Beendigung 
+	 * @param startValue 
 	 */
-	public void startForever() {
+	public void startForever(int startValue) {
 		while (true) {
-			int i = 1;
+			int i = startValue;
 			compute(i);
 			i++;
 		}
