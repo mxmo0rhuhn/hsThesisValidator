@@ -42,10 +42,13 @@ public class ProjectLauncher {
 
 		try {
 			outDirectory = new File(System.getProperty("path"));
-			if (!outDirectory.isDirectory()) {
-				throw new IllegalArgumentException(outDirectory.isDirectory()
-						+ " is not a Directory!");
-			}
+			if (!outDirectory.exists()) {
+                                if (!outDirectory.mkdirs()) {
+                                        throw new IllegalArgumentException(outDirectory + " does not exist and is not writable.");
+                                }
+			} else if (!outDirectory.isDirectory()) {
+                                throw new IllegalArgumentException(outDirectory + " exists but is not a directory");
+                        }
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(-1);
