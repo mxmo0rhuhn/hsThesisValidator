@@ -95,14 +95,17 @@ public class ConsoleObserver implements Observer {
 	 */
 	private void redirectSystemStreams() {
 		OutputStream out = new OutputStream() {
+			@Override
 			public void write(int b) throws IOException {
 				printStreams(String.valueOf((char) b));
 			}
 
+			@Override
 			public void write(byte[] b, int off, int len) throws IOException {
 				printStreams(new String(b, off, len));
 			}
 
+			@Override
 			public void write(byte[] b) throws IOException {
 				write(b, 0, b.length);
 			}
