@@ -34,7 +34,6 @@ public class ProjectLauncher {
 		int startValue = 1;
 		int stopValue = 1;
 
-
 		try {
 			startValue = Integer.parseInt(System.getProperty("start"));
 		} catch (Exception e) {
@@ -51,9 +50,9 @@ public class ProjectLauncher {
 			e.printStackTrace();
 			System.exit(-1);
 		}
-		
+
 		ThesisValidator validator = new ThesisValidator(new ResidueProcessorFactory(outDirectory));
-		validator.addObserver(new ConsoleObserver(outDirectory));
+		validator.addObserver(new ConsoleObserver(outDirectory, startValue));
 
 		try {
 			stopValue = Integer.parseInt(System.getProperty("stop"));
