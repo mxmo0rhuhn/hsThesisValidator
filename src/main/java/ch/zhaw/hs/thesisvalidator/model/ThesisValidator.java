@@ -72,4 +72,14 @@ public class ThesisValidator extends Observable{
 	    super.setChanged(); 
 	    super.notifyObservers(results); 
 	}
+	
+	/**
+	 * Gibt zu einer restklasse die Anzahl an möglichen Permutationen zurück
+	 * @param residue die Restklasse
+	 * @return die anzahl mödlicher Permutationen
+	 */
+	public static int calculatePermutations(int residue) {
+		// Diese Formel ist eine Annahme... 
+		return (int) Math.pow(residue, (int) Math.pow(residue, residue));
+	}
 }

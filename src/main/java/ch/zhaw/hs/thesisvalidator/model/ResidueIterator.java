@@ -32,7 +32,7 @@ public class ResidueIterator implements Iterator<String> {
 		this.offset = offset;
 		this.residue = residue;
 		// n^n^n 
-		maxPerm = (int) Math.pow(residue, (int) Math.pow(residue, residue));
+		maxPerm = ThesisValidator.calculatePermutations(residue);
 	}
 
 	/**
