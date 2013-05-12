@@ -2,6 +2,7 @@ package ch.zhaw.hs.thesisvalidator.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import ch.zhaw.mapreduce.MapEmitter;
 import ch.zhaw.mapreduce.MapInstruction;
@@ -15,6 +16,8 @@ import ch.zhaw.mapreduce.MapInstruction;
  * 
  */
 public class AxiomMapper implements MapInstruction {
+	
+	private static final Logger LOG = Logger.getLogger(AxiomMapper.class.getName());
 
 	/**
 	 * 
@@ -46,6 +49,7 @@ public class AxiomMapper implements MapInstruction {
 	 */
 	@Override
 	public void map(MapEmitter emitter, String input) {
+		LOG.entering(getClass().getName(), "map", new Object[]{emitter, input});
 		final int modulo = readModulo(input);
 		final int startPerm = readStartPerm(input);
 		final int offset = readOffset(input);
