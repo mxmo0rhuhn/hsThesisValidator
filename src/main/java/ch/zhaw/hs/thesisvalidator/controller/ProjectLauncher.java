@@ -34,9 +34,6 @@ public class ProjectLauncher {
 		int startValue = 1;
 		int stopValue = 1;
 
-		ThesisValidator validator = new ThesisValidator();
-		validator.addObserver(new HTMLObserver());
-		validator.addObserver(new ConsoleObserver());
 
 		try {
 			startValue = Integer.parseInt(System.getProperty("start"));
@@ -54,6 +51,10 @@ public class ProjectLauncher {
 			e.printStackTrace();
 			System.exit(-1);
 		}
+		
+		ThesisValidator validator = new ThesisValidator();
+		validator.addObserver(new HTMLObserver(outDirectory));
+		validator.addObserver(new ConsoleObserver(outDirectory));
 
 		try {
 			stopValue = Integer.parseInt(System.getProperty("stop"));
