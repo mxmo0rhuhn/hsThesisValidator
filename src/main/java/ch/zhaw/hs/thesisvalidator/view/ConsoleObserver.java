@@ -82,7 +82,7 @@ public class ConsoleObserver implements Observer {
 			// Sollte nur einer sein
 			for (String key : resultKey) {
 				for (String aPermutation : results.get(resultKey)) {
-
+					printStreams("Ungültig: " + aPermutation);
 				}
 
 			}
