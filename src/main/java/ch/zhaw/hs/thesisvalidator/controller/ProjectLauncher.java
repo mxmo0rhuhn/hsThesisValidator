@@ -2,9 +2,9 @@ package ch.zhaw.hs.thesisvalidator.controller;
 
 import java.io.File;
 
+import ch.zhaw.hs.thesisvalidator.model.ResidueProcessorFactory;
 import ch.zhaw.hs.thesisvalidator.model.ThesisValidator;
 import ch.zhaw.hs.thesisvalidator.view.ConsoleObserver;
-import ch.zhaw.hs.thesisvalidator.view.HTMLObserver;
 import ch.zhaw.mapreduce.MapReduceFactory;
 
 /**
@@ -52,8 +52,7 @@ public class ProjectLauncher {
 			System.exit(-1);
 		}
 		
-		ThesisValidator validator = new ThesisValidator();
-		validator.addObserver(new HTMLObserver(outDirectory));
+		ThesisValidator validator = new ThesisValidator(new ResidueProcessorFactory(outDirectory));
 		validator.addObserver(new ConsoleObserver(outDirectory));
 
 		try {
@@ -65,5 +64,6 @@ public class ProjectLauncher {
 		}
 
 		MapReduceFactory.getMapReduce().stop();
+		System.exit(0);
 	}
 }

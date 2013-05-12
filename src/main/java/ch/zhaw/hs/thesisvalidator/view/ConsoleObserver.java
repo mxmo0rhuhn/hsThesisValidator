@@ -12,6 +12,7 @@ import java.io.PrintStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
@@ -27,7 +28,6 @@ public class ConsoleObserver implements Observer {
 	private final DateFormat fmt = new SimpleDateFormat( "hh:mm:ss:SS" );
 	private final File outFile;
 	private final ConsoleOutput outConsole;
-	private final ExecutorService pool = Executors.newCachedThreadPool();
 
 	public ConsoleObserver(File outDirectory) {
 		outFile = new File(outDirectory, "log.txt");
@@ -44,7 +44,7 @@ public class ConsoleObserver implements Observer {
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
-		Map<String, String> results = (Map<String, String>) arg;
+		Map<String, List<String>> results = (Map<String, List<String>>) arg;
 		
 		printStreams("----------------------------------------------------------------");
 		if (results.size() == 0) {

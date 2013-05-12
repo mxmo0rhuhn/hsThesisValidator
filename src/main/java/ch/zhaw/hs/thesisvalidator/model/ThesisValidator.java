@@ -4,6 +4,7 @@
 package ch.zhaw.hs.thesisvalidator.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 
@@ -20,8 +21,8 @@ public class ThesisValidator extends Observable{
 	// Ein die Grösse der einzelnen zu berechnenden Teile
 	private static final int OFFSET = 10000;
 	
-	public ThesisValidator() {
-		computer = MapReduceFactory.getMapReduce().newMRTask(new AxiomMapper() , new AxiomReducer(), null, configureMRTask());
+	public ThesisValidator(ResidueProcessorFactory residueProcessorFactory) {
+		computer = MapReduceFactory.getMapReduce().newMRTask(new AxiomMapper() , new AxiomReducer(), null, residueProcessorFactory, configureMRTask());
 	}
 
 	/**
@@ -67,7 +68,8 @@ public class ThesisValidator extends Observable{
 	}
 	
 	private void compute(int residue) {
-		Map<String, String> results = computer.runMapReduceTask(new ResidueIterator(residue, OFFSET));
+//		Map<Restklasse, Liste<Permutationen>> mit Permutationen, für die der Satz nicht gilt (Erwartungswert: Keine)
+		Map<String, List<String>> results = computer.runMapReduceTask(new ResidueIterator(residue, OFFSET));
 		
 	    super.setChanged(); 
 	    super.notifyObservers(results); 
