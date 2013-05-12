@@ -68,7 +68,7 @@ public class ConsoleObserver implements Observer {
 
 		// sofort wieder Messung starten
 		startTSD = new Date();
-		printStreams("Benötigte Zeit ~ " + diffHours + ":" + diffMinutes + "." + diffHours);
+		printStreams("Benötigte Zeit ~ " + diffHours + ":" + diffMinutes + "." + diffSeconds);
 
 		if (results.size() == 0) {
 			printStreams("Satz war in allen Fällen gültig");
@@ -78,10 +78,9 @@ public class ConsoleObserver implements Observer {
 			if (results.size() > 1) {
 				printStreams("irgendwas ist hier komisch");
 			}
-			Set<String> resultKey = results.keySet();
 			// Sollte nur einer sein
-			for (String key : resultKey) {
-				for (String aPermutation : results.get(resultKey)) {
+			for (String key : results.keySet()) {
+				for (String aPermutation : results.get(key)) {
 					printStreams("Ungültig: " + aPermutation);
 				}
 

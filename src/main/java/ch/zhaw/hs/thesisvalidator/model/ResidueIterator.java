@@ -14,7 +14,7 @@ public class ResidueIterator implements Iterator<String> {
 	private final int offset;
 
 	// Die Anzahl an Permutation für diese Restklasse
-	private final int maxPerm;
+	private final double maxPerm;
 
 	// Die Derzeitige Permutatuion
 	private int curPerm;
@@ -61,7 +61,7 @@ public class ResidueIterator implements Iterator<String> {
 		} else {
 			// Das erste Stück ist speziell, da nicht davon ausgegangen werden kann, dass die Anzahl
 			// effektiver Permutationen durch die Stückgrösse teilbar ist.
-			curPerm = maxPerm % offset;
+			curPerm = (int) (maxPerm % offset);
 			
 			if (curPerm == 0 ) {
 				curPerm = offset;

@@ -3,6 +3,7 @@
  */
 package ch.zhaw.hs.thesisvalidator.model;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,8 +81,8 @@ public class ThesisValidator extends Observable{
 	 * @param residue die Restklasse
 	 * @return die anzahl mödlicher Permutationen
 	 */
-	public static int calculatePermutations(int residue) {
+	public static double calculatePermutations(int residue) {
 		// Diese Formel ist eine Annahme... 
-		return (int) Math.pow(residue, (int) Math.pow(residue, residue));
+		return Math.pow(residue, (int) Math.pow(residue, residue));
 	}
 }
