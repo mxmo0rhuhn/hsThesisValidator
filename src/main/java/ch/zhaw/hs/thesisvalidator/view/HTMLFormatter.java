@@ -69,11 +69,15 @@ public class HTMLFormatter implements Runnable {
 
 		int iPerm = Integer.parseInt(curPermutation.getValue().split(",")[0]);
 		int aPerm = Integer.parseInt(curPermutation.getValue().split(",")[1]);
+		int neut = Integer.parseInt(curPermutation.getValue().split(",")[2]);
+		
 		int mod = Integer.parseInt(curPermutation.getKey());
 
 		fileWriteLn("<h1>" + curPermutation.getValue() + "</h1>", outFile);
 
 		// neutrales element
+		fileWriteLn("<h2>Neutrales Element</h2>", outFile);
+		fileWriteLn("<p>" + neut + "</p>", outFile);
 
 		// Inverse
 		fileWriteLn("<h2>Inverse</h2>", outFile);
@@ -108,7 +112,7 @@ public class HTMLFormatter implements Runnable {
 				fileWriteLn("<td>E"+ LookupTables.map2d(x,y, aPerm, mod)+ "</td>", outFile);
 			}
 		}
-		fileWriteLn("</tr></table>", outFile);
+		fileWriteLn("</tr></table><hr>", outFile);
 
 	}
 

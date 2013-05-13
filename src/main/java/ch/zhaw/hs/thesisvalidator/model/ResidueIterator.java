@@ -1,5 +1,6 @@
 package ch.zhaw.hs.thesisvalidator.model;
 
+import java.math.BigInteger;
 import java.util.Iterator;
 
 /**
@@ -14,7 +15,7 @@ public class ResidueIterator implements Iterator<String> {
 	private final int offset;
 
 	// Die Anzahl an Permutation für diese Restklasse
-	private final double maxPerm;
+	private final BigInteger maxPerm;
 
 	// Die Derzeitige Permutatuion
 	private int curPerm;

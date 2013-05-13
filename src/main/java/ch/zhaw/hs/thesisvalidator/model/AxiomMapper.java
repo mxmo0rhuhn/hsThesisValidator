@@ -80,7 +80,7 @@ public class AxiomMapper implements MapInstruction {
 				int e = ipn.getValue(); // neutrales element
 
 				if (checkAxioms(modulo, aPerm, e)) {
-					emitter.emitIntermediateMapResult(Integer.toString(modulo), aPerm + "," + iPerm);
+					emitter.emitIntermediateMapResult(Integer.toString(modulo), aPerm + "," + iPerm + "," + e);
 				}
 			}
 		}
