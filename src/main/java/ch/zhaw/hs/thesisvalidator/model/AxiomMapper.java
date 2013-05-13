@@ -327,6 +327,18 @@ public class AxiomMapper implements MapInstruction {
 	public static int map1d(int x, int perm, int n) {
 		// see the 2d mapping function. it's the same idea
 		String repr = Integer.toString(perm, n);
-		return x >= repr.length() ? 0 : repr.charAt(repr.length() - 1 - x) - 48;
+		// lost ist die Anzahl der abgeschnittenen Zeichen, da die Funktion toString führende Nullen abschneidet.
+		int lost = n - repr.length();
+		if (lost == 0) {
+			// nichts wurde abgeschnitten
+			return repr.charAt(x) - 48;
+		} else if (x < lost) {
+			// x fällt in den Bereich des abgeschnittenen. Da nur Nullen abgeschnitten wurden, muss an der Position eine
+			// 0 sein
+			return 0;
+		} else {
+			// Index um die Anzahl abgeschnittenen Zeichen verschoben
+			return repr.charAt(x - lost) - 48;
+		}
 	}
 }
