@@ -68,18 +68,18 @@ public class AxiomMapper implements MapInstruction {
 		LOG.entering(getClass().getName(), "map", new Object[]{emitter, input});
 		final int modulo = readModulo(input);
 		final BigInteger startPerm = readStartPerm(input);
-		final int offset = readOffset(input);
+		final BigInteger offset = readOffset(input);
 
 		BigInteger maxPerms = calculateMaxPermutations(modulo);
-		if (startPerm + offset > maxPerms) {
-			throw new IllegalArgumentException("Number of Permutations: " + (startPerm + offset) + " > " + maxPerms);
+		if (isGreaterThan(startPerm.add(offset),maxPerms)) {
+			throw new IllegalArgumentException("Number of Permutations: " + (startPerm.add(offset)) + " > " + maxPerms);
 		}
 
 		// neutrales element pro inversen-permutation
 		final Map<Integer, Integer> neutrals = findNeutrals(modulo);
 
-		for (int perm = 0; perm < offset; perm++) {
-			int aPerm = perm + startPerm; // additions permutation
+		for (BigInteger perm = BigInteger.valueOf(0); isGreaterThan(offset, perm); perm.add(BigInteger.ONE)) {
+			BigInteger aPerm = perm.add(startPerm); // additions permutation
 
 			for (Map.Entry<Integer, Integer> ipn : neutrals.entrySet()) {
 				int iPerm = ipn.getKey(); // inversen permutation
@@ -128,7 +128,7 @@ public class AxiomMapper implements MapInstruction {
 	 *            neutrales Element
 	 * @return flase, wenn mindestens eines der Axiome nicht für sämtliche Elemente gilt. Sonst true.
 	 */
-	public boolean checkAxioms(final int modulo, final int perm, final int neutral) {
+	public boolean checkAxioms(final int modulo, final BigInteger perm, final int neutral) {
 		return neutral(modulo, perm, neutral) && inverse(modulo, perm, neutral) && associative(modulo, perm);
 	}
 
@@ -143,7 +143,7 @@ public class AxiomMapper implements MapInstruction {
 	 *            vermeindlich neutrales Element
 	 * @return true, wenn das neutrale Element wirklich das neutrale ist
 	 */
-	public boolean neutral(final int modulo, final int perm, final int e) {
+	public boolean neutral(final int modulo, final BigInteger perm, final int e) {
 		// Es gibt ein e für das gilt: Es gibt ein a für das gilt: a * e = e * a = a
 		for (int a = 0; a < modulo; a++) {
 			int b = map2d(a, e, perm, modulo);
@@ -170,7 +170,7 @@ public class AxiomMapper implements MapInstruction {
 	 *            neutrales Element
 	 * @return false, wenn mindestens eines der Elemente kein Invereses hat
 	 */
-	public boolean inverse(final int modulo, final int perm, final int neutral) {
+	public boolean inverse(final int modulo, final BigInteger perm, final int neutral) {
 		/*
 		 * Es sei a ein Element aus der Restklasse 'modulo'. Dann suchen wir ein b, welches verknüpft mit a auf das
 		 * neutrale Element abbildet. Dann gilt b als das inverse Element von a. Wir müssen ein solches b für jedes a
@@ -202,7 +202,7 @@ public class AxiomMapper implements MapInstruction {
 	 *            perm-te Permutation
 	 * @return false, wenn das Assoziativgesetz für mindestens eines nicht gilt. true wenn es für alle gilt.
 	 */
-	public boolean associative(final int modulo, final int perm) {
+	public boolean associative(final int modulo, final BigInteger perm) {
 		/*
 		 * Folgende Gleichung muss für sämtliche a, b und c aus der Restklasse 'modulo' der perm-ten Permutation gelten:
 		 * a * (b * c) = (a * b) * c
@@ -247,8 +247,8 @@ public class AxiomMapper implements MapInstruction {
 	 * 
 	 * @see AxiomMapper#map(MapEmitter, String)
 	 */
-	public int readStartPerm(String perms) {
-		return Integer.parseInt(perms.split(",")[1]);
+	public BigInteger readStartPerm(String perms) {
+		return new BigInteger(perms.split(",")[1]);
 	}
 
 	/**
@@ -259,8 +259,15 @@ public class AxiomMapper implements MapInstruction {
 	 * 
 	 * @see AxiomMapper#map(MapEmitter, String)
 	 */
-	public int readOffset(String perms) {
-		return Integer.parseInt(perms.split(",")[2]);
+	public BigInteger readOffset(String perms) {
+		return new BigInteger(perms.split(",")[2]);
+	}
+	
+	/**
+	 * Returns wheather a is greater than b
+	 */
+	public boolean isGreaterThan(BigInteger a, BigInteger b) {
+		return a.compareTo(b) > 0;
 	}
 
 	/**
