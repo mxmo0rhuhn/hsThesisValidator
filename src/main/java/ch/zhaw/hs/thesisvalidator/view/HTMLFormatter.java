@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
@@ -67,8 +68,8 @@ public class HTMLFormatter implements Runnable {
 	 */
 	private void formatPermutation(KeyValuePair<String, String> curPermutation, File outFile) {
 
-		int iPerm = Integer.parseInt(curPermutation.getValue().split(",")[0]);
-		int aPerm = Integer.parseInt(curPermutation.getValue().split(",")[1]);
+		BigInteger iPerm = new BigInteger(curPermutation.getValue().split(",")[0]);
+		BigInteger aPerm = new BigInteger(curPermutation.getValue().split(",")[1]);
 		int neut = Integer.parseInt(curPermutation.getValue().split(",")[2]);
 		
 		int mod = Integer.parseInt(curPermutation.getKey());
