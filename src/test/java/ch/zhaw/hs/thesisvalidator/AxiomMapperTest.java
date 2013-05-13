@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.math.BigInteger;
 import java.util.Map;
 
 import org.jmock.Expectations;
@@ -32,8 +33,8 @@ public class AxiomMapperTest {
 		final MapEmitter emitter = this.context.mock(MapEmitter.class);
 		AxiomMapper mapper = new AxiomMapper();
 		this.context.checking(new Expectations() {{
-			oneOf(emitter).emitIntermediateMapResult("2", "6,0");
-			oneOf(emitter).emitIntermediateMapResult("2", "9,3");
+			oneOf(emitter).emitIntermediateMapResult("2", "6,0,0");
+			oneOf(emitter).emitIntermediateMapResult("2", "9,3,1");
 		}});
 		mapper.map(emitter, "2,0,16");
 	}
@@ -43,7 +44,7 @@ public class AxiomMapperTest {
 		final MapEmitter emitter = this.context.mock(MapEmitter.class);
 		AxiomMapper mapper = new AxiomMapper();
 		this.context.checking(new Expectations() {{
-			oneOf(emitter).emitIntermediateMapResult("2", "9,3");
+			oneOf(emitter).emitIntermediateMapResult("2", "9,3,1");
 		}});
 		mapper.map(emitter, "2,8,8");
 	}
@@ -53,7 +54,7 @@ public class AxiomMapperTest {
 		final MapEmitter emitter = this.context.mock(MapEmitter.class);
 		AxiomMapper mapper = new AxiomMapper();
 		this.context.checking(new Expectations() {{
-			oneOf(emitter).emitIntermediateMapResult("2", "6,0");
+			oneOf(emitter).emitIntermediateMapResult("2", "6,0,0");
 		}});
 		mapper.map(emitter, "2,6,1");
 	}
@@ -91,68 +92,68 @@ public class AxiomMapperTest {
 	@Test
 	public void shouldSatisfyNeutralElementForStandardModulo2() {
 		AxiomMapper mapper = new AxiomMapper();
-		assertTrue(mapper.neutral(2, 6, 0));
+		assertTrue(mapper.neutral(2, BigInteger.valueOf(6), 0));
 	}
 	
 	@Test
 	public void shouldNotSatisfyNotNeutralElementForStandardModulo2() {
 		AxiomMapper mapper = new AxiomMapper();
-		assertFalse(mapper.neutral(2, 6, 1));
+		assertFalse(mapper.neutral(2, BigInteger.valueOf(6), 1));
 	}
 	
 	@Test
 	public void shouldNotSatisfyAnyNeutralInAllZeroMappingForMod2() {
 		AxiomMapper mapper = new AxiomMapper();
-		assertFalse(mapper.neutral(2, 0, 0));
-		assertFalse(mapper.neutral(2, 0, 1));
+		assertFalse(mapper.neutral(2, BigInteger.valueOf(0), 0));
+		assertFalse(mapper.neutral(2, BigInteger.valueOf(0), 1));
 	}
 
 	@Test
 	public void shouldSatisfyInverseAxiomForStandardModulo2() {
 		AxiomMapper mapper = new AxiomMapper();
 		// ich nehme an, die fuenfte permutation ist die intuitive additionstabelle der restklasse 2
-		assertTrue(mapper.inverse(2, 6, 0));
+		assertTrue(mapper.inverse(2, BigInteger.valueOf(6), 0));
 	}
 	
 	@Test
 	public void shouldSatisfyAssociativityAxiomForStandardModulo2() {
 		AxiomMapper mapper = new AxiomMapper();
 		// ich nehme an, die fuenfte permutation ist die intuitive additionstabelle der restklasse 2
-		assertTrue(mapper.associative(2, 6));
+		assertTrue(mapper.associative(2, BigInteger.valueOf(6)));
 	}
 	
 	@Test
 	public void shouldSatisfyNeutralElementForStandardModulo3() {
 		AxiomMapper mapper = new AxiomMapper();
-		assertTrue(mapper.neutral(3, 4069, 0));
+		assertTrue(mapper.neutral(3, BigInteger.valueOf(4069), 0));
 	}
 
 	@Test
 	public void shouldNotSatisfyNotNeutralElementForStandardModulo3() {
 		AxiomMapper mapper = new AxiomMapper();
-		assertFalse(mapper.neutral(3, 4069, 1));
-		assertFalse(mapper.neutral(3, 4069, 2));
+		assertFalse(mapper.neutral(3, BigInteger.valueOf(4069), 1));
+		assertFalse(mapper.neutral(3, BigInteger.valueOf(4069), 2));
 	}
 	
 	@Test
 	public void shouldNotSatisfyAnyNeutralInAllZeroMappingForMod3() {
 		AxiomMapper mapper = new AxiomMapper();
-		assertFalse(mapper.neutral(3, 0, 0));
-		assertFalse(mapper.neutral(3, 0, 1));
-		assertFalse(mapper.neutral(3, 0, 2));
+		assertFalse(mapper.neutral(3, BigInteger.valueOf(0), 0));
+		assertFalse(mapper.neutral(3, BigInteger.valueOf(0), 1));
+		assertFalse(mapper.neutral(3, BigInteger.valueOf(0), 2));
 	}
 
 
 	@Test
 	public void shouldSatisfyInverseAxiomForStandardModulo3() {
 		AxiomMapper mapper = new AxiomMapper();
-		assertTrue(mapper.inverse(3, 4069, 0));
+		assertTrue(mapper.inverse(3, BigInteger.valueOf(4069), 0));
 	}
 	
 	@Test
 	public void shouldSatisfyAssociativityAxiomForStandardModulo3() {
 		AxiomMapper mapper = new AxiomMapper();
-		assertTrue(mapper.associative(3, 4069));
+		assertTrue(mapper.associative(3, BigInteger.valueOf(4069)));
 	}
 
 	@Test

@@ -1,5 +1,6 @@
 package ch.zhaw.hs.thesisvalidator.model;
 
+import java.math.BigInteger;
 import java.util.Iterator;
 
 /**
@@ -11,13 +12,13 @@ import java.util.Iterator;
 public class ResidueIterator implements Iterator<String> {
 
 	// Die grösse der einzelnen Stücke
-	private final int offset;
+	private final BigInteger offset;
 
 	// Die Anzahl an Permutation für diese Restklasse
-	private final double maxPerm;
+	private final BigInteger maxPerm;
 
 	// Die Derzeitige Permutatuion
-	private int curPerm;
+	private BigInteger curPerm;
 
 	// die derzeitige Restklasse
 	private final int residue;
@@ -29,8 +30,9 @@ public class ResidueIterator implements Iterator<String> {
 	 *            die Restklasse für diesen Splitter
 	 */
 	public ResidueIterator(int residue, int offset) {
-		this.offset = offset;
+		this.offset = new BigInteger("" + offset);
 		this.residue = residue;
+		this.curPerm = new BigInteger("" + 0);
 		// n^n^n 
 		maxPerm = AxiomMapper.calculateMaxPermutations(residue);
 	}
@@ -40,7 +42,7 @@ public class ResidueIterator implements Iterator<String> {
 	 */
 	@Override
 	public boolean hasNext() {
-		return curPerm < maxPerm;
+		return curPerm.compareTo(maxPerm) < 0;
 	}
 
 	/**
@@ -52,19 +54,22 @@ public class ResidueIterator implements Iterator<String> {
 			return null;
 		}
 
-		if (curPerm > 0) {
-			int savPerm = curPerm;
-			curPerm += offset;
+		if (curPerm.compareTo(BigInteger.ZERO) > 0) {
+			BigInteger savPerm = new BigInteger(curPerm.toString());
+			System.out.println("curPerm: " + curPerm);
+			System.out.println("offset: " + offset);
+			curPerm = curPerm.add(offset);
+			System.out.println("curPerm after: " + curPerm);
 
 			// mod,start,offset
 			return "" + residue + "," + savPerm + "," + offset;
 		} else {
 			// Das erste Stück ist speziell, da nicht davon ausgegangen werden kann, dass die Anzahl
 			// effektiver Permutationen durch die Stückgrösse teilbar ist.
-			curPerm = (int) (maxPerm % offset);
+			curPerm = maxPerm.mod(offset);
 			
-			if (curPerm == 0 ) {
-				curPerm = offset;
+			if (curPerm.compareTo(BigInteger.ZERO) == 0 ) {
+				curPerm = new BigInteger("" + offset);
 			}
 			// mod,start,offset
 			return "" + residue + ",0," + curPerm;

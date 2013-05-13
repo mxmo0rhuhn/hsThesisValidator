@@ -20,7 +20,7 @@ public class ThesisValidator extends Observable{
 
 	private final MapReduce computer;
 	// Ein die Grösse der einzelnen zu berechnenden Teile
-	private static final int OFFSET = 10000;
+	private static final int OFFSET = 1000000;
 	
 	public ThesisValidator(ResidueProcessorFactory residueProcessorFactory) {
 		computer = MapReduceFactory.getMapReduce().newMRTask(new AxiomMapper() , new AxiomReducer(), null, residueProcessorFactory, configureMRTask());
@@ -63,6 +63,7 @@ public class ThesisValidator extends Observable{
 //		rescheduleStartPercentage = 90%
 //		rescheduleEvery = 10 durchläufe
 //		waitTime = 1000 millisekunden
+		myConfig.put("waitTime","1000");
  
 		return myConfig;
 	}

@@ -3,6 +3,7 @@ package ch.zhaw.hs.thesisvalidator;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.math.BigInteger;
 import java.util.Iterator;
 
 import org.jmock.Expectations;
@@ -61,7 +62,7 @@ public class AxiomReducerTest {
 	public void cancellationLawHoldsForIntuitiveAdditionOnMod3() {
 		AxiomReducer reducer = new AxiomReducer();
 		int mod = 3;
-		int perm = 4069; // intuitive additionstabelle (d.h. 1+2 = 0, 1+1=2, etc)
+		BigInteger perm = BigInteger.valueOf(4069); // intuitive additionstabelle (d.h. 1+2 = 0, 1+1=2, etc)
 		for (int a = 0; a < mod; a++) {
 			for (int b = 0; b < mod; b++) {
 				for (int c = 0; c < mod; c++) {
@@ -75,7 +76,7 @@ public class AxiomReducerTest {
 	public void cancellationLawHoldsForIntuitiveAdditionOnMod2() {
 		AxiomReducer reducer = new AxiomReducer();
 		int mod = 2;
-		int perm = 6; // intuitive additionstabelle (d.h. 1+0 = 1, 1+1=0, etc)
+		BigInteger perm = BigInteger.valueOf(6); // intuitive additionstabelle (d.h. 1+0 = 1, 1+1=0, etc)
 		for (int a = 0; a < mod; a++) {
 			for (int b = 0; b < mod; b++) {
 				for (int c = 0; c < mod; c++) {

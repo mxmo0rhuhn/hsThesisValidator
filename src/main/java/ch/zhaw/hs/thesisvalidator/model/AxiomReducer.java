@@ -1,5 +1,6 @@
 package ch.zhaw.hs.thesisvalidator.model;
 
+import java.math.BigInteger;
 import java.util.Iterator;
 
 import ch.zhaw.mapreduce.KeyValuePair;
@@ -43,7 +44,7 @@ public class AxiomReducer implements ReduceInstruction {
 	public void reduce(ReduceEmitter emitter, String sMod, Iterator<KeyValuePair> groups) {
 		while (groups.hasNext()) {
 			KeyValuePair group = groups.next();
-			int aPerm = readAPerm((String) group.getValue());
+			BigInteger aPerm = readAPerm((String) group.getValue());
 			int mod = Integer.parseInt(sMod);
 			sentences: for (int a = 0; a < mod; a++) {
 				for (int b = 0; b < mod; b++) {
@@ -79,7 +80,7 @@ public class AxiomReducer implements ReduceInstruction {
 	 *            drittes Element
 	 * @return true, wenn der Satz gilt, sonst false
 	 */
-	public boolean cancellation(int mod, int perm, int a, int b, int c) {
+	public boolean cancellation(int mod, BigInteger perm, int a, int b, int c) {
 		// left cancellation
 		int ab = map2d(a, b, perm, mod);
 		int ac = map2d(a, c, perm, mod);
@@ -103,8 +104,8 @@ public class AxiomReducer implements ReduceInstruction {
 	 *            String-Encodiertes Tupel
 	 * @return den Inversen-Index
 	 */
-	public int readAPerm(String value) {
-		return Integer.parseInt(value.split(",")[1]);
+	public BigInteger readAPerm(String value) {
+		return new BigInteger(value.split(",")[1]);
 	}
 	
 	/**
@@ -148,22 +149,5 @@ public class AxiomReducer implements ReduceInstruction {
 		// LSB is on the right side
 		pos = repr.length() - pos - 1;
 		return repr.charAt(pos) - 48;
-	}
-
-	/**
-	 * This function essentially does the same as the map2d function, but for one dimensional lookup tables.
-	 * 
-	 * @param x
-	 *            index of x axis
-	 * @param perm
-	 *            permutation number
-	 * @param n
-	 *            number of elements in each table. must be less than 11.
-	 * @return the element at the specified x position of the perm-th permutation.
-	 */
-	public static int map1d(int x, int perm, int n) {
-		// see the 2d mapping function. it's the same idea
-		String repr = Integer.toString(perm, n);
-		return x >= repr.length() ? 0 : repr.charAt(repr.length() - 1 - x) - 48;
 	}
 }
