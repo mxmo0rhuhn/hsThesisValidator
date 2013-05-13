@@ -1,5 +1,6 @@
 package ch.zhaw.hs.thesisvalidator.model;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -22,9 +23,14 @@ public class AxiomMapper implements MapInstruction {
 	 * @param residue die Restklasse
 	 * @return die anzahl mödlicher Permutationen
 	 */
-	public static int calculateMaxPermutations(int residue) {
+	public static BigInteger calculateMaxPermutations(int residue) {
+		if( residue > 9 ) {
+			throw new UnsupportedOperationException("Es werden nur Restklassen bis maximal 9 unterstützt");
+		}
+		
+		BigInteger restklasse = new BigInteger("" + residue);
 		// Diese Formel ist eine Annahme... 
-		return (int) Math.pow(residue, (int) Math.pow(residue, residue));
+		return restklasse.pow((int)Math.pow(residue, residue));
 	}
 	
 	private static final Logger LOG = Logger.getLogger(AxiomMapper.class.getName());
@@ -61,10 +67,10 @@ public class AxiomMapper implements MapInstruction {
 	public void map(MapEmitter emitter, String input) {
 		LOG.entering(getClass().getName(), "map", new Object[]{emitter, input});
 		final int modulo = readModulo(input);
-		final int startPerm = readStartPerm(input);
+		final BigInteger startPerm = readStartPerm(input);
 		final int offset = readOffset(input);
 
-		int maxPerms = calculateMaxPermutations(modulo);
+		BigInteger maxPerms = calculateMaxPermutations(modulo);
 		if (startPerm + offset > maxPerms) {
 			throw new IllegalArgumentException("Number of Permutations: " + (startPerm + offset) + " > " + maxPerms);
 		}
