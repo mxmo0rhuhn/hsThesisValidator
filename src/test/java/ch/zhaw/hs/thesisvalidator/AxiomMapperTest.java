@@ -34,6 +34,7 @@ public class AxiomMapperTest {
 		AxiomMapper mapper = new AxiomMapper();
 		this.context.checking(new Expectations() {{
 			oneOf(emitter).emitIntermediateMapResult("2", "6,0,0");
+			oneOf(emitter).emitIntermediateMapResult("2", "6,3,0");
 			oneOf(emitter).emitIntermediateMapResult("2", "9,3,1");
 		}});
 		mapper.map(emitter, "2,0,16");

@@ -137,9 +137,9 @@ public class AxiomReducer implements ReduceInstruction {
 	 *            number of elements in each table. must be less than 11.
 	 * @return the element at the specified x and y position of the perm-th permutation.
 	 */
-	public static int map2d(int x, int y, int perm, int n) {
+	public static int map2d(int x, int y, BigInteger perm, int n) {
 		// convert to n-number system
-		String repr = Integer.toString(perm, n);
+		String repr = perm.toString(n);
 		// repr is only as long as it has to be, that is, it contains no leading zeros
 		int pos = n * n - (x + n * y + 1);
 		// the repr string is only as long as necessary. everything else are zeros

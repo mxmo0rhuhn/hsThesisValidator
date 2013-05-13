@@ -24,6 +24,7 @@ public class ProjectLauncher {
 	 *            fest definierter Start-Wert.
 	 */
 	public static void main(String[] args) {
+		System.setProperty("mrplugins", "Thread");
 		new ProjectLauncher();
 	}
 
@@ -41,7 +42,7 @@ public class ProjectLauncher {
 		}
 
 		try {
-			outDirectory = new File(System.getProperty("path"));
+			outDirectory = new File(System.getProperty("path", System.getProperty("java.io.tmpdir")));
 			if (!outDirectory.exists()) {
                                 if (!outDirectory.mkdirs()) {
                                         throw new IllegalArgumentException(outDirectory + " does not exist and is not writable.");
