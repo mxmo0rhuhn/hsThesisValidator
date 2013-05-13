@@ -2,6 +2,7 @@ package ch.zhaw.hs.thesisvalidator;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -52,16 +53,27 @@ public class LookupTablesTest {
 			for (int perm = 0; perm < nperms; perm++) {
 				String vals = "";
 				for (int pos = 0; pos < n; pos++) {
-					vals = LookupTables.map1d(pos, perm, n) + vals;
+					try {
+					vals += LookupTables.map1d(pos, perm, n);
+					} catch (Exception e) {
+						e.printStackTrace();
+						fail("Failed with pos = " + pos + ", perm = " + perm + ", n = " + n);
+					}
 				}
-				assertTrue(perms.add(vals));
+				assertTrue(vals + " was already in there for perm " + perm + " and n " + n, perms.add(vals));
 			}
 		}
 	}
 
 	@Test
 	public void shouldCreateIntuitiveInverseTableAtPredictablePosition() {
-		assertEquals(1, LookupTables.map1d(0, 1, 2));
+		assertEquals(0, LookupTables.map1d(0, 1, 2));
+	}
+
+	@Test
+	public void shouldCreateIntuitiveInverseTableForMod2() {
+		assertEquals(1, LookupTables.map1d(0, 2, 2));
+		assertEquals(0, LookupTables.map1d(1, 2, 2));
 	}
 
 	@Test
@@ -123,7 +135,7 @@ public class LookupTablesTest {
 		for (int perm = 0; perm < Math.pow(mod, mod); perm++) {
 			String mapped = "";
 			for (int x = 0; x < mod; x++) {
-				mapped = LookupTables.map1d(x, perm, mod) + mapped;
+				mapped += LookupTables.map1d(x, perm, mod);
 			}
 			assertEquals(perm, Integer.parseInt(mapped, mod));
 		}
