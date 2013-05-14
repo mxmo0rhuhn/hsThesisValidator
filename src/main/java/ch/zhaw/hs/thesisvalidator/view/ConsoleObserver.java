@@ -55,7 +55,7 @@ public class ConsoleObserver implements Observer {
 		Map<String, List<String>> results = (Map<String, List<String>>) arg;
 
 		printStreams("----------------------------------------------------------------");
-		printStreams("Restklasse: " + curResidue);
+		printStreams("Anzahl Elemente: " + curResidue);
 		printStreams("Untersuchte Permutationen: "
 				+ AxiomMapper.calculateMaxPermutations(curResidue));
 		curResidue++;
