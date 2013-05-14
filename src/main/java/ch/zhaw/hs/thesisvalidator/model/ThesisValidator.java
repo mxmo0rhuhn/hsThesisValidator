@@ -3,7 +3,6 @@
  */
 package ch.zhaw.hs.thesisvalidator.model;
 
-import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +19,7 @@ public class ThesisValidator extends Observable{
 
 	private final MapReduce computer;
 	// Ein die Grösse der einzelnen zu berechnenden Teile
-	private static final int OFFSET = 1000000;
+	private static final int OFFSET = 10000;
 	
 	public ThesisValidator(ResidueProcessorFactory residueProcessorFactory) {
 		computer = MapReduceFactory.getMapReduce().newMRTask(new AxiomMapper() , new AxiomReducer(), null, residueProcessorFactory, configureMRTask());
