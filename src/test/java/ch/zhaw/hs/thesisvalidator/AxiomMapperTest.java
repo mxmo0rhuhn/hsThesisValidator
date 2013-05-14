@@ -80,11 +80,8 @@ public class AxiomMapperTest {
 			oneOf(emitter).emitIntermediateMapResult("3", "141850,7,0");
 			oneOf(emitter).emitIntermediateMapResult("3", "149234,11,2");
 			oneOf(emitter).emitIntermediateMapResult("3", "151782,21,1");
-			atLeast(1).of(emitter).emitIntermediateMapResult(with("3"), with(containsString("21,1")));
-			atLeast(1).of(emitter).emitIntermediateMapResult(with("3"), with(containsString("11,2")));
-			atLeast(1).of(emitter).emitIntermediateMapResult(with("3"), with(containsString("7,0")));
 		}});
-		mapper.map(emitter, "3,0,"+(int)Math.pow(3, Math.pow(3, 3)));
+		mapper.map(emitter, "3,0,151783");
 	}
 	
 	@Test

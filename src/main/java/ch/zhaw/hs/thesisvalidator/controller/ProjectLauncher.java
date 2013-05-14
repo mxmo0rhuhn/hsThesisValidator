@@ -24,7 +24,6 @@ public class ProjectLauncher {
 	 *            fest definierter Start-Wert.
 	 */
 	public static void main(String[] args) {
-		System.setProperty("mrplugins", "Thread");
 		new ProjectLauncher();
 	}
 
