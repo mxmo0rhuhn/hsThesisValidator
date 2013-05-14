@@ -217,7 +217,7 @@ public class AxiomMapperTest {
 	@Test
 	public void shouldReadOffset() {
 		AxiomMapper mapper = new AxiomMapper();
-		assertEquals(1, mapper.readOffset("3,2,1"));
+		assertEquals(BigInteger.ONE, mapper.readOffset("3,2,1"));
 	}
 
 	@Test(expected = RuntimeException.class)
@@ -229,7 +229,7 @@ public class AxiomMapperTest {
 	@Test
 	public void shouldReadStartPerm() {
 		AxiomMapper mapper = new AxiomMapper();
-		assertEquals(2, mapper.readStartPerm("3,2,1"));
+		assertEquals(BigInteger.valueOf(2), mapper.readStartPerm("3,2,1"));
 	}
 
 	@Test(expected = RuntimeException.class)
