@@ -17,22 +17,24 @@ import ch.zhaw.mapreduce.MapInstruction;
  * 
  */
 public class AxiomMapper implements MapInstruction {
-	
+
 	/**
 	 * Gibt zu einer restklasse die Anzahl an möglichen Permutationen zurück
-	 * @param residue die Restklasse
+	 * 
+	 * @param residue
+	 *            die Restklasse
 	 * @return die anzahl mödlicher Permutationen
 	 */
 	public static BigInteger calculateMaxPermutations(int residue) {
-		if( residue > 9 ) {
+		if (residue > 9) {
 			throw new UnsupportedOperationException("Es werden nur Restklassen bis maximal 9 unterstützt");
 		}
-		
+
 		BigInteger restklasse = new BigInteger("" + residue);
-		// Diese Formel ist eine Annahme... 
-		return restklasse.pow((int)Math.pow(residue, residue));
+		// Diese Formel ist eine Annahme...
+		return restklasse.pow((int) Math.pow(residue, residue));
 	}
-	
+
 	private static final Logger LOG = Logger.getLogger(AxiomMapper.class.getName());
 
 	/**
@@ -65,21 +67,25 @@ public class AxiomMapper implements MapInstruction {
 	 */
 	@Override
 	public void map(MapEmitter emitter, String input) {
-		LOG.entering(getClass().getName(), "map", new Object[]{emitter, input});
+		LOG.entering(getClass().getName(), "map", new Object[] { emitter, input });
 		final int modulo = readModulo(input);
 		final BigInteger startPerm = readStartPerm(input);
 		final BigInteger offset = readOffset(input);
 
 		BigInteger maxPerms = calculateMaxPermutations(modulo);
-		if (isGreaterThan(startPerm.add(offset),maxPerms)) {
+		if (startPerm.add(offset).compareTo(maxPerms) == 1) {
 			throw new IllegalArgumentException("Number of Permutations: " + (startPerm.add(offset)) + " > " + maxPerms);
 		}
 
-		// neutrales element pro inversen-permutation
-		final Map<Integer, Integer> neutrals = findNeutrals(modulo);
+		// Relative Permuation, also die relPerm-te Permutation vom Start her. Es gibt dann auch die absolute
+		// Permutation
+		// welche die StartPerm + relPerm ist
+		BigInteger relPerm = BigInteger.ZERO;
+		while (relPerm.compareTo(offset) == -1) {
+			BigInteger aPerm = startPerm.add(relPerm); // absolute additionspermutation
 
-		for (BigInteger perm = BigInteger.valueOf(0); isGreaterThan(offset, perm); perm.add(BigInteger.ONE)) {
-			BigInteger aPerm = perm.add(startPerm); // additions permutation
+			// neutrales element pro inversen-permutation
+			final Map<Integer, Integer> neutrals = findNeutrals(modulo, aPerm);
 
 			for (Map.Entry<Integer, Integer> ipn : neutrals.entrySet()) {
 				int iPerm = ipn.getKey(); // inversen permutation
@@ -89,6 +95,7 @@ public class AxiomMapper implements MapInstruction {
 					emitter.emitIntermediateMapResult(Integer.toString(modulo), aPerm + "," + iPerm + "," + e);
 				}
 			}
+			relPerm = relPerm.add(BigInteger.ONE);
 		}
 	}
 
@@ -98,20 +105,37 @@ public class AxiomMapper implements MapInstruction {
 	 * @param modulo
 	 *            für welche Restklasse sollen neutrale Elemente gesucht werden
 	 */
-	public Map<Integer, Integer> findNeutrals(final int modulo) {
+	public Map<Integer, Integer> findNeutrals(final int modulo, BigInteger aPerm) {
+		/*
+		 * Findet für eine Additionspermutation und eine Restklasse die möglichen neutralen Elemente indem jeweils ein
+		 * Element genommen wird und dann dessen Inverses und dann werden diese beiden mit der 2d Tabelle verknüpft. Die
+		 * Abbildung der beiden ist dann das neutrale Element Dabei darf es nur ein neutrales Element pro 2d-Verknüpfung
+		 * geben.
+		 */
 		Map<Integer, Integer> invPermNeutrals = new HashMap<Integer, Integer>();
-		int perms = (int) Math.pow(modulo, modulo);
-		outer: for (int perm = 0; perm < perms; perm++) {
-			for (int a = 0; a < modulo; a++) {
-				int i = map1d(a, perm, modulo);
-				if (i == a) {
-					if (invPermNeutrals.put(perm, i) != null) {
-						// Eine Gruppe kann max. ein Neutrales haben
-						invPermNeutrals.remove(perm);
-						continue outer;
-					}
+		int iPerms = (int) Math.pow(modulo, modulo);
+		// iteriere durch alle inversen permutation und suche je ein neutrales
+		outer: for (int iPerm = 0; iPerm < iPerms; iPerm++) {
+			// suche erstes mögliches neutrales via erstes Element in dieser Restklasse (= 0 in jeder Restklasse)
+			int firstE = map2d(0, map1d(0, iPerm, modulo), aPerm, modulo);
+
+			// nun suchen wir noch für die restlichen element dieser restklasse je ein inverses und ermitteln daraus das
+			// neutrale. da es genau ein neutrales in einer Gruppe geben kann, kann die Suche abgebrochen werden, wenn
+			// mehrere gefunden werden.
+			for (int a = 1; a < modulo; a++) { // schleife beginnt bei 1 weil das erste bereits vor der schleife gefunden wird
+				int i = map1d(a, iPerm, modulo); // inverses
+				int e = map2d(a, i, aPerm, modulo); // nächstes mögliches neutrales
+
+				// in dieser konstellation gibt es offensichtlich mehrere inverse. also ist es keine gruppe!
+				if (e != firstE) {
+					continue outer;
 				}
+
 			}
+			// wenn wir bis hier gekommen sind, wurden keine wiedersprüchlichen neutralen Elemente gefunden, also haben
+			// wir ein eindeutiges neutrales Element, welches wir für diese Additions- und Inversen-Permutation
+			// verwenden können.
+			invPermNeutrals.put(iPerm, firstE);
 		}
 		return invPermNeutrals;
 	}
@@ -261,13 +285,6 @@ public class AxiomMapper implements MapInstruction {
 	 */
 	public BigInteger readOffset(String perms) {
 		return new BigInteger(perms.split(",")[2]);
-	}
-	
-	/**
-	 * Returns wheather a is greater than b
-	 */
-	public boolean isGreaterThan(BigInteger a, BigInteger b) {
-		return a.compareTo(b) > 0;
 	}
 
 	/**

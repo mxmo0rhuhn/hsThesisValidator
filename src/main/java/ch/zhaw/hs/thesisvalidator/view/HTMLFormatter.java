@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 
+import ch.zhaw.hs.thesisvalidator.model.AxiomMapper;
 import ch.zhaw.hs.thesisvalidator.model.LookupTables;
 import ch.zhaw.mapreduce.KeyValuePair;
 
@@ -92,7 +93,7 @@ public class HTMLFormatter implements Runnable {
 
 		// Zeile
 		for (int i = 0; i < mod; i++) {
-			fileWriteLn("<td>E" + LookupTables.map1d(i, iPerm, mod) + "</td>", outFile);
+			fileWriteLn("<td>E" + LookupTables.map1d(i, iPerm.intValue(), mod) + "</td>", outFile);
 		}
 		fileWriteLn("</tr></table>", outFile);
 
@@ -110,7 +111,7 @@ public class HTMLFormatter implements Runnable {
 			
 			
 			for (int x = 0; x < mod; x++) {
-				fileWriteLn("<td>E"+ LookupTables.map2d(x,y, aPerm, mod)+ "</td>", outFile);
+				fileWriteLn("<td>E"+ AxiomMapper.map2d(x,y, aPerm, mod)+ "</td>", outFile);
 			}
 		}
 		fileWriteLn("</tr></table><hr>", outFile);

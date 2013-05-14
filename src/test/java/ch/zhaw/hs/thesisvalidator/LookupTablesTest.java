@@ -14,6 +14,21 @@ import ch.zhaw.hs.thesisvalidator.model.LookupTables;
 public class LookupTablesTest {
 
 	@Test
+	public void shouldCreateDistinct1DTables() {
+		for(int mod = 1; mod < 7; mod++) {
+			System.out.println(mod);
+			int elems = (int) Math.pow(mod, mod);
+			Set<String> perms = new HashSet<String>(elems);
+			for (int perm = 0; perm < elems; perm++) {
+				String comb = "";
+				for (int x = 0; x < mod; x++) {
+					comb += LookupTables.map1d(x, perm, mod);
+				}
+				assertTrue(comb + " was already in there", perms.add(comb));
+			}
+		}
+	}
+	@Test
 	public void shouldGenerateDistinctCombinationsForMod2() {
 		int n = 2;
 		int elems = (int) Math.pow(Math.pow(n, n), n);

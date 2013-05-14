@@ -27,14 +27,16 @@ public class AxiomReducerTest {
 	public void init() {
 		this.context = new JUnit4Mockery();
 	}
-	
+
 	@Test
 	public void shouldEmitForNonGroupInMod2() {
 		AxiomReducer reducer = new AxiomReducer();
 		final ReduceEmitter emitter = this.context.mock(ReduceEmitter.class);
-		this.context.checking(new Expectations() {{
-			oneOf(emitter).emit("x,0");
-		}});
+		this.context.checking(new Expectations() {
+			{
+				oneOf(emitter).emit("x,0");
+			}
+		});
 		reducer.reduce(emitter, "2", i(2, 0));
 	}
 
@@ -42,9 +44,11 @@ public class AxiomReducerTest {
 	public void shouldNotEmitForGroupMod2() {
 		AxiomReducer reducer = new AxiomReducer();
 		final ReduceEmitter emitter = this.context.mock(ReduceEmitter.class);
-		this.context.checking(new Expectations() {{
-			never(emitter).emit(with(any(String.class)));
-		}});
+		this.context.checking(new Expectations() {
+			{
+				never(emitter).emit(with(any(String.class)));
+			}
+		});
 		reducer.reduce(emitter, "2", i(2, 6));
 	}
 
@@ -52,10 +56,23 @@ public class AxiomReducerTest {
 	public void shouldNotEmitForGroupMod3() {
 		AxiomReducer reducer = new AxiomReducer();
 		final ReduceEmitter emitter = this.context.mock(ReduceEmitter.class);
-		this.context.checking(new Expectations() {{
-			never(emitter).emit(with(any(String.class)));
-		}});
-		reducer.reduce(emitter, "3", i(3, 4069));
+		this.context.checking(new Expectations() {
+			{
+				never(emitter).emit(with(any(String.class)));
+			}
+		});
+		reducer.reduce(emitter, "3", i(3, 63118));
+		reducer.reduce(emitter, "3", i(3, 63118));
+		reducer.reduce(emitter, "3", i(3, 70502));
+		reducer.reduce(emitter, "3", i(3, 73050));
+		reducer.reduce(emitter, "3", i(3, 82801));
+		reducer.reduce(emitter, "3", i(3, 90185));
+		reducer.reduce(emitter, "3", i(3, 92733));
+		reducer.reduce(emitter, "3", i(3, 102484));
+		reducer.reduce(emitter, "3", i(3, 109868));
+		reducer.reduce(emitter, "3", i(3, 112416));
+		reducer.reduce(emitter, "3", i(3, 122167));
+		reducer.reduce(emitter, "3", i(3, 129551));
 	}
 
 	@Test
