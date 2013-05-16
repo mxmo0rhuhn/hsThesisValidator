@@ -22,7 +22,7 @@ public class ThesisValidator extends Observable{
 	private static final int OFFSET = 10000;
 	
 	public ThesisValidator(ResidueProcessorFactory residueProcessorFactory) {
-		computer = MapReduceFactory.getMapReduce().newMRTask(new AxiomMapper() , new AxiomReducer(), null, residueProcessorFactory, configureMRTask());
+		computer = MapReduceFactory.getMapReduce().newMRTask(new AxiomMapper() , new AxiomReducer(), null, residueProcessorFactory);
 	}
 
 	/**
@@ -50,23 +50,6 @@ public class ThesisValidator extends Observable{
 		}
 	}
 
-	private Map<String, String> configureMRTask() {
-		
-		Map<String, String> myConfig = new HashMap<String, String>();
-//		myConfig.put("rescheduleStartPercentage", "intValue");
-//		myConfig.put("rescheduleEvery", "intValue");
-//		myConfig.put("waitTime", "intValue");
-		
-//		... könnten hier eingestellt werden
-//		Defaults sind:
-//		rescheduleStartPercentage = 90%
-//		rescheduleEvery = 10 durchläufe
-//		waitTime = 1000 millisekunden
-		myConfig.put("waitTime","1000");
- 
-		return myConfig;
-	}
-	
 	private void compute(int residue) {
 //		Map<Restklasse, Liste<Permutationen>> mit Permutationen, für die der Satz nicht gilt (Erwartungswert: Keine)
 		Map<String, List<String>> results = computer.runMapReduceTask(new ResidueIterator(residue, OFFSET));
