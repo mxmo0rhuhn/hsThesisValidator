@@ -1,6 +1,9 @@
 package ch.zhaw.hs.thesisvalidator.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 
 import ch.zhaw.hs.thesisvalidator.model.ResidueProcessorFactory;
 import ch.zhaw.hs.thesisvalidator.model.ThesisValidator;
@@ -28,40 +31,54 @@ public class ProjectLauncher {
 	}
 
 	public ProjectLauncher() {
-		MapReduceFactory.getMapReduce().start();
 
+		// Pfad, an dem die Output Files gespeichert werden
+		String path = System.getProperty("java.io.tmpdir");
 		File outDirectory = null;
+
+		// Wert, bei dem die Berechnung startet
 		int startValue = 1;
+		
+		// Wert, bei dem die Berechnung stoppt. wenn der wert <= 0 ist, wird die Berechnung endlos ausgeführt
 		int stopValue = 1;
 
+		Properties prop = new Properties();
 		try {
-			startValue = Integer.parseInt(System.getProperty("start"));
-		} catch (Exception e) {
-			startValue = 1;
+			prop.load(new FileInputStream("mapReduce.properties"));
+
+			startValue = Integer.parseInt(prop.getProperty("start"));
+			stopValue = Integer.parseInt(prop.getProperty("stop"));
+			path = prop.getProperty("path");
+
+		} catch (IOException e) {
+			// konnten nicht geladen werden - weiter mit oben definierten defaults
+			e.printStackTrace();
 		}
 
 		try {
-			outDirectory = new File(System.getProperty("path", System.getProperty("java.io.tmpdir")));
+			outDirectory = new File(path);
 			if (!outDirectory.exists()) {
-                                if (!outDirectory.mkdirs()) {
-                                        throw new IllegalArgumentException(outDirectory + " does not exist and is not writable.");
-                                }
+				if (!outDirectory.mkdirs()) {
+					throw new IllegalArgumentException(outDirectory
+							+ " does not exist and is not writable.");
+				}
 			} else if (!outDirectory.isDirectory()) {
-                                throw new IllegalArgumentException(outDirectory + " exists but is not a directory");
-                        }
+				throw new IllegalArgumentException(outDirectory + " exists but is not a directory");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(-1);
 		}
 
+		MapReduceFactory.getMapReduce().start();
+
 		ThesisValidator validator = new ThesisValidator(new ResidueProcessorFactory(outDirectory));
 		validator.addObserver(new ConsoleObserver(outDirectory, startValue));
 
-		try {
-			stopValue = Integer.parseInt(System.getProperty("stop"));
+		if (stopValue > 0) {
 			validator.start(startValue, stopValue);
 
-		} catch (Exception e) {
+		} else {
 			validator.startForever(startValue);
 		}
 
