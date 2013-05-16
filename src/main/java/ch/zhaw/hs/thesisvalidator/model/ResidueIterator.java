@@ -56,10 +56,7 @@ public class ResidueIterator implements Iterator<String> {
 
 		if (curPerm.compareTo(BigInteger.ZERO) > 0) {
 			BigInteger savPerm = new BigInteger(curPerm.toString());
-			System.out.println("curPerm: " + curPerm);
-			System.out.println("offset: " + offset);
 			curPerm = curPerm.add(offset);
-			System.out.println("curPerm after: " + curPerm);
 
 			// mod,start,offset
 			return "" + residue + "," + savPerm + "," + offset;
