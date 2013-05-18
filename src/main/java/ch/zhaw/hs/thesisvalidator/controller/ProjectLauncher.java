@@ -44,7 +44,7 @@ public class ProjectLauncher {
 
 		Properties prop = new Properties();
 		try {
-			prop.load(new FileInputStream("mapReduce.properties"));
+			prop.load(new FileInputStream("hsThesisValidator.properties"));
 
 			startValue = Integer.parseInt(prop.getProperty("start"));
 			stopValue = Integer.parseInt(prop.getProperty("stop"));
