@@ -16,11 +16,11 @@ import ch.zhaw.mapreduce.ShuffleProcessorFactory;
  * @author Max
  *
  */
-public class ResidueProcessorFactory implements ShuffleProcessorFactory {
+public class MAPResultHTMLFormatterFactory implements ShuffleProcessorFactory {
 
 	private final File outDirectory;
 	
-	public ResidueProcessorFactory(File outDirectory) {
+	public MAPResultHTMLFormatterFactory(File outDirectory) {
 		this.outDirectory = outDirectory;
 	}
 

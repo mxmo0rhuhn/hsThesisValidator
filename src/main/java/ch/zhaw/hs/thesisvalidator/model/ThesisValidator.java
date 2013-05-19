@@ -21,7 +21,7 @@ public class ThesisValidator extends Observable{
 	// Ein die Grösse der einzelnen zu berechnenden Teile
 	private static final int OFFSET = 10000;
 	
-	public ThesisValidator(ResidueProcessorFactory residueProcessorFactory) {
+	public ThesisValidator(MAPResultHTMLFormatterFactory residueProcessorFactory) {
 		computer = MapReduceFactory.getMapReduce().newMRTask(new AxiomMapper() , new AxiomReducer(), null, residueProcessorFactory);
 	}
 

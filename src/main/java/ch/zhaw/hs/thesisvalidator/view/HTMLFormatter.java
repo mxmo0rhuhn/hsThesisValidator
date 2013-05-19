@@ -8,6 +8,8 @@ import java.math.BigInteger;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import ch.zhaw.hs.thesisvalidator.model.AxiomMapper;
 import ch.zhaw.hs.thesisvalidator.model.LookupTables;
@@ -36,32 +38,38 @@ public class HTMLFormatter implements Runnable {
 		int counter = 0;
 		File outFile = null;
 
-		while (results.hasNext()) {
+		if (results.hasNext()) {
+			while (results.hasNext()) {
 
-			Entry<String, List<KeyValuePair>> curEntry = results.next();
+				Entry<String, List<KeyValuePair>> curEntry = results.next();
 
-			if (counter == 0) {
-				outFile = new File(outDirectory, "Restklasse" + curEntry.getKey() + ".html");
-				fileWriteLn("<!DOCTYPE html>", outFile);
-				fileWriteLn("<html><body> ", outFile);
+				if (counter == 0) {
+					outFile = new File(outDirectory, "Restklasse" + curEntry.getKey() + ".html");
+					fileWriteLn("<!DOCTYPE html>", outFile);
+					fileWriteLn("<html><body> ", outFile);
 
-			} else {
-				// Darf eigentlich nicht vorkommen
-				System.out
-						.println("HILFE: Es ist mehr als eine Restklasse nach MAP Phase vorhanden");
-				fileWriteLn(
-						"<p><strong>HILFE: Es ist mehr als eine Restklasse nach MAP Phase vorhanden</p></strong>",
-						outFile);
+				} else {
+					// Darf eigentlich nicht vorkommen
+					System.out.println("HILFE: Es ist mehr als eine Restklasse nach MAP Phase vorhanden");
+					fileWriteLn(
+							"<p><strong>HILFE: Es ist mehr als eine Restklasse nach MAP Phase vorhanden</p></strong>",
+							outFile);
+				}
+				List<KeyValuePair> entryList = curEntry.getValue();
+
+				for (KeyValuePair curPermutation : entryList) {
+					formatPermutation(curPermutation, outFile);
+				}
+
+				counter++;
 			}
-			List<KeyValuePair> entryList = curEntry.getValue();
+			fileWriteLn("</body></html>", outFile);
+		} else {
 
-			for (KeyValuePair curPermutation : entryList) {
-				formatPermutation(curPermutation, outFile);
-			}
-
-			counter++;
+			Logger.getLogger(HTMLFormatter.class.getName()).log(Level.INFO,
+					"HTMLFormatter: Sollte HTML aufbereiten aber Ergebnis der MAP-Phase war leer");
 		}
-		fileWriteLn("</body></html>", outFile);
+
 	}
 
 	/**
@@ -72,7 +80,7 @@ public class HTMLFormatter implements Runnable {
 		BigInteger iPerm = new BigInteger(curPermutation.getValue().split(",")[0]);
 		BigInteger aPerm = new BigInteger(curPermutation.getValue().split(",")[1]);
 		int neut = Integer.parseInt(curPermutation.getValue().split(",")[2]);
-		
+
 		int mod = Integer.parseInt(curPermutation.getKey());
 
 		fileWriteLn("<h1>" + curPermutation.getValue() + "</h1>", outFile);
@@ -108,10 +116,9 @@ public class HTMLFormatter implements Runnable {
 		// Zeile
 		for (int y = 0; y < mod; y++) {
 			fileWriteLn("</tr><tr><td><strong>E" + y + "</strong></td>", outFile);
-			
-			
+
 			for (int x = 0; x < mod; x++) {
-				fileWriteLn("<td>E"+ AxiomMapper.map2d(x,y, aPerm, mod)+ "</td>", outFile);
+				fileWriteLn("<td>E" + AxiomMapper.map2d(x, y, aPerm, mod) + "</td>", outFile);
 			}
 		}
 		fileWriteLn("</tr></table><hr>", outFile);

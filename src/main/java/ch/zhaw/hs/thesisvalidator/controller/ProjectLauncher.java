@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import ch.zhaw.hs.thesisvalidator.model.ResidueProcessorFactory;
+import ch.zhaw.hs.thesisvalidator.model.MAPResultHTMLFormatterFactory;
 import ch.zhaw.hs.thesisvalidator.model.ThesisValidator;
 import ch.zhaw.hs.thesisvalidator.view.ConsoleObserver;
 import ch.zhaw.mapreduce.MapReduceFactory;
@@ -40,12 +40,12 @@ public class ProjectLauncher {
 		int startValue = 1;
 		
 		// Wert, bei dem die Berechnung stoppt. wenn der wert <= 0 ist, wird die Berechnung endlos ausgeführt
-		int stopValue = 0;
+		int stopValue = -1;
 
 		Properties prop = new Properties();
 		try {
-			prop.load(new FileInputStream("mapreduce.properties"));
-
+			prop.load(new FileInputStream("hsThesisValidator.properties"));
+			
 			startValue = Integer.parseInt(prop.getProperty("start"));
 			stopValue = Integer.parseInt(prop.getProperty("stop"));
 			path = prop.getProperty("path");
@@ -71,7 +71,7 @@ public class ProjectLauncher {
 
 		MapReduceFactory.getMapReduce().start();
 
-		ThesisValidator validator = new ThesisValidator(new ResidueProcessorFactory(outDirectory));
+		ThesisValidator validator = new ThesisValidator(new MAPResultHTMLFormatterFactory(outDirectory));
 		validator.addObserver(new ConsoleObserver(outDirectory, startValue));
 
 		if (stopValue > 0) {
