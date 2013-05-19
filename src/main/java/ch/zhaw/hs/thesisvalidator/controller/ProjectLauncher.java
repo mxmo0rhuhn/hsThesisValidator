@@ -40,11 +40,11 @@ public class ProjectLauncher {
 		int startValue = 1;
 		
 		// Wert, bei dem die Berechnung stoppt. wenn der wert <= 0 ist, wird die Berechnung endlos ausgeführt
-		int stopValue = 1;
+		int stopValue = 0;
 
 		Properties prop = new Properties();
 		try {
-			prop.load(new FileInputStream("mapReduce.properties"));
+			prop.load(new FileInputStream("mapreduce.properties"));
 
 			startValue = Integer.parseInt(prop.getProperty("start"));
 			stopValue = Integer.parseInt(prop.getProperty("stop"));
@@ -52,7 +52,6 @@ public class ProjectLauncher {
 
 		} catch (IOException e) {
 			// konnten nicht geladen werden - weiter mit oben definierten defaults
-			e.printStackTrace();
 		}
 
 		try {

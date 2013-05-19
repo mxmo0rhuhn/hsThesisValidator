@@ -55,7 +55,7 @@ public class HTMLFormatter implements Runnable {
 			}
 			List<KeyValuePair> entryList = curEntry.getValue();
 
-			for (KeyValuePair<String, String> curPermutation : entryList) {
+			for (KeyValuePair curPermutation : entryList) {
 				formatPermutation(curPermutation, outFile);
 			}
 
@@ -67,7 +67,7 @@ public class HTMLFormatter implements Runnable {
 	/**
 	 * Bereitet eine Permutation als HTML auf
 	 */
-	private void formatPermutation(KeyValuePair<String, String> curPermutation, File outFile) {
+	private void formatPermutation(KeyValuePair curPermutation, File outFile) {
 
 		BigInteger iPerm = new BigInteger(curPermutation.getValue().split(",")[0]);
 		BigInteger aPerm = new BigInteger(curPermutation.getValue().split(",")[1]);

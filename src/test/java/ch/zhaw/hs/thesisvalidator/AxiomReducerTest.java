@@ -125,8 +125,8 @@ public class AxiomReducerTest {
 			}
 
 			@Override
-			public KeyValuePair<String, String> next() {
-				return new KeyValuePair<String, String>("" + mod, "x," + aperms[index++]);
+			public KeyValuePair next() {
+				return new KeyValuePair("" + mod, "x," + aperms[index++]);
 			}
 
 			@Override
