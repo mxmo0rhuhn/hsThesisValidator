@@ -41,6 +41,8 @@ public class ProjectLauncher {
 		
 		// Wert, bei dem die Berechnung stoppt. wenn der wert <= 0 ist, wird die Berechnung endlos ausgeführt
 		int stopValue = -1;
+		
+		int offset = 10000;
 
 		Properties prop = new Properties();
 		try {
@@ -49,6 +51,8 @@ public class ProjectLauncher {
 			startValue = Integer.parseInt(prop.getProperty("start"));
 			stopValue = Integer.parseInt(prop.getProperty("stop"));
 			path = prop.getProperty("path");
+			
+			offset = Integer.parseInt(prop.getProperty("permoffset"));
 
 		} catch (IOException e) {
 			// konnten nicht geladen werden - weiter mit oben definierten defaults
@@ -71,7 +75,7 @@ public class ProjectLauncher {
 
 		MapReduceFactory.getMapReduce().start();
 
-		ThesisValidator validator = new ThesisValidator(new MAPResultHTMLFormatterFactory(outDirectory));
+		ThesisValidator validator = new ThesisValidator(new MAPResultHTMLFormatterFactory(outDirectory), offset);
 		validator.addObserver(new ConsoleObserver(outDirectory, startValue));
 
 		if (stopValue > 0) {
