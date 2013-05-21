@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import ch.zhaw.hs.thesisvalidator.model.MAPResultHTMLFormatterFactory;
 import ch.zhaw.hs.thesisvalidator.model.ThesisValidator;
@@ -17,6 +19,8 @@ import ch.zhaw.mapreduce.MapReduceFactory;
  * 
  */
 public class ProjectLauncher {
+	
+	private static final Logger LOG = Logger.getLogger(ProjectLauncher.class.getName());
 
 	/**
 	 * Startet die Applikation und ruft die benötigten Aufgaben
@@ -57,6 +61,8 @@ public class ProjectLauncher {
 		} catch (IOException e) {
 			// konnten nicht geladen werden - weiter mit oben definierten defaults
 		}
+		
+		LOG.log(Level.INFO, "ThesisValidator Config: Start={0}, Stop={1}, Path={2}, Offset={3}", new Object[]{startValue, stopValue, path, offset});
 
 		try {
 			outDirectory = new File(path);
