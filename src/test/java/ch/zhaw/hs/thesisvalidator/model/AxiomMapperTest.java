@@ -110,6 +110,11 @@ public class AxiomMapperTest {
 		assertEquals(2, (int) neutrals.get(Integer.parseInt("210", 3)));
 		assertEquals(1, (int) neutrals.get(Integer.parseInt("102", 3)));
 	}
+	
+	@Test
+	public void oneAndTwoIsZeroInModThree() {
+		assertEquals(0, AxiomMapper.map2d(2, 1, BigInteger.valueOf(4069), 3));
+	}
 
 	@Test
 	public void shouldSatisfyNeutralElementForStandardModulo2() {

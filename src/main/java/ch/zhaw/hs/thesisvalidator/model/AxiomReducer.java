@@ -10,8 +10,8 @@ import ch.zhaw.mapreduce.ReduceEmitter;
 import ch.zhaw.mapreduce.ReduceInstruction;
 
 /**
- * Der Reducer für die Axiome reduziert die gefundenen Gruppen auf diejenigen, für die einige bestimmte Sätze
- * <b>nicht</b> zutreffen.
+ * Der Reducer für die Axiome reduziert die gefundenen Gruppen auf diejenigen, für die einige
+ * bestimmte Sätze <b>nicht</b> zutreffen.
  * 
  * @author Reto Hablützel
  * 
@@ -21,23 +21,25 @@ public class AxiomReducer implements ReduceInstruction {
 	private static final Logger LOG = Logger.getLogger(AxiomReducer.class.getName());
 
 	/**
-	 * Für jeweils eine Restgruppe (sMod) werden alle Sätze für die Gruppen validiert. Wenn ein Satz für eine Gruppe
-	 * nicht zutrifft, wird diese Gruppe emittiert. Die Gruppen werden durch den Permutationsindex identifiziert,
-	 * welcher durch den Algorithmus in den Lookup-Tables gegeben ist.
+	 * Für jeweils eine Nummer an Elementen (sMod) werden alle Sätze für die Gruppen validiert. Wenn
+	 * ein Satz für eine Gruppe nicht zutrifft, wird diese Gruppe emittiert. Die Gruppen werden
+	 * durch den Permutationsindex identifiziert, welcher durch den Algorithmus in den Lookup-Tables
+	 * gegeben ist.
 	 * 
-	 * Die Werte KeyValuePairs sind die Indizes der Inversen- und Additions-Permutationen als kommasepariertes Tupel.
-	 * z.B. für den Inversen-Index 3 und den Additions-Index 10:
+	 * Die Werte KeyValuePairs sind die Indizes der Inversen- und Additions-Permutationen sowie des
+	 * neutralen Elementes als kommasepariertes Tripel. z.B. für den Inversen-Index 3 und den
+	 * Additions-Index 10 und das neutrale element 0:
 	 * 
 	 * <pre>
-	 * &quot;3,10&quot;
+	 * &quot;10,3, 0&quot;
 	 * </pre>
 	 * 
-	 * Der Schlüssel der KeyValuePairs ist die Restklasse.
+	 * Der Schlüssel der KeyValuePairs ist die Anzahl der Elemente
 	 * 
 	 * @param emitter
 	 *            Emitter für die Gruppen, für die die Sätze nicht gelten
 	 * @param sMod
-	 *            Restklasse
+	 *            Anzahl an Elementen
 	 * @param groups
 	 *            alle Permutationen, die laut dem {@link AxiomMapper} eine Gruppe sind
 	 * 
@@ -64,8 +66,9 @@ public class AxiomReducer implements ReduceInstruction {
 	}
 
 	/**
-	 * Prüft für eine Restklasse (mod) und eine Permutation (perm), ob der Satz der Auslöschung (rechts und links) für
-	 * drei Elemente gilt (a, b, c). Dabei ist die Rechts- bzw. Linksauslöschung folgendermassen definiert:
+	 * Prüft für eine Restklasse (mod) und eine Permutation (perm), ob der Satz der Auslöschung
+	 * (rechts und links) für drei Elemente gilt (a, b, c). Dabei ist die Rechts- bzw.
+	 * Linksauslöschung folgendermassen definiert:
 	 * 
 	 * <pre>
 	 * b * a == c * a ==> b == c
@@ -103,20 +106,21 @@ public class AxiomReducer implements ReduceInstruction {
 	}
 
 	/**
-	 * Liest die Additions-Permutation aus dem Input-String für den Reducer. Der Input String ist ein Tupel aus
-	 * Inversen-Index und Additions-Index. Beides müssen Zahlen im Dezimalsystem sein!
+	 * Liest die Additions-Permutation aus dem Input-String für den Reducer. Der Input String ist
+	 * ein Tupel aus Inversen-Index und Additions-Index. Beides müssen Zahlen im Dezimalsystem sein!
 	 * 
 	 * @param value
 	 *            String-Encodiertes Tupel
 	 * @return den Inversen-Index
 	 */
 	public BigInteger readAPerm(String value) {
-		return new BigInteger(value.split(",")[1]);
+		return new BigInteger(value.split(",")[0]);
 	}
 
 	/**
-	 * This function generates elements of lookup tables. It is assumed that we have two dimensional lookup tables with
-	 * x and y axis each ranging from 0 to n (exclusive). For n, this means there are n^n^n possible permutations. <br />
+	 * This function generates elements of lookup tables. It is assumed that we have two dimensional
+	 * lookup tables with x and y axis each ranging from 0 to n (exclusive). For n, this means there
+	 * are n^n^n possible permutations. <br />
 	 * Example table (n = 3, perm = 1)
 	 * 
 	 * <pre>
@@ -128,10 +132,11 @@ public class AxiomReducer implements ReduceInstruction {
 	 *   2| 0 0 1
 	 * </pre>
 	 * 
-	 * If this was the first permutation, all values would be zeros. The idea of the algorithm is to look at these
-	 * tables as a sequence of numbers. The above example would therefore translate to the following sequence:
-	 * '0000001'. If we now look at all possible permutations of zeros, ones and twos of this sequence, it should be
-	 * obvious that these are nothing else but the ternary representation of all numbers ranging from 0 to n^n^n.
+	 * If this was the first permutation, all values would be zeros. The idea of the algorithm is to
+	 * look at these tables as a sequence of numbers. The above example would therefore translate to
+	 * the following sequence: '0000001'. If we now look at all possible permutations of zeros, ones
+	 * and twos of this sequence, it should be obvious that these are nothing else but the ternary
+	 * representation of all numbers ranging from 0 to n^n^n.
 	 * 
 	 * @param x
 	 *            index of x axis
@@ -163,7 +168,7 @@ public class AxiomReducer implements ReduceInstruction {
 	private void logL(int mod, BigInteger perm, int a, int b, int c, int ab, int ac) {
 		if (LOG.isLoggable(Level.FINEST)) {
 			LOG.log(Level.FINEST,
-					"Left Cancellation Law not satisfied! Mod={0}, A-Perm={1}, a={2}, b={3}, ab={4}, ac={5}",
+					"Left Cancellation Law not satisfied! Mod={0}, A-Perm={1}, a={2}, b={3}, c={4}, ab={5}, ac={6}",
 					new Object[] { mod, perm, a, b, c, ab, ac });
 		}
 	}
@@ -171,11 +176,11 @@ public class AxiomReducer implements ReduceInstruction {
 	/**
 	 * Loggt den Term.
 	 */
-	private void logR(int mod, BigInteger perm, int a, int b, int c, int ab, int ac) {
+	private void logR(int mod, BigInteger perm, int a, int b, int c, int ba, int ca) {
 		if (LOG.isLoggable(Level.FINEST)) {
 			LOG.log(Level.FINEST,
-					"Right Cancellation Law not satisfied! Mod={0}, A-Perm={1}, a={2}, b={3}, ba={4}, ca={5}",
-					new Object[] { mod, perm, a, b, c, ab, ac });
+					"Right Cancellation Law not satisfied! Mod={0}, A-Perm={1}, a={2}, b={3}, c={4}, ba={5}, ca={6}",
+					new Object[] { mod, perm, a, b, c, ba, ca });
 		}
 	}
 }

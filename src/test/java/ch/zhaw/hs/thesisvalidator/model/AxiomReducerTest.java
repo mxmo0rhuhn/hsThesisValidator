@@ -40,7 +40,7 @@ public class AxiomReducerTest {
 		AxiomReducer reducer = new AxiomReducer();
 		mockery.checking(new Expectations() {
 			{
-				oneOf(emitter).emit("x,0");
+				oneOf(emitter).emit("0,x,y");
 			}
 		});
 		reducer.reduce(emitter, "2", i(2, 0));
@@ -65,18 +65,7 @@ public class AxiomReducerTest {
 				never(emitter).emit(with(any(String.class)));
 			}
 		});
-		reducer.reduce(emitter, "3", i(3, 63118));
-		reducer.reduce(emitter, "3", i(3, 63118));
-		reducer.reduce(emitter, "3", i(3, 70502));
-		reducer.reduce(emitter, "3", i(3, 73050));
-		reducer.reduce(emitter, "3", i(3, 82801));
-		reducer.reduce(emitter, "3", i(3, 90185));
-		reducer.reduce(emitter, "3", i(3, 92733));
-		reducer.reduce(emitter, "3", i(3, 102484));
-		reducer.reduce(emitter, "3", i(3, 109868));
-		reducer.reduce(emitter, "3", i(3, 112416));
-		reducer.reduce(emitter, "3", i(3, 122167));
-		reducer.reduce(emitter, "3", i(3, 129551));
+		reducer.reduce(emitter, "3", i(3, 4069, 11453, 14001));
 	}
 
 	@Test
@@ -109,16 +98,22 @@ public class AxiomReducerTest {
 
 	@Test(expected = RuntimeException.class)
 	public void shouldNotAcceptGarbageInput() {
-		new AxiomReducer().readAPerm("9,x");
+		new AxiomReducer().readAPerm("x,9");
 	}
 
 	@Test
 	public void shouldParseAxiomPerm() {
 
 		assertEquals(NINE, new AxiomReducer().readAPerm("9,9"));
-		assertEquals(NINE.add(ONE), new AxiomReducer().readAPerm("9,10"));
+		assertEquals(NINE.add(ONE), new AxiomReducer().readAPerm("10,0"));
 	}
 
+	/**
+	 * 
+	 * @param mod
+	 * @param aperms
+	 * @return
+	 */
 	private Iterator<KeyValuePair> i(final int mod, final int... aperms) {
 		return new Iterator<KeyValuePair>() {
 
@@ -131,7 +126,7 @@ public class AxiomReducerTest {
 
 			@Override
 			public KeyValuePair next() {
-				return new KeyValuePair("" + mod, "x," + aperms[index++]);
+				return new KeyValuePair("" + mod, "" + aperms[index++] + ",x,y");
 			}
 
 			@Override

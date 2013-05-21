@@ -9,9 +9,10 @@ import ch.zhaw.mapreduce.MapEmitter;
 import ch.zhaw.mapreduce.MapInstruction;
 
 /**
- * Map-Instruktion zur Prüfung der Gültigkeit. Nach Dokumentation vom Software Projekt 2 (thesis-validator) werden für
- * jede Map-Instruktion für eine bestimmte Restklasse und eine bestimmte Menge an Permutationen die Gruppen-Axiome
- * geprüft. Die Map-Instruktion ermittelt dabei die Permutationen, für die diese Axiome gelten.
+ * Map-Instruktion zur Prüfung der Gültigkeit. Nach Dokumentation vom Software Projekt 2
+ * (thesis-validator) werden für jede Map-Instruktion für eine bestimmte Restklasse und eine
+ * bestimmte Menge an Permutationen die Gruppen-Axiome geprüft. Die Map-Instruktion ermittelt dabei
+ * die Permutationen, für die diese Axiome gelten.
  * 
  * @author Reto Hablützel
  * 
@@ -26,7 +27,7 @@ public class AxiomMapper implements MapInstruction {
 	 * @return die anzahl mödlicher Permutationen
 	 */
 	public static BigInteger calculateMaxPermutations(int residue) {
-		
+
 		BigInteger restklasse = BigInteger.valueOf(residue);
 		// Diese Formel ist eine Annahme...
 		return restklasse.pow((residue * residue));
@@ -36,27 +37,30 @@ public class AxiomMapper implements MapInstruction {
 
 	/**
 	 * 
-	 * Die Map-Funktion extrahiert aus dem input-String die Menge der zu prüfenden Permutationen und die zugehörige
-	 * Restklasse. Dabei muss der input-String in folgendem Format aufgebaut sein:
+	 * Die Map-Funktion extrahiert aus dem input-String die Menge der zu prüfenden Permutationen und
+	 * die zugehörige Restklasse. Dabei muss der input-String in folgendem Format aufgebaut sein:
 	 * 
 	 * <pre>
 	 * mod,start,offset
 	 * </pre>
 	 * 
-	 * Der erste Teil (mod) wird als Restklasse interpretiert, der zweite (start) als erste Permutation und der letzte
-	 * (offset) als die Anzahl der Permutationen. Beispiel: Map Instruktion soll die ersten beiden Permutationen der
-	 * Restklasse 2 auf die Gruppenaxiome überprüfen:
+	 * Der erste Teil (mod) wird als Restklasse interpretiert, der zweite (start) als erste
+	 * Permutation und der letzte (offset) als die Anzahl der Permutationen. Beispiel: Map
+	 * Instruktion soll die ersten beiden Permutationen der Restklasse 2 auf die Gruppenaxiome
+	 * überprüfen:
 	 * 
 	 * <pre>
 	 * input = &quot;2;0;2&quot;
 	 * </pre>
 	 * 
-	 * Dabei wird die Nummer der Additions-Wertetabelle/Permutation sowie die Nummer der Inversen-Wertetabelle emitted
-	 * mit dem Schlüssel 'mod' (Restgruppe). Beispiel: die Additions-Wertetablle mit der Nummer 6 und die
-	 * Inversen-Wertetabelle mit der Nummer 3 ist eine Gruppe in der Restklasse 2:
+	 * Dabei wird die Nummer der Additions-Wertetabelle/Permutation, die Nummer der
+	 * Inversen-Wertetabelle sowie das neutrale Element emitted mit der Anzahl der Elemente der
+	 * Gruppe als Schlüssel 'elem' . Beispiel: die Additions-Wertetablle mit der Nummer 6, die
+	 * Inversen-Wertetabelle mit der Nummer 3 und 0 als neutrales Element ist eine Gruppe mit zwei
+	 * Elementen:
 	 * 
 	 * <pre>
-	 * emit(&quot;2&quot;, &quot;6,3&quot;)
+	 * emit(&quot;2&quot;, &quot;6,3,0&quot;)
 	 * </pre>
 	 * 
 	 * @param input
@@ -71,10 +75,12 @@ public class AxiomMapper implements MapInstruction {
 
 		BigInteger maxPerms = calculateMaxPermutations(modulo);
 		if (startPerm.add(offset).compareTo(maxPerms) == 1) {
-			throw new IllegalArgumentException("Number of Permutations: " + (startPerm.add(offset)) + " > " + maxPerms);
+			throw new IllegalArgumentException("Number of Permutations: " + (startPerm.add(offset))
+					+ " > " + maxPerms);
 		}
 
-		// Relative Permuation, also die relPerm-te Permutation vom Start her. Es gibt dann auch die absolute
+		// Relative Permuation, also die relPerm-te Permutation vom Start her. Es gibt dann auch die
+		// absolute
 		// Permutation
 		// welche die StartPerm + relPerm ist
 		BigInteger relPerm = BigInteger.ZERO;
@@ -89,7 +95,8 @@ public class AxiomMapper implements MapInstruction {
 				int e = ipn.getValue(); // neutrales element
 
 				if (checkAxioms(modulo, aPerm, e)) {
-					emitter.emitIntermediateMapResult(Integer.toString(modulo), aPerm + "," + iPerm + "," + e);
+					emitter.emitIntermediateMapResult(Integer.toString(modulo), aPerm + "," + iPerm
+							+ "," + e);
 				}
 			}
 			relPerm = relPerm.add(BigInteger.ONE);
@@ -104,33 +111,40 @@ public class AxiomMapper implements MapInstruction {
 	 */
 	public Map<Integer, Integer> findNeutrals(final int modulo, BigInteger aPerm) {
 		/*
-		 * Findet für eine Additionspermutation und eine Restklasse die möglichen neutralen Elemente indem jeweils ein
-		 * Element genommen wird und dann dessen Inverses und dann werden diese beiden mit der 2d Tabelle verknüpft. Die
-		 * Abbildung der beiden ist dann das neutrale Element Dabei darf es nur ein neutrales Element pro 2d-Verknüpfung
-		 * geben.
+		 * Findet für eine Additionspermutation und eine Restklasse die möglichen neutralen Elemente
+		 * indem jeweils ein Element genommen wird und dann dessen Inverses und dann werden diese
+		 * beiden mit der 2d Tabelle verknüpft. Die Abbildung der beiden ist dann das neutrale
+		 * Element Dabei darf es nur ein neutrales Element pro 2d-Verknüpfung geben.
 		 */
 		Map<Integer, Integer> invPermNeutrals = new HashMap<Integer, Integer>();
 		int iPerms = (int) Math.pow(modulo, modulo);
 		// iteriere durch alle inversen permutation und suche je ein neutrales
 		outer: for (int iPerm = 0; iPerm < iPerms; iPerm++) {
-			// suche erstes mögliches neutrales via erstes Element in dieser Restklasse (= 0 in jeder Restklasse)
+			// suche erstes mögliches neutrales via erstes Element in dieser Restklasse (= 0 in
+			// jeder Restklasse)
 			int firstE = map2d(0, map1d(0, iPerm, modulo), aPerm, modulo);
 
-			// nun suchen wir noch für die restlichen element dieser restklasse je ein inverses und ermitteln daraus das
-			// neutrale. da es genau ein neutrales in einer Gruppe geben kann, kann die Suche abgebrochen werden, wenn
+			// nun suchen wir noch für die restlichen element dieser restklasse je ein inverses und
+			// ermitteln daraus das
+			// neutrale. da es genau ein neutrales in einer Gruppe geben kann, kann die Suche
+			// abgebrochen werden, wenn
 			// mehrere gefunden werden.
-			for (int a = 1; a < modulo; a++) { // schleife beginnt bei 1 weil das erste bereits vor der schleife gefunden wird
+			for (int a = 1; a < modulo; a++) { // schleife beginnt bei 1 weil das erste bereits vor
+												// der schleife gefunden wird
 				int i = map1d(a, iPerm, modulo); // inverses
 				int e = map2d(a, i, aPerm, modulo); // nächstes mögliches neutrales
 
-				// in dieser konstellation gibt es offensichtlich mehrere inverse. also ist es keine gruppe!
+				// in dieser konstellation gibt es offensichtlich mehrere inverse. also ist es keine
+				// gruppe!
 				if (e != firstE) {
 					continue outer;
 				}
 
 			}
-			// wenn wir bis hier gekommen sind, wurden keine wiedersprüchlichen neutralen Elemente gefunden, also haben
-			// wir ein eindeutiges neutrales Element, welches wir für diese Additions- und Inversen-Permutation
+			// wenn wir bis hier gekommen sind, wurden keine wiedersprüchlichen neutralen Elemente
+			// gefunden, also haben
+			// wir ein eindeutiges neutrales Element, welches wir für diese Additions- und
+			// Inversen-Permutation
 			// verwenden können.
 			invPermNeutrals.put(iPerm, firstE);
 		}
@@ -138,8 +152,9 @@ public class AxiomMapper implements MapInstruction {
 	}
 
 	/**
-	 * Prüft die beiden Axiome (es gibt ein Inverses, die Addition ist assoziativ) für eine bestimmte Restklasse
-	 * (modulo) für die perm-te Permutation und ein vorbestimmtest neutrales Element.
+	 * Prüft die beiden Axiome (es gibt ein Inverses, die Addition ist assoziativ) für eine
+	 * bestimmte Restklasse (modulo) für die perm-te Permutation und ein vorbestimmtest neutrales
+	 * Element.
 	 * 
 	 * @param modulo
 	 *            Restklasse
@@ -147,14 +162,17 @@ public class AxiomMapper implements MapInstruction {
 	 *            perm-te Permutation
 	 * @param neutral
 	 *            neutrales Element
-	 * @return flase, wenn mindestens eines der Axiome nicht für sämtliche Elemente gilt. Sonst true.
+	 * @return flase, wenn mindestens eines der Axiome nicht für sämtliche Elemente gilt. Sonst
+	 *         true.
 	 */
 	public boolean checkAxioms(final int modulo, final BigInteger perm, final int neutral) {
-		return neutral(modulo, perm, neutral) && inverse(modulo, perm, neutral) && associative(modulo, perm);
+		return neutral(modulo, perm, neutral) && inverse(modulo, perm, neutral)
+				&& associative(modulo, perm);
 	}
 
 	/**
-	 * Prüft, ob das neutrale Element die Axiome, welches für das neutrale Element gelten müssen, gilt.
+	 * Prüft, ob das neutrale Element die Axiome, welches für das neutrale Element gelten müssen,
+	 * gilt.
 	 * 
 	 * @param modulo
 	 *            Restklasse
@@ -180,8 +198,8 @@ public class AxiomMapper implements MapInstruction {
 	}
 
 	/**
-	 * Prüft, ob es für die Restklasse (modulo) für die perm-te Permutation für jedes Element ein Inverses gibt, welches
-	 * auf das Neutrale abbildet.
+	 * Prüft, ob es für die Restklasse (modulo) für die perm-te Permutation für jedes Element ein
+	 * Inverses gibt, welches auf das Neutrale abbildet.
 	 * 
 	 * @param modulo
 	 *            Restklasse
@@ -193,9 +211,9 @@ public class AxiomMapper implements MapInstruction {
 	 */
 	public boolean inverse(final int modulo, final BigInteger perm, final int neutral) {
 		/*
-		 * Es sei a ein Element aus der Restklasse 'modulo'. Dann suchen wir ein b, welches verknüpft mit a auf das
-		 * neutrale Element abbildet. Dann gilt b als das inverse Element von a. Wir müssen ein solches b für jedes a
-		 * finden.
+		 * Es sei a ein Element aus der Restklasse 'modulo'. Dann suchen wir ein b, welches
+		 * verknüpft mit a auf das neutrale Element abbildet. Dann gilt b als das inverse Element
+		 * von a. Wir müssen ein solches b für jedes a finden.
 		 */
 		outer: for (int a = 0; a < modulo; a++) {
 			boolean found = false;
@@ -214,19 +232,20 @@ public class AxiomMapper implements MapInstruction {
 	}
 
 	/**
-	 * Prüft, ob die perm-te Permutation der Restklasse 'modulo' bezüglich der Addition/einer zweistelligen Verknüpfung
-	 * assoziativ ist.
+	 * Prüft, ob die perm-te Permutation der Restklasse 'modulo' bezüglich der Addition/einer
+	 * zweistelligen Verknüpfung assoziativ ist.
 	 * 
 	 * @param modulo
 	 *            Restklasse
 	 * @param perm
 	 *            perm-te Permutation
-	 * @return false, wenn das Assoziativgesetz für mindestens eines nicht gilt. true wenn es für alle gilt.
+	 * @return false, wenn das Assoziativgesetz für mindestens eines nicht gilt. true wenn es für
+	 *         alle gilt.
 	 */
 	public boolean associative(final int modulo, final BigInteger perm) {
 		/*
-		 * Folgende Gleichung muss für sämtliche a, b und c aus der Restklasse 'modulo' der perm-ten Permutation gelten:
-		 * a * (b * c) = (a * b) * c
+		 * Folgende Gleichung muss für sämtliche a, b und c aus der Restklasse 'modulo' der perm-ten
+		 * Permutation gelten: a * (b * c) = (a * b) * c
 		 */
 		for (int a = 0; a < modulo; a++) {
 			for (int b = 0; b < modulo; b++) {
@@ -249,7 +268,8 @@ public class AxiomMapper implements MapInstruction {
 	}
 
 	/**
-	 * Liest die Restklasse aus dem Inpput-String. Siehe Map-Funktion für eine Beschreibung des Pattern.
+	 * Liest die Restklasse aus dem Inpput-String. Siehe Map-Funktion für eine Beschreibung des
+	 * Pattern.
 	 * 
 	 * @param input
 	 *            ganzer eingabestring
@@ -261,7 +281,8 @@ public class AxiomMapper implements MapInstruction {
 	}
 
 	/**
-	 * Liest die StartPerm aus dem Inpput-String. Siehe Map-Funktion für eine Beschreibung des Pattern.
+	 * Liest die StartPerm aus dem Inpput-String. Siehe Map-Funktion für eine Beschreibung des
+	 * Pattern.
 	 * 
 	 * @param input
 	 *            ganzer eingabestring
@@ -273,7 +294,8 @@ public class AxiomMapper implements MapInstruction {
 	}
 
 	/**
-	 * Liest die Anzahl der Permutatione aus dem Inpput-String. Siehe Map-Funktion für eine Beschreibung des Pattern.
+	 * Liest die Anzahl der Permutatione aus dem Inpput-String. Siehe Map-Funktion für eine
+	 * Beschreibung des Pattern.
 	 * 
 	 * @param input
 	 *            ganzer eingabestring
@@ -285,8 +307,9 @@ public class AxiomMapper implements MapInstruction {
 	}
 
 	/**
-	 * This function generates elements of lookup tables. It is assumed that we have two dimensional lookup tables with
-	 * x and y axis each ranging from 0 to n (exclusive). For n, this means there are n^n^n possible permutations. <br />
+	 * This function generates elements of lookup tables. It is assumed that we have two dimensional
+	 * lookup tables with x and y axis each ranging from 0 to n (exclusive). For n, this means there
+	 * are n^n^n possible permutations. <br />
 	 * Example table (n = 3, perm = 1)
 	 * 
 	 * <pre>
@@ -298,10 +321,11 @@ public class AxiomMapper implements MapInstruction {
 	 *   2| 0 0 1
 	 * </pre>
 	 * 
-	 * If this was the first permutation, all values would be zeros. The idea of the algorithm is to look at these
-	 * tables as a sequence of numbers. The above example would therefore translate to the following sequence:
-	 * '0000001'. If we now look at all possible permutations of zeros, ones and twos of this sequence, it should be
-	 * obvious that these are nothing else but the ternary representation of all numbers ranging from 0 to n^n^n.
+	 * If this was the first permutation, all values would be zeros. The idea of the algorithm is to
+	 * look at these tables as a sequence of numbers. The above example would therefore translate to
+	 * the following sequence: '0000001'. If we now look at all possible permutations of zeros, ones
+	 * and twos of this sequence, it should be obvious that these are nothing else but the ternary
+	 * representation of all numbers ranging from 0 to n^n^n.
 	 * 
 	 * @param x
 	 *            index of x axis
@@ -328,7 +352,8 @@ public class AxiomMapper implements MapInstruction {
 	}
 
 	/**
-	 * This function essentially does the same as the map2d function, but for one dimensional lookup tables.
+	 * This function essentially does the same as the map2d function, but for one dimensional lookup
+	 * tables.
 	 * 
 	 * @param x
 	 *            index of x axis
@@ -341,13 +366,15 @@ public class AxiomMapper implements MapInstruction {
 	public static int map1d(int x, int perm, int n) {
 		// see the 2d mapping function. it's the same idea
 		String repr = Integer.toString(perm, n);
-		// lost ist die Anzahl der abgeschnittenen Zeichen, da die Funktion toString führende Nullen abschneidet.
+		// lost ist die Anzahl der abgeschnittenen Zeichen, da die Funktion toString führende Nullen
+		// abschneidet.
 		int lost = n - repr.length();
 		if (lost == 0) {
 			// nichts wurde abgeschnitten
 			return repr.charAt(x) - 48;
 		} else if (x < lost) {
-			// x fällt in den Bereich des abgeschnittenen. Da nur Nullen abgeschnitten wurden, muss an der Position eine
+			// x fällt in den Bereich des abgeschnittenen. Da nur Nullen abgeschnitten wurden, muss
+			// an der Position eine
 			// 0 sein
 			return 0;
 		} else {
