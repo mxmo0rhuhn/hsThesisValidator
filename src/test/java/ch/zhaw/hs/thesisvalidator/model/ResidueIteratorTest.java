@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ch.zhaw.hs.thesisvalidator;
+package ch.zhaw.hs.thesisvalidator.model;
 
 import static org.junit.Assert.*;
 

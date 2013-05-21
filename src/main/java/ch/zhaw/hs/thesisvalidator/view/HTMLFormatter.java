@@ -76,8 +76,8 @@ public class HTMLFormatter implements Runnable {
 	 */
 	private void formatPermutation(KeyValuePair curPermutation, File outFile) {
 
-		int iPerm = Integer.parseInt(curPermutation.getValue().split(",")[0]);
-		BigInteger aPerm = new BigInteger(curPermutation.getValue().split(",")[1]);
+		BigInteger aPerm = new BigInteger(curPermutation.getValue().split(",")[0]);
+		int iPerm = Integer.parseInt(curPermutation.getValue().split(",")[1]);
 		int neut = Integer.parseInt(curPermutation.getValue().split(",")[2]);
 
 		int mod = Integer.parseInt(curPermutation.getKey());
@@ -86,8 +86,37 @@ public class HTMLFormatter implements Runnable {
 
 		// neutrales element
 		fileWriteLn("<h2>Neutrales Element</h2>", outFile);
-		fileWriteLn("<p>" + neut + "</p>", outFile);
+		fileWriteLn("<p>E" + neut + "</p>", outFile);
 
+		printInverse(outFile, iPerm, mod);
+
+		fileWriteLn(generateAdditionHTML(aPerm, mod),outFile);
+
+	}
+
+	String generateAdditionHTML(BigInteger aPerm, int mod) {
+		String returnString = "<h2>Additionstabelle</h2>";
+		returnString += "<table border='1'><tr><td></td>";
+
+		// Header
+		for (int i = 0; i < mod; i++) {
+			returnString += "<td><strong>E" + i + "</strong></td>";
+		}
+
+		// Zeile
+		for (int y = 0; y < mod; y++) {
+			returnString += "</tr><tr><td><strong>E" + y + "</strong></td>";
+
+			for (int x = 0; x < mod; x++) {
+				returnString += "<td>E" + AxiomMapper.map2d(x, y, aPerm, mod) + "</td>";
+			}
+		}
+		returnString += "</tr></table><hr>";
+		
+		return returnString;
+	}
+
+	private void printInverse(File outFile, int iPerm, int mod) {
 		// Inverse
 		fileWriteLn("<h2>Inverse</h2>", outFile);
 		fileWriteLn("<table border='1'><tr>", outFile);
@@ -99,29 +128,10 @@ public class HTMLFormatter implements Runnable {
 		fileWriteLn("</tr><tr>", outFile);
 
 		// Zeile
-		for (int i = 0; i < mod; i++) {
-			fileWriteLn("<td>E" + AxiomMapper.map1d(i, iPerm, mod) + "</td>", outFile);
+		for (int x = 0; x < mod; x++) {
+			fileWriteLn("<td>E" + AxiomMapper.map1d(x, iPerm, mod) + "</td>", outFile);
 		}
 		fileWriteLn("</tr></table>", outFile);
-
-		fileWriteLn("<h2>Additionstabelle</h2>", outFile);
-		fileWriteLn("<table border='1'><tr><td></td>", outFile);
-
-		// Header
-		for (int i = 0; i < mod; i++) {
-			fileWriteLn("<td><strong>E" + i + "</strong></td>", outFile);
-		}
-
-		// Zeile
-		for (int y = 0; y < mod; y++) {
-			fileWriteLn("</tr><tr><td><strong>E" + y + "</strong></td>", outFile);
-
-			for (int x = 0; x < mod; x++) {
-				fileWriteLn("<td>E" + AxiomMapper.map2d(x, y, aPerm, mod) + "</td>", outFile);
-			}
-		}
-		fileWriteLn("</tr></table><hr>", outFile);
-
 	}
 
 	public void fileWriteLn(String line, File outFile) {
