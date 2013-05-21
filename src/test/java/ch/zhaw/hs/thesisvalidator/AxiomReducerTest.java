@@ -7,32 +7,38 @@ import java.math.BigInteger;
 import java.util.Iterator;
 
 import org.jmock.Expectations;
-import org.jmock.Mockery;
-import org.jmock.integration.junit4.JMock;
-import org.jmock.integration.junit4.JUnit4Mockery;
-import org.junit.Before;
+import org.jmock.auto.Mock;
+import org.jmock.integration.junit4.JUnitRuleMockery;
+import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import ch.zhaw.hs.thesisvalidator.model.AxiomReducer;
 import ch.zhaw.mapreduce.KeyValuePair;
 import ch.zhaw.mapreduce.ReduceEmitter;
 
-@RunWith(JMock.class)
 public class AxiomReducerTest {
 
-	private Mockery context;
+	@Rule
+	public JUnitRuleMockery mockery = new JUnitRuleMockery();
 
-	@Before
-	public void init() {
-		this.context = new JUnit4Mockery();
-	}
-
+	@Mock
+	private ReduceEmitter emitter;
+	
+	static BigInteger ZERO = BigInteger.ZERO;
+	static BigInteger ONE = BigInteger.ONE;
+	static BigInteger TWO = ONE.add(ONE);
+	static BigInteger THREE = TWO.add(ONE);
+	static BigInteger FOUR = THREE.add(ONE);
+	static BigInteger FIVE = FOUR.add(ONE);
+	static BigInteger SIX = FIVE.add(ONE);
+	static BigInteger SEVEN = SIX.add(ONE);
+	static BigInteger EIGHT = SEVEN.add(ONE);
+	static BigInteger NINE = EIGHT.add(ONE);
+	
 	@Test
 	public void shouldEmitForNonGroupInMod2() {
 		AxiomReducer reducer = new AxiomReducer();
-		final ReduceEmitter emitter = this.context.mock(ReduceEmitter.class);
-		this.context.checking(new Expectations() {
+		mockery.checking(new Expectations() {
 			{
 				oneOf(emitter).emit("x,0");
 			}
@@ -43,8 +49,7 @@ public class AxiomReducerTest {
 	@Test
 	public void shouldNotEmitForGroupMod2() {
 		AxiomReducer reducer = new AxiomReducer();
-		final ReduceEmitter emitter = this.context.mock(ReduceEmitter.class);
-		this.context.checking(new Expectations() {
+		mockery.checking(new Expectations() {
 			{
 				never(emitter).emit(with(any(String.class)));
 			}
@@ -55,8 +60,7 @@ public class AxiomReducerTest {
 	@Test
 	public void shouldNotEmitForGroupMod3() {
 		AxiomReducer reducer = new AxiomReducer();
-		final ReduceEmitter emitter = this.context.mock(ReduceEmitter.class);
-		this.context.checking(new Expectations() {
+		mockery.checking(new Expectations() {
 			{
 				never(emitter).emit(with(any(String.class)));
 			}
@@ -110,8 +114,9 @@ public class AxiomReducerTest {
 
 	@Test
 	public void shouldParseAxiomPerm() {
-		assertEquals(BigInteger.valueOf(9), new AxiomReducer().readAPerm("9,9"));
-		assertEquals(BigInteger.valueOf(10), new AxiomReducer().readAPerm("9,10"));
+
+		assertEquals(NINE, new AxiomReducer().readAPerm("9,9"));
+		assertEquals(NINE.add(ONE), new AxiomReducer().readAPerm("9,10"));
 	}
 
 	private Iterator<KeyValuePair> i(final int mod, final int... aperms) {
