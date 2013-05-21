@@ -12,7 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import ch.zhaw.hs.thesisvalidator.model.AxiomMapper;
-import ch.zhaw.hs.thesisvalidator.model.LookupTables;
 import ch.zhaw.mapreduce.KeyValuePair;
 
 /**
@@ -77,7 +76,7 @@ public class HTMLFormatter implements Runnable {
 	 */
 	private void formatPermutation(KeyValuePair curPermutation, File outFile) {
 
-		BigInteger iPerm = new BigInteger(curPermutation.getValue().split(",")[0]);
+		int iPerm = Integer.parseInt(curPermutation.getValue().split(",")[0]);
 		BigInteger aPerm = new BigInteger(curPermutation.getValue().split(",")[1]);
 		int neut = Integer.parseInt(curPermutation.getValue().split(",")[2]);
 
@@ -101,7 +100,7 @@ public class HTMLFormatter implements Runnable {
 
 		// Zeile
 		for (int i = 0; i < mod; i++) {
-			fileWriteLn("<td>E" + LookupTables.map1d(i, iPerm.intValue(), mod) + "</td>", outFile);
+			fileWriteLn("<td>E" + AxiomMapper.map1d(i, iPerm, mod) + "</td>", outFile);
 		}
 		fileWriteLn("</tr></table>", outFile);
 

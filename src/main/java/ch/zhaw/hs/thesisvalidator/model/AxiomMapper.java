@@ -26,13 +26,10 @@ public class AxiomMapper implements MapInstruction {
 	 * @return die anzahl mödlicher Permutationen
 	 */
 	public static BigInteger calculateMaxPermutations(int residue) {
-		if (residue > 9) {
-			throw new UnsupportedOperationException("Es werden nur Restklassen bis maximal 9 unterstützt");
-		}
-
-		BigInteger restklasse = new BigInteger("" + residue);
+		
+		BigInteger restklasse = BigInteger.valueOf(residue);
 		// Diese Formel ist eine Annahme...
-		return restklasse.pow((int) Math.pow(residue, residue));
+		return restklasse.pow((residue * residue));
 	}
 
 	private static final Logger LOG = Logger.getLogger(AxiomMapper.class.getName());
