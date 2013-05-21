@@ -16,7 +16,6 @@ public class LookupTablesTest {
 	@Test
 	public void shouldCreateDistinct1DTables() {
 		for(int mod = 1; mod < 7; mod++) {
-			System.out.println(mod);
 			int elems = (int) Math.pow(mod, mod);
 			Set<String> perms = new HashSet<String>(elems);
 			for (int perm = 0; perm < elems; perm++) {
