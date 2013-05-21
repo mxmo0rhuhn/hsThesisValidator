@@ -2,6 +2,8 @@ package ch.zhaw.hs.thesisvalidator.model;
 
 import java.math.BigInteger;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import ch.zhaw.mapreduce.KeyValuePair;
 import ch.zhaw.mapreduce.ReduceEmitter;
@@ -15,6 +17,8 @@ import ch.zhaw.mapreduce.ReduceInstruction;
  * 
  */
 public class AxiomReducer implements ReduceInstruction {
+
+	private static final Logger LOG = Logger.getLogger(AxiomReducer.class.getName());
 
 	/**
 	 * Für jeweils eine Restgruppe (sMod) werden alle Sätze für die Gruppen validiert. Wenn ein Satz für eine Gruppe
@@ -85,12 +89,14 @@ public class AxiomReducer implements ReduceInstruction {
 		int ab = map2d(a, b, perm, mod);
 		int ac = map2d(a, c, perm, mod);
 		if (ab == ac && b != c) {
+			logL(mod, perm, a, b, c, ab, ac);
 			return false;
 		}
 		// right cancellation
 		int ba = map2d(b, a, perm, mod);
 		int ca = map2d(c, a, perm, mod);
 		if (ba == ca && b != c) {
+			logR(mod, perm, a, b, c, ba, ca);
 			return false;
 		}
 		return true;
@@ -107,7 +113,7 @@ public class AxiomReducer implements ReduceInstruction {
 	public BigInteger readAPerm(String value) {
 		return new BigInteger(value.split(",")[1]);
 	}
-	
+
 	/**
 	 * This function generates elements of lookup tables. It is assumed that we have two dimensional lookup tables with
 	 * x and y axis each ranging from 0 to n (exclusive). For n, this means there are n^n^n possible permutations. <br />
@@ -149,5 +155,27 @@ public class AxiomReducer implements ReduceInstruction {
 		// LSB is on the right side
 		pos = repr.length() - pos - 1;
 		return repr.charAt(pos) - 48;
+	}
+
+	/**
+	 * Loggt den Term.
+	 */
+	private void logL(int mod, BigInteger perm, int a, int b, int c, int ab, int ac) {
+		if (LOG.isLoggable(Level.FINEST)) {
+			LOG.log(Level.FINEST,
+					"Left Cancellation Law not satisfied! Mod={0}, A-Perm={1}, a={2}, b={3}, ab={4}, ac={5}",
+					new Object[] { mod, perm, a, b, c, ab, ac });
+		}
+	}
+
+	/**
+	 * Loggt den Term.
+	 */
+	private void logR(int mod, BigInteger perm, int a, int b, int c, int ab, int ac) {
+		if (LOG.isLoggable(Level.FINEST)) {
+			LOG.log(Level.FINEST,
+					"Right Cancellation Law not satisfied! Mod={0}, A-Perm={1}, a={2}, b={3}, ba={4}, ca={5}",
+					new Object[] { mod, perm, a, b, c, ab, ac });
+		}
 	}
 }
