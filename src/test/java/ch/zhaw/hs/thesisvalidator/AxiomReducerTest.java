@@ -110,8 +110,8 @@ public class AxiomReducerTest {
 
 	@Test
 	public void shouldParseAxiomPerm() {
-		assertEquals(9, new AxiomReducer().readAPerm("9,9"));
-		assertEquals(10, new AxiomReducer().readAPerm("9,10"));
+		assertEquals(BigInteger.valueOf(9), new AxiomReducer().readAPerm("9,9"));
+		assertEquals(BigInteger.valueOf(10), new AxiomReducer().readAPerm("9,10"));
 	}
 
 	private Iterator<KeyValuePair> i(final int mod, final int... aperms) {
