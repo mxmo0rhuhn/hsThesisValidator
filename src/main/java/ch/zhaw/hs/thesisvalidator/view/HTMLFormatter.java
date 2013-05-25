@@ -43,15 +43,15 @@ public class HTMLFormatter implements Runnable {
 				Entry<String, List<KeyValuePair>> curEntry = results.next();
 
 				if (counter == 0) {
-					outFile = new File(outDirectory, "Restklasse" + curEntry.getKey() + ".html");
+					outFile = new File(outDirectory, "AnzahlElemente" + curEntry.getKey() + ".html");
 					fileWriteLn("<!DOCTYPE html>", outFile);
 					fileWriteLn("<html><body> ", outFile);
 
 				} else {
 					// Darf eigentlich nicht vorkommen
-					System.out.println("HILFE: Es ist mehr als eine Restklasse nach MAP Phase vorhanden");
+					System.out.println("HILFE: Es ist mehr als eine Anzahl an Elementen nach MAP Phase vorhanden");
 					fileWriteLn(
-							"<p><strong>HILFE: Es ist mehr als eine Restklasse nach MAP Phase vorhanden</p></strong>",
+							"<p><strong>HILFE: Es ist mehr als eine Anzahl an Elementen nach MAP Phase vorhanden</p></strong>",
 							outFile);
 				}
 				List<KeyValuePair> entryList = curEntry.getValue();
@@ -95,7 +95,7 @@ public class HTMLFormatter implements Runnable {
 	}
 
 	String generateAdditionHTML(BigInteger aPerm, int mod) {
-		String returnString = "<h2>Additionstabelle</h2>";
+		String returnString = "<h2>Verknüpfungstabelle</h2>";
 		returnString += "<table border='1'><tr><td></td>";
 
 		// Header

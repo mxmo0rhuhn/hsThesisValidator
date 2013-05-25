@@ -29,7 +29,7 @@ public class AxiomMapper implements MapInstruction {
 	public static BigInteger calculateMaxPermutations(int residue) {
 
 		BigInteger restklasse = BigInteger.valueOf(residue);
-		// Diese Formel ist eine Annahme...
+		// Diese Formel ist eine gut begründete Annahme...
 		return restklasse.pow((residue * residue));
 	}
 

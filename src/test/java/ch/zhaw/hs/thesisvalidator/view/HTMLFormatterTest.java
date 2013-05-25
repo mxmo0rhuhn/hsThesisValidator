@@ -13,7 +13,7 @@ public class HTMLFormatterTest {
 		HTMLFormatter formy = new HTMLFormatter(null, null);
 		String genHTML = formy.generateAdditionHTML(BigInteger.valueOf(6), 2);
 
-		String returnString = "<h2>Additionstabelle</h2>";
+		String returnString = "<h2>Verknüpfungstabelle</h2>";
 		returnString += "<table border='1'><tr><td></td>";
 		returnString += "<td><strong>E0</strong></td>";
 		returnString += "<td><strong>E1</strong></td>";
