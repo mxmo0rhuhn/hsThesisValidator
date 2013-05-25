@@ -108,7 +108,7 @@ public class HTMLFormatter implements Runnable {
 			returnString += "</tr><tr><td><strong>E" + y + "</strong></td>";
 
 			for (int x = 0; x < mod; x++) {
-				returnString += "<td>E" + AxiomMapper.map2d(x, y, aPerm, mod) + "</td>";
+				returnString += "<td>E" + AxiomMapper.map2d(x, y, aPerm.toString(mod), mod) + "</td>";
 			}
 		}
 		returnString += "</tr></table><hr>";
@@ -129,7 +129,7 @@ public class HTMLFormatter implements Runnable {
 
 		// Zeile
 		for (int x = 0; x < mod; x++) {
-			fileWriteLn("<td>E" + AxiomMapper.map1d(x, iPerm, mod) + "</td>", outFile);
+			fileWriteLn("<td>E" + AxiomMapper.map1d(x, Integer.toString(iPerm, mod), mod) + "</td>", outFile);
 		}
 		fileWriteLn("</tr></table>", outFile);
 	}
