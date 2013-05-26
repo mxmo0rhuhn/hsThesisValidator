@@ -390,6 +390,12 @@ Umsetzung - Teil 1 Gültigkeit des Satzes zur Rechtsauslöschung in Gruppen
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Ausgangslage"
+
+\end_inset
+
 Ausgangslage
 \end_layout
 
@@ -531,6 +537,13 @@ http://www.proofwiki.org/wiki/Cancellation_Laws
 
 \begin_layout Subsection
 Generieren von Gruppen mittels Computer
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Generieren-von-Gruppen"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -647,7 +660,7 @@ Da es unendlich viele mögliche Mengen und Verknüpfungen gibt, haben wir
 \end_inset
 
 
-\begin_inset space \thinspace{}
+\begin_inset space \qquad{}
 \end_inset
 
 
@@ -752,7 +765,7 @@ Da es unendlich viele mögliche Mengen und Verknüpfungen gibt, haben wir
 \end_inset
 
 
-\begin_inset space \thinspace{}
+\begin_inset space \qquad{}
 \end_inset
 
 
@@ -868,7 +881,7 @@ Die mittlere Tabelle ist die intuitive Addition auf dieser Restklasse und
  Verknüpfungstabellen gibt, welche wir mit dem Computer simuliert haben.
  Für die Restklasse 3 sind es schon deren 19683.
  Eine Restklasse n hat allgemein fomuliert 
-\begin_inset Formula $n^{n^{n}}$
+\begin_inset Formula $n^{n*n}$
 \end_inset
 
  mögliche Verknüpfungen.
@@ -957,7 +970,7 @@ Ausserdem gibt es in jeder Gruppe ein inverses Element.
 \end_inset
 
 
-\begin_inset space \thinspace{}
+\begin_inset space \qquad{}
 \end_inset
 
 
@@ -1064,16 +1077,6 @@ Schlussendlich suchen wir Gruppen indem wir eine zweistellige Verknüpfung,
 
 \begin_layout Subsubsection
 Implementationsdetails zur Generierung sämtlicher Wertetabellen
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-Klasse LookupTables im Projekt hsThesisValidator
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -1244,6 +1247,167 @@ sentation 0110 und für den Index
 .
  Also das zweite Element der Binärrepräsentation, was eine eins ist - wir
  in der Wertetabelle.
+\end_layout
+
+\begin_layout Subsubsection
+Implementierung von Quantoren in Java
+\end_layout
+
+\begin_layout Standard
+Wie im Kapitel 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sub:Ausgangslage"
+
+\end_inset
+
+ beschrieben, werden Axiome einer Gruppe und Sätze einer beliebigen Struktur
+ mittels Quantoren definiert.
+ Als Beispiel soll das Axiom 'Es gibt ein neutrales Element' der Struktur
+ Gruppe näher erläutert werden: 
+\begin_inset Formula $\exists e.\:\forall a.\:\left(a\diamond e=e\diamond a=a\right)$
+\end_inset
+
+.
+ Dieses Axiom verwendet zwei Quantoren: Einen Existenzquantor (
+\begin_inset Formula $\exists$
+\end_inset
+
+) und einen Allquantor (
+\begin_inset Formula $\forall$
+\end_inset
+
+).
+ Mit dem Existenzquantor wird ausgesagt, dass es in einer bestimmten Struktur
+ ein e gibt, für das das folgende Prädikat wahr ist, während mit dem Allquantor
+ gesagt wird, dass das Prädikat für alle Elemente dieser Struktur gelten
+ muss.
+ In unserem Beispiel 'Es gibt ein neutrales Element' tauchen diese beiden
+ Quantoren direkt nacheinander auf, wodurch dieses Axiom in Prosa folgendermasse
+n formuliert werden kann: In einer Gruppe gibt es ein Element e, welches,
+ wenn es mit irgendeinem Element a aus dieser Struktur verknüpft wird, immer
+ auf das Element a abbildet.
+ Dabei ist es gleichgültig, ob a mit e verknüpft wird oder e mit a - es
+ muss immer auf a abbilden.
+ Genau dann, wenn es ein solches Element e gibt, dann ist e das neutrale
+ Element dieser Struktur und das Axiom ist erfüllt.
+\end_layout
+
+\begin_layout Standard
+Da es in Java keine Quantoren gibt, haben wir uns Schleifen zu hilfe genommen
+ um die Axiome zu implementieren.
+ Mittels der folgenden Funktion wird für ein bestimmtes Element e geprüft,
+ ob es das neutrale Element einer bestimmten Restklasse
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Wir haben als Beispiel die Restklassen verwendet, aber dies würde genauso
+ mit anderen Gruppen funktionieren.
+\end_layout
+
+\end_inset
+
+ für eine bestimmte Wertetabelle ist.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Java,numbers=left"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+boolean isNeutral(int modulo, int aPerm, int e) {
+\end_layout
+
+\begin_layout Plain Layout
+
+  for (int a = 0; a < modulo; a++) {
+\end_layout
+
+\begin_layout Plain Layout
+
+    int b = map2d(a, e, aPerm, modulo);
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (a != b) { return false; }
+\end_layout
+
+\begin_layout Plain Layout
+
+    int c = map2d(e, a, aPerm, modulo);
+\end_layout
+
+\begin_layout Plain Layout
+
+    if (a != c) { return false; }
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+  return true;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Diese Funktion nimmt drei Parameter: Der erste ist ein Wert vom Typ Integer,
+ also eine Ganzzahl, welcher die Restklasse repräsentiert.
+ Der zweite Parameter ist der Identifikator für die zweistellige Wertetabelle,
+ welcher auch als Ganzzahl modelliert ist.
+ Der letzte ist schliesslichen das vermeindlich neutrale Element, für das
+ diese Funktion prüft, ob es wirklich das neutrale Element ist.
+ In der zweiten Zeile wird durch alle Elemente der Restklasse iteriert,
+ wodurch die Variable a den Wert jedes Elementes einmal annimmt (beginnend
+ bei 0).
+ In der dritten Zeile wird die Funktion map2d aufgerufen, welche das Element
+ a (also jedes Element der Restklasse einmal) mit dem neutralen Element
+ e verknüpft.
+ Diese Funktion map2d funktioniert nach unserem eigents erfundenen Algorithmus,
+ den wir im Kapitel '
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sub:Generieren-von-Gruppen"
+
+\end_inset
+
+' beschrieben haben.
+ Der Rückgabewert dieser Funktion wird der Variable b zugewiesen um in der
+ nächsten Zeile mit der Variable a verglichen zu werden.
+ Wenn diese Bedingung zutrifft, bedeutet das, dass 
+\begin_inset Formula $a\diamond e=e$
+\end_inset
+
+ gilt, also ist das e schonmal linksneutral.
+ Wenn es nicht linksneutral ist, dann wir die ganze Funktion sofort abgebrochen,
+ weil das Prädikat einen Allquantor beinhaltet - es muss also für alle Elemente
+ gelten.
+ Auf den folgenden Zeilen fünf und sechs wird die Variable a nochmals mit
+ dem vermeindlich neutralen Element verknüft - diesmal aber um die Rechtsneutral
+ität zu überprüfen (deshalb sind hier die Parameter a und e für die Funktion
+ map2d vertauscht).
+ Wenn sämtliche Elemente dieser Restklasse links- und rechtsneutral sind,
+ dann wird die Schleife verlassen und die Funktion gerät zur Zeile acht,
+ wo der boolsche Wert 'wahr' zurückgegeben wird.
+ Dies bedeutet, dass das Element e tatsächlich das neutrale Element in dieser
+ Struktur ist.
 \end_layout
 
 \begin_layout Subsection
