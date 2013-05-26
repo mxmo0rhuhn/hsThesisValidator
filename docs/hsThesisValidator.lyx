@@ -1517,17 +1517,6 @@ Wenn der Output nicht leer ist, ist der Satz für die geprüften Gruppen falsch
  (was einer mathematischen Sensation gleich käme).
 \end_layout
 
-\begin_layout Standard
-\begin_inset Graphics
-	filename Foto 20.03.13 21 26 05.jpg
-	lyxscale 10
-	width 100text%
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Section
 Weiteres Vorgehen
 \end_layout
@@ -1681,7 +1670,7 @@ Umsetzung - Teil 2 MapReduce Framework zur verteilten Berechnung
 \end_layout
 
 \begin_layout Subsection
-Master/Task/Worker/Plugins
+Master als zentrale Kontrollinstanz
 \end_layout
 
 \begin_layout Standard
@@ -1758,6 +1747,46 @@ ion und einem Teil der Shuffle Resultate, zu erstellen und diese wieder
  Dann beginnt der Pool wieder diese ReduceTasks den verfügbaren Worker zuzuteile
 n und der Master wartet wiederum auf deren Fertigstellung.
  Sobald auch diese fertig sind, ist die ganze MapReduce Berechnung fertig.
+\end_layout
+
+\begin_layout Subsection
+Ablauf bei verteilter Berechnung
+\end_layout
+
+\begin_layout Standard
+Für das Ausführen von verteilen Berechnungen haben wir das Framework SIMON
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+http://dev.root1.de/projects/simon
+\end_layout
+
+\end_inset
+
+ verwendet.
+ Mit Hilfe dieses Frameworks können Methoden auf einer entfernten Instanz
+ irgendwo im Netzwerk gemacht werden.
+ Damit sich der Master nicht um die Komplexitäten im Zusammenhang mit Remote
+ Procedure Call (RPC) kümmern muss, wird ein einzelner Client, also eine
+ entfernte Instanz, auf dem Server genauso wie ein gewöhnlicher Thread als
+ Worker im Pool registrieren.
+ Die konkrete Implementation dieses Workers ruft aber, anstatt den Task
+ direkt auszuführen, via RPC eine Methode auf dem Client auf und übermittelt
+ im die Instruktion mit zugehörigen Eingabewerten.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Client Server Interaction.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wenn die Berechnung verteilt aus
 \end_layout
 
 \end_body
