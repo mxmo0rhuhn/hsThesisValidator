@@ -1770,7 +1770,7 @@ http://dev.root1.de/projects/simon
  Damit sich der Master nicht um die Komplexitäten im Zusammenhang mit Remote
  Procedure Call (RPC) kümmern muss, wird ein einzelner Client, also eine
  entfernte Instanz, auf dem Server genauso wie ein gewöhnlicher Thread als
- Worker im Pool registrieren.
+ Worker im Pool registriert.
  Die konkrete Implementation dieses Workers ruft aber, anstatt den Task
  direkt auszuführen, via RPC eine Methode auf dem Client auf und übermittelt
  im die Instruktion mit zugehörigen Eingabewerten.
@@ -1786,7 +1786,12 @@ http://dev.root1.de/projects/simon
 \end_layout
 
 \begin_layout Standard
-Wenn die Berechnung verteilt aus
+Auf dem Client wartet ein sogenannter SocketAgent ständig darauf, dass er
+ Tasks vom Server zugeordnet bekommt.
+ Sobald ein Task angekommen ist, wird dieser ausgeführt und die Resultate
+ werden wieder an den SocketWorker geschickt, welcher auf dem Server ist.
+ Der SocketWorker kümmert sich dann um das korrekte Speichern der Resultate
+ und meldet dem Pool, dass er wieder Arbeit aufnehmen kann.
 \end_layout
 
 \end_body
