@@ -1,0 +1,10 @@
+Findings Meeting 2013-05-13
+
+Präsi
+1. Aufzeigen, dass unterschiedliche namen für die Elemente nicht zwingend eine andere innere Struktur der Gruppe bedeuten.
+2. Beispiel für nicht Gruppen Permutationen aufzeigen
+3. JAR deplolyen während der Präsentation
+
+
+Doku
+1. Beispiel für die Umsetzung der mathematische Formel in Sourcecode
