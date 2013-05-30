@@ -123,21 +123,174 @@ Es soll augehend von einem gegebenen einfachen Axiomensystem (z.B “Gruppe”)
 \end_layout
 
 \begin_layout Standard
-Ausgehend von dieser vorgegebenen Aufgabenstellung soll in dieser Projektarbeit
- eine Implementation erarbeitet werden mit der geforderten Fähigkeit die
- Gültigkeit eines Axiomsystemes in den Grundsätzen zu bewisen.
- Durch das Enorme Wachstum der Ausgangswerte 
-\begin_inset Note Note
+Ausgehend von dieser vorgegebenen Aufgabenstellung soll in der vorliegenden
+ Projektarbeit eine Implementatio,n mit der Fähigkeit die Gültigkeit eines
+ Axiomsystemes in den Grundsätzen zu bewisen, erarbeitet werden.
+ Durch das enorme Wachstum der Ausgangswerte sind dabei schon relativ kleine
+ Systeme mit bedeutendem Rechenaufwand verbunden.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
-Wie genau es wächst wär hier halt schon noch spannend...
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Anzahl Elemente
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Permutationen
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19 683
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4 294 967 296
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+298 023 223 876 953 125
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Mögliche Permutationen einer zweistelligen Verknüpfung in einem n-Elementigen
+ System 
 \end_layout
 
 \end_inset
 
-sind dabei schon relativ kleine Systeme mit bedeutendem Rechenaufwand verbunden.
- Die genaue Schwerpunktsetzung bei der Umsetzung und das Vorgehen war dabei
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die genaue Schwerpunktsetzung bei der Umsetzung und das Vorgehen war dabei
  durch die offene Aufgabenstellung dem Projektteam überlassen.
  Vorgegeben war mur die Implementation eines automatisierten Gültigkeitsbeweises
  des Satzes zur Rechtsauslöschung in Gruppen.
@@ -148,9 +301,9 @@ Ausgangslage
 \end_layout
 
 \begin_layout Standard
-Wir haben uns im Rahmen einer Vertifungsarbeit zum Thema Algorithmen und
- Datenstrukturen bereits mit dem Thema MapReduce beschäftigt.
- Damals haben wir anhand des wohlbekannten Paradigma (
+Wir konnten uns im Rahmen einer Vertiefungsarbeit zum Thema Algorithmen
+ und Datenstrukturen bereits mit dem Thema MapReduce beschäftigt.
+ Damals hatten wir anhand des wohlbekannten Paradigma (
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sub:MapReduce"
@@ -165,9 +318,9 @@ reference "sub:MapReduce"
 \end_inset
 
 ) unser eigenes Framework für MapReduce Berechnungen implementiert.
- Aufgrund der beschränkten zur Verfügung stehenden Zeit, haben wir uns damals
- auf die Ausführung auf einem einzelnen Rechner mit mehreren Threads beschränkt,
- anstatt ein ganzes Computernetz zu verwenden.
+ Aufgrund der beschränkt zur Verfügung stehenden Zeit, mussten wir es damals
+ jedoch bei der Ausführung auf einem einzelnen Rechner mit mehreren Threads
+ belassen, anstatt ein ganzes Computernetz verwenden zu können.
  Ausserdem gab es weitere technische Limitierungen.
  Zum Beispiel konnte unser Framework nicht mit dem Szenario umgehen, dass
  ein Thread abnormal terminiert.
@@ -188,17 +341,17 @@ name "sub:MapReduce"
 \end_layout
 
 \begin_layout Standard
-MapReduce ist ein Framework, welches die parallele Verarbeitung grosser
+MapReduce ist ein Entwurfsmuster, welches die parallele Verarbeitung grosser
  Datenmengen vereinfachen soll und erstmals von Google beschrieben und implement
 iert wurde.
- Google war mit dem Problem konfrontiert, dass sie sehr grossen Datenmengen
- verarbeiten mussten.
- Um ein Programm so zu schreiben, dass es auf einer verteilten Architektur
- gut skaliert, muss sehr schnell viel Code geschrieben werden, der nichts
- mit dem eigentlichen Problem zu tun hat.
- Deshalb hat Google ein Framework entwickelt, welches es dem Benutzer erlaubt
- sein Problem in zwei Phasen zu definieren und der Rest wird vom Framework
- übernommen.
+ Google ist mit dem Problem konfrontiert, dass sie sehr grossen Datenmengen
+ verarbeiten müssen.
+ Um ein Programm so zu entwickeln, dass es auf einer verteilten Architektur
+ gut skaliert, ist jedoch ein enormer Aufwand, welcher nichts mit dem eigentlich
+ zu lösenden Problem zu tun hat, nötig.
+ Daher entwickelte Google ein Framework, das es dem Benutzer erlaubt sein
+ Problem in zwei Phasen zu definieren und die anschliessende Verteilung
+ übernimmt.
  Dabei kümmert sich das Framework zum Beispiel darum, was passiert, wenn
  eine Maschine im ausfällt oder wie die einzelnen Arbeittsschritte auf die
  verschiedenen Maschinen aufgeteilt werden.
@@ -206,7 +359,7 @@ iert wurde.
 
 \begin_layout Standard
 Die zwei Phasen sind, wie der Name suggeriert, Map und Reduce (und eine
- optionale Combiner Phase, aber diese ist zum Verständnis unwichtig).
+ optionale, für das Verständnis irrelevante, Combiner Phase).
  In diesen Phasen werden im Wesentlichen die beiden Funktionen Map und Reduce
  aufgerufen, welche hier kurz erklärt werden sollen.
 \end_layout
@@ -234,7 +387,7 @@ Die Map Funktion bildet eine Menge von Elementen elementweise auf eine neue
  Dazu muss ihr zwei Parameter übergeben werden – eine Funktion, welche eine
  Element aus der Menge A auf ein Element in der Menge B abbildet und eine
  Menge von Elementen A.
- Dann wird die Funktion sukzessive auf die Elemente der Liste A angewendet
+ Daraufhin wird die Funktion sukzessive auf die Elemente der Liste A angewendet
  und somit die Menge B konstruiert, welche das Resultat ist.
  
 \end_layout
@@ -248,11 +401,10 @@ Die Map Funktion bildet eine Menge von Elementen elementweise auf eine neue
 
 \begin_layout Standard
 Die Reduce Funktion bildet eine Menge B auf einen einzelnen Wert ab.
- Dafür nimmt sie als ersten Parameter eine Funktion, welche einen Wert aus
- der Menge B und einen Akkumulator als Parameter nimmt und einen Wert b
- zurückgibt.
- Der zweite Parameter der Reduce Funktion ist der initiale Wert für den
- Akkumulator und der dritte ist die Menge B.
+ Dafür erhält sie als ersten Parameter eine Funktion, mit einen Wert aus
+ der Menge B sowie einen Akkumulator, welcheeinen Wert b zurückgibt.
+ Als zweiten Parameter erhält die Reduce Funktion einen initialen Wert für
+ den Akkumulator und als dritten und letzten Parameter die Menge B.
  Dann wird die übergebene Funktion mit jedem Element aus der Menge B und
  dem Akkumulator aufgerufen.
  Dabei ist das Resulat der Funktion jeweils der neue Wert für den Akkumulator.
@@ -261,14 +413,16 @@ Die Reduce Funktion bildet eine Menge B auf einen einzelnen Wert ab.
 \end_layout
 
 \begin_layout Standard
-Der Benutzer vom MapReduce Framework, welches etwas berechnen will, muss
- also eine Funktion schrieben, welche ein Element aus der Menge A auf ein
- Element in der Menge B abbildet (Map Phase) und die Menge A bereitstellen.
- Ausserdem muss eine Funktion geschrieben werden, welche für ein Element
- aus der Menge B kombiniert mit einem Akkumulator auf ein Element aus der
+Der Benutzer des MapReduce Frameworks muss also für eine auszuführende Berechnun
+g nur noch eine Funktion schrieben, welche ein Element aus der Menge A auf
+ ein Element in der Menge B abbildet (Map Phase) anschliessend die Menge
+ A bereitstellen.
+ Auch muss eine Funktion geschrieben werden, welche für ein Element aus
+ der Menge B, kombiniert mit einem Akkumulator, auf ein Element aus der
  Menge C abbildet (Reduce Phase).
- Das MapReduce Framework kann dann zum Beispiel die erste Funktion mit einem
- Element aus der Menge A zusammen an eine Maschine schicken.
+ Für das MapReduce Framework ist es daraufhin möglich zum Beispiel die erste
+ Funktion mit einem Element aus der Menge A an eine berechnende Maschine
+ senden.
  Wie die Grafik
 \begin_inset Note Note
 status open
@@ -284,10 +438,10 @@ muss noch gezeichnet werden..
  werden kann.
  Die Map Phase gilt als abgeschlossen, wenn sämtliche Elemente aus der Menge
  A auf ein Element in der Menge B abgebildet wurden.
- Dann kann das MapReduce Framework auf einer Maschine die Reduce-Phase durchführ
-en.
- Hierbei ist wichtig zu bemerken, dass die Reduce Funktion nicht ganz so
- optimal parallelisiert werden dann, da es Datenabhängigkeiten gibt.
+ Nun kann das MapReduce Framework auf einer Maschine die Reduce-Phase durchführe
+n.
+ Hierbei ist wichtig zu bemerken, dass die Reduce Funktion nicht äquivalent
+ parallelisiert werden dann, da es Datenabhängigkeiten gibt.
  Eine parallele Verarbeitung ist nur möglich, wenn die Reduce Funktion assoziati
 v ist.
  Dann könnte die Reduce-Phase in einer Art Baum-Struktur ausgeführt werden
