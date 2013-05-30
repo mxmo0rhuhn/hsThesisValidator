@@ -3,6 +3,16 @@
 \begin_document
 \begin_header
 \textclass article
+\begin_preamble
+\lhead{\bfseries Softwareprojekt 2}
+\chead{}
+\rhead{ Gültigkeit und Beweisbarkeit in einer\\ mathematischen Theorie}
+\lfoot{Max Schrimpf\\ Reto Hablützel}
+\cfoot{ZHAW\\ FS 2013}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\end_preamble
 \use_default_options true
 \maintain_unincluded_children false
 \language german-ch
@@ -85,7 +95,7 @@ en Theorie
 \end_layout
 
 \begin_layout Author
-Reto Hablützel, Max Schrimpf
+Max Schrimpf, Reto Hablützel
 \end_layout
 
 \begin_layout Standard
