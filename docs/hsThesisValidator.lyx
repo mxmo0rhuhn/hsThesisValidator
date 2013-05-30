@@ -27,7 +27,7 @@
 \paperfontsize default
 \spacing single
 \use_hyperref false
-\papersize default
+\papersize a4paper
 \use_geometry false
 \use_amsmath 1
 \use_esint 1
@@ -37,12 +37,19 @@
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
-\suppress_date false
+\suppress_date true
 \use_refstyle 1
 \index Index
 \shortcut idx
 \color #008000
 \end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\headheight 2cm
+\headsep 1cm
+\footskip 1cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -50,7 +57,7 @@
 \quotes_language polish
 \papercolumns 1
 \papersides 1
-\paperpagestyle default
+\paperpagestyle fancy
 \bullet 0 0 0 -1
 \bullet 1 0 8 -1
 \bullet 2 0 9 -1
@@ -133,11 +140,13 @@ Ausgehend von dieser vorgegebenen Aufgabenstellung soll in der vorliegenden
 
 \begin_layout Standard
 \begin_inset Float table
+placement H
 wide false
 sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="6" columns="2">
 <features tabularvalignment="middle">
@@ -365,17 +374,11 @@ Die zwei Phasen sind, wie der Name suggeriert, Map und Reduce (und eine
 \end_layout
 
 \begin_layout Verse
-\begin_inset Foot
-status open
+\begin_inset Formula 
+\[
+map\footnote{Schreibweise:\, a\, ist\, ein\, Element\, aus\, einer\, Menge\, A}:(a\rightarrow b)\rightarrow A\rightarrow B
+\]
 
-\begin_layout Plain Layout
-Schreibweise: a ist ein Element aus einer Menge A
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula $map:(a\rightarrow b)\rightarrow A\rightarrow B$
 \end_inset
 
 
@@ -393,7 +396,11 @@ Die Map Funktion bildet eine Menge von Elementen elementweise auf eine neue
 \end_layout
 
 \begin_layout Verse
-\begin_inset Formula $reduce:(b\rightarrow c\rightarrow c)\rightarrow c\rightarrow B\rightarrow c$
+\begin_inset Formula 
+\[
+reduce:(b\rightarrow c\rightarrow c)\rightarrow c\rightarrow B\rightarrow c
+\]
+
 \end_inset
 
 
@@ -463,21 +470,33 @@ Folgendendes Beispiel soll die Idee von den zwei Phasen verdeutlichen.
 \end_layout
 
 \begin_layout Verse
-\begin_inset Formula $A=\left\{ 1,2,3,4\right\} $
+\begin_inset Formula 
+\[
+A=\left\{ 1,2,3,4\right\} 
+\]
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Verse
-\begin_inset Formula $f_{m}\: x=x^{2}$
+\begin_inset Formula 
+\[
+f_{m}\: x=x^{2}
+\]
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Verse
-\begin_inset Formula $f_{r}\: x\: a=x+a$
+\begin_inset Formula 
+\[
+f_{r}\: x\: a=x+a
+\]
+
 \end_inset
 
 
@@ -636,7 +655,7 @@ Ein Satz oder Theorem ist in der Mathematik eine widerspruchsfreie logische
  Aussage, die mittels eines Beweises als wahr erkannt, das heißt, aus Axiomen
  und bereits bekannten Sätzen hergeleitet werden kann.
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Aus Wikipedia, der freien Enzyklopädie: http://de.wikipedia.org/wiki/Satz_(Mathema
@@ -667,7 +686,11 @@ Nachdem wir mittels dem MapReduce Framework irgendwelche Strukturen gefunden
 \end_layout
 
 \begin_layout Verse
-\begin_inset Formula $\forall a,b,c.\: b\diamond a=c\diamond a\Rightarrow b=c$
+\begin_inset Formula 
+\[
+\forall a,b,c.\: b\diamond a=c\diamond a\Rightarrow lb=c
+\]
+
 \end_inset
 
 
@@ -713,6 +736,14 @@ Da es unendlich viele mögliche Mengen und Verknüpfungen gibt, haben wir
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="3">
 <features tabularvalignment="middle">
@@ -814,212 +845,23 @@ Da es unendlich viele mögliche Mengen und Verknüpfungen gibt, haben wir
 \end_inset
 
 
-\begin_inset space \qquad{}
-\end_inset
-
-
-\begin_inset Tabular
-<lyxtabular version="3" rows="3" columns="3">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
+\end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\diamond$
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Intuitive Addition der Restklasse 2
+\end_layout
+
 \end_inset
 
 
 \end_layout
 
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
 \begin_layout Plain Layout
-0
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\begin_inset space \qquad{}
-\end_inset
-
-
-\begin_inset Tabular
-<lyxtabular version="3" rows="3" columns="3">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $\diamond$
-\end_inset
-
 
 \end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
 
 \end_inset
 
@@ -1027,8 +869,246 @@ Da es unendlich viele mögliche Mengen und Verknüpfungen gibt, haben wir
 \end_layout
 
 \begin_layout Standard
-Die mittlere Tabelle ist die intuitive Addition auf dieser Restklasse und
- die beiden anderen sind mit zufälligen Werten gefüllt.
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\diamond$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\diamond$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Weitere mögliche Wertetabellen der Verknüpfung von Zwei Elementen
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die obere Tabelle ist die intuitive Addition auf dieser Restklasse und die
+ beiden anderen sind mit zufälligen Werten gefüllt.
  Insgesamt gibt es für die Restklasse 2 also 16 mögliche Wertetabellen,
  welche mit dem Computer generiert werden können.
  Aus diesem Beispiel wird ersichtlich, dass es für die Restklasse 2 16 mögliche
@@ -1049,6 +1129,14 @@ Ausserdem gibt es in jeder Gruppe ein inverses Element.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="2" columns="3">
 <features tabularvalignment="middle">
@@ -1199,6 +1287,23 @@ Ausserdem gibt es in jeder Gruppe ein inverses Element.
 </cell>
 </row>
 </lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Beispiele für einstellige Verknüpfungen mit zwei Elementen
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -1253,6 +1358,14 @@ Nehmen wir als Beispiel die Restklasse 2.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="3">
 <features tabularvalignment="middle">
@@ -1356,13 +1469,44 @@ d
 
 \end_layout
 
-\begin_layout Standard
-Eindimensional sähe die abgebildete Wertetabelle folgendermassen aus: 
-\begin_inset Formula $\diamond=\left\{ a,b,c,d\right\} $
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Logischer Aufbau einer zweistelligen Verknüpfung für zwei Elemente
+\end_layout
+
 \end_inset
 
-.
- Vor allem in der Restklasse 2 kann man sich leicht überzeugen, dass sämtliche
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Eindimensional sähe die abgebildete Wertetabelle folgendermassen aus: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\diamond=\left\{ a,b,c,d\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Vor allem in der Restklasse 2 kann man sich leicht überzeugen, dass sämtliche
  Kombinationen die Binärwerte der Zahlen zwischen 0 und 15 sind: z.B.
  
 \begin_inset Formula $0=\left\{ 0,0,0,0\right\} $
@@ -1466,6 +1610,12 @@ Wir haben als Beispiel die Restklassen verwendet, aber dies würde genauso
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
 \begin_inset listings
 lstparams "language=Java,numbers=left"
 inline false
@@ -1514,6 +1664,27 @@ boolean isNeutral(int modulo, int aPerm, int e) {
 \begin_layout Plain Layout
 
 }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Beispielimplementation von Quantoren
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
@@ -1823,6 +1994,10 @@ Das Kriterium der Beherrschbarkeit gab schlussendlich auch den Ausschlag
 Umsetzung - Teil 2 MapReduce Framework zur verteilten Berechnung
 \end_layout
 
+\begin_layout Subsubsection
+Technologie
+\end_layout
+
 \begin_layout Subsection
 Master als zentrale Kontrollinstanz
 \end_layout
@@ -1931,8 +2106,36 @@ http://dev.root1.de/projects/simon
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
 \begin_inset Graphics
 	filename Client Server Interaction.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Interaktion von Client und Server
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
@@ -1946,6 +2149,49 @@ Auf dem Client wartet ein sogenannter SocketAgent ständig darauf, dass er
  werden wieder an den SocketWorker geschickt, welcher auf dem Server ist.
  Der SocketWorker kümmert sich dann um das korrekte Speichern der Resultate
  und meldet dem Pool, dass er wieder Arbeit aufnehmen kann.
+\end_layout
+
+\begin_layout Section
+Ergebnisse
+\end_layout
+
+\begin_layout Subsection
+Durchführung 
+\end_layout
+
+\begin_layout Subsection
+Schlusswort
+\end_layout
+
+\begin_layout Section
+Apendix 
+\end_layout
+
+\begin_layout Standard
+\begin_inset FloatList figure
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FloatList table
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "acompat"
+options "plain"
+
+\end_inset
+
+
 \end_layout
 
 \end_body
