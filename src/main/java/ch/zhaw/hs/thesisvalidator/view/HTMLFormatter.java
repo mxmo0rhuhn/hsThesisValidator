@@ -44,7 +44,7 @@ public class HTMLFormatter implements Runnable {
 
 				if (counter == 0) {
 					outFile = new File(outDirectory, "AnzahlElemente" + curEntry.getKey() + ".html");
-					fileWriteLn("<!DOCTYPE html>", outFile);
+					fileWriteLn("<?xml version=\"1.0\" encoding=\"UTF-8\"?><!DOCTYPE html>", outFile);
 					fileWriteLn("<html><body> ", outFile);
 
 				} else {

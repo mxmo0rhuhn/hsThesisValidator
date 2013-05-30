@@ -1,0 +1,21 @@
+02:57:02:709 HSThesisValidator - Software Projekt 2 - ZHAW FS 2013 - Reto Hablützel & Max Schrimpf
+02:57:05:824 ----------------------------------------------------------------
+02:57:05:825 Anzahl Elemente: 1
+02:57:05:826 Untersuchte Permutationen: 1
+02:57:05:826 Benötigte Zeit ~ 0:0.3
+02:57:05:826 Satz war in allen Fällen gültig
+02:57:06:736 ----------------------------------------------------------------
+02:57:06:737 Anzahl Elemente: 2
+02:57:06:737 Untersuchte Permutationen: 16
+02:57:06:738 Benötigte Zeit ~ 0:0.0
+02:57:06:738 Satz war in allen Fällen gültig
+02:57:07:705 ----------------------------------------------------------------
+02:57:07:705 Anzahl Elemente: 3
+02:57:07:706 Untersuchte Permutationen: 19683
+02:57:07:706 Benötigte Zeit ~ 0:0.0
+02:57:07:706 Satz war in allen Fällen gültig
+04:06:17:637 ----------------------------------------------------------------
+04:06:17:638 Anzahl Elemente: 4
+04:06:17:638 Untersuchte Permutationen: 4294967296
+04:06:17:638 Benötigte Zeit ~ 1:9.9
+04:06:17:639 Satz war in allen Fällen gültig
