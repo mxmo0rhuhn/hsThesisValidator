@@ -1952,6 +1952,19 @@ Prüfen der Axiome als Map-Funktion
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Grafik wie oben erstellen
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Das CPU-intensive überprüfen der Strukturen, welche möglicherweise die Axiome
  erfüllen, wurde als MAP-Funktion definiert.
  Dabei werden den einzelnen rechnenden Einheiten, im folgenden Worker genannt,
@@ -2245,7 +2258,7 @@ In Absprache mit unserem betreuenden Dozenten Herrn Albert Heuberger soll
 
 \begin_layout Standard
 Als Programmiersprache wählten wir, aufgrund der für den Aufbau eines verteilten
- Rechnernetzes sehr vorteilhaften Betriebssystem Unabhängigkeit und unserer
+ Rechnernetzes sehr vorteilhaften Betriebssystemunabhängigkeit und unserer
  bereits vorhandenen Kenntnisse Java aus.
  Git 
 \begin_inset CommandInset citation
@@ -2263,7 +2276,7 @@ key "MVN_Home"
 
 \end_inset
 
- eingesetzt, zum Tracking der testcoverage Cobertura 
+ eingesetzt, zum Tracking der Testcoverage Cobertura 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Cobertura_Home"
@@ -2289,48 +2302,21 @@ Auf ein GUI wurde mangels Notwendigkeit weitestgehend verzichtet.
 \end_layout
 
 \begin_layout Standard
-Das Framework besitzt 
-\begin_inset Note Note
+Das Framework besitzt 8800 Lines of Code, die Applikation zum Gültigkeitsbeweis
+ 1672
+\begin_inset Foot
 status open
 
 \begin_layout Plain Layout
-LOC FRAMEWORK
-\end_layout
-
-\end_inset
-
- Lines of code, die Applikation 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-LOC Applikation
+Code in Java Files, ohne Leerzeilen
 \end_layout
 
 \end_inset
 
 .
- Es wurden insgesamt 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-#Testklassen
-\end_layout
-
-\end_inset
-
- Testklassen mit 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-#Tests
-\end_layout
-
-\end_inset
-
- Tests im Rahmen des Projektes genutzt.
+ Es wurden insgesamt 38 Testklassen mit 149 Verschiedenen Testfällen erstellt
+ und somit in den Kernkomponenten zur verteilen Berechnung eine Testcoverage
+ von knapp 90% erreicht.
 \end_layout
 
 \begin_layout Subsection

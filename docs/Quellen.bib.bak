@@ -25,6 +25,13 @@
   timestamp = {2013.05.31}
 }
 
+@ELECTRONIC{GIT_Home,
+  title = {Git Homepage},
+  url = {http://git-scm.com/},
+  owner = {mo0rhuhn},
+  timestamp = {2013.05.31}
+}
+
 @ELECTRONIC{GUICE_Home,
   title = {google-guice Hompage},
   url = {http://code.google.com/p/google-guice/},
