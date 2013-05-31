@@ -4,11 +4,12 @@
 \begin_header
 \textclass article
 \begin_preamble
+\usepackage{url}
 \lhead{\bfseries Softwareprojekt 2}
 \chead{}
-\rhead{ Gültigkeit und Beweisbarkeit in einer\\ mathematischen Theorie}
-\lfoot{Max Schrimpf\\ Reto Hablützel}
-\cfoot{ZHAW\\ FS 2013}
+\rhead{ Gültigkeit und Beweisbarkeit in einer\\mathematischen Theorie}
+\lfoot{Reto Hablützel\\Max Schrimpf }
+\cfoot{ZHAW\\FS 2013}
 \rfoot{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
@@ -16,7 +17,7 @@
 \use_default_options true
 \maintain_unincluded_children false
 \language german-ch
-\language_package default
+\language_package auto
 \inputencoding auto
 \fontencoding global
 \font_roman default
@@ -34,6 +35,7 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
+\float_placement H
 \paperfontsize default
 \spacing single
 \use_hyperref false
@@ -82,7 +84,10 @@
 \begin_body
 
 \begin_layout Title
-Softwareprojekt II - 
+Softwareprojekt II 
+\end_layout
+
+\begin_layout Title
 \begin_inset Quotes pld
 \end_inset
 
@@ -95,7 +100,7 @@ en Theorie
 \end_layout
 
 \begin_layout Author
-Max Schrimpf, Reto Hablützel
+Reto Hablützel, Max Schrimpf
 \end_layout
 
 \begin_layout Standard
@@ -135,177 +140,18 @@ Es soll augehend von einem gegebenen einfachen Axiomensystem (z.B “Gruppe”)
  illustriert werden.
  Ein Beweis soll entlang von gegebenen formalisierten Schlussregeln erfolgen,
  von der Gültigkeit soll man sich mittels “durchrechnen” überzeugen, bei
- unendlichen Strukturen mit einer zufallsgenerierten Auswahl von Fällen..
+ unendlichen Strukturen mit einer zufallsgenerierten Auswahl von Fällen.
  
 \end_layout
 
 \begin_layout Standard
 Ausgehend von dieser vorgegebenen Aufgabenstellung soll in der vorliegenden
- Projektarbeit eine Implementatio,n mit der Fähigkeit die Gültigkeit eines
+ Projektarbeit eine Implementation mit der Fähigkeit die Gültigkeit eines
  Axiomsystemes in den Grundsätzen zu bewisen, erarbeitet werden.
  Durch das enorme Wachstum der Ausgangswerte sind dabei schon relativ kleine
- Systeme mit bedeutendem Rechenaufwand verbunden.
+ Systeme mit bedeutendem Rechenaufwand verbunden, weshalb ein sinnvoller
+ Ansatz zum Umhang mit rechenintensiven Aufgaben gefunden werden muss.
  
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float table
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Anzahl Elemente
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Permutationen
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-1
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-2
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-16
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-3
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-19 683
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-4
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-4 294 967 296
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-5
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-298 023 223 876 953 125
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Mögliche Permutationen einer zweistelligen Verknüpfung in einem n-Elementigen
- System 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -320,9 +166,16 @@ Ausgangslage
 \end_layout
 
 \begin_layout Standard
-Wir konnten uns im Rahmen einer Vertiefungsarbeit zum Thema Algorithmen
- und Datenstrukturen bereits mit dem Thema MapReduce beschäftigt.
- Damals hatten wir anhand des wohlbekannten Paradigma (
+Wir konnten uns im letzten Semester als Vertiefungsarbeit im Fach 
+\begin_inset Quotes pld
+\end_inset
+
+Algorithmen und Datenstrukturen
+\begin_inset Quotes prd
+\end_inset
+
+ mit dem Thema MapReduce beschäftigen.
+ Dazu hatten wir, anhand des Entwrufsmuster (
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sub:MapReduce"
@@ -336,16 +189,27 @@ reference "sub:MapReduce"
 
 \end_inset
 
-) unser eigenes Framework für MapReduce Berechnungen implementiert.
- Aufgrund der beschränkt zur Verfügung stehenden Zeit, mussten wir es damals
- jedoch bei der Ausführung auf einem einzelnen Rechner mit mehreren Threads
+), unser eigenes Framework für parallelisierte MapReduce Berechnungen implementi
+ert.
+ 
+\end_layout
+
+\begin_layout Standard
+Bei der Analyse der vorliegenden Problemstellung kam uns schnell die Idee
+ , dass es möglich wäre die im letzten Semester gewonnenen Erkenntnisse
+ sowie die bestehende Software zur Umsetzung einer Lösung zu Nutzen.
+\end_layout
+
+\begin_layout Standard
+Aufgrund der beschränkt zur Verfügung stehenden Zeit, mussten wir es jedoch
+ bei der damaligen Ausführung auf einem einzelnen Rechner mit mehreren Threads
  belassen, anstatt ein ganzes Computernetz verwenden zu können.
- Ausserdem gab es weitere technische Limitierungen.
- Zum Beispiel konnte unser Framework nicht mit dem Szenario umgehen, dass
- ein Thread abnormal terminiert.
- Ein solches Konzept wäre insbesondere interessant im Ausblick auf eine
- echt verteilte Berechnung, da in einem Netzwerk immer wieder eine einzelne
- Maschine aussteigt.
+ Ausserdem ergaben sich weitere technische Limitierungen.
+ So konnte unser Framework zum Beispiel nicht mit dem Szenario umgehen,
+ dass ein Thread abnormal terminiert.
+ Die Handhabung solcher Ereignisse ist, insbesondere im Ausblick auf eine
+ echt verteilte Berechnung interessant, da in einem Netzwerk immer wieder
+ eine einzelne Maschine aussteigt.
 \end_layout
 
 \begin_layout Subsubsection
@@ -361,24 +225,36 @@ name "sub:MapReduce"
 
 \begin_layout Standard
 MapReduce ist ein Entwurfsmuster, welches die parallele Verarbeitung grosser
- Datenmengen vereinfachen soll und erstmals von Google beschrieben und implement
-iert wurde.
- Google ist mit dem Problem konfrontiert, dass sie sehr grossen Datenmengen
- verarbeiten müssen.
- Um ein Programm so zu entwickeln, dass es auf einer verteilten Architektur
- gut skaliert, ist jedoch ein enormer Aufwand, welcher nichts mit dem eigentlich
- zu lösenden Problem zu tun hat, nötig.
- Daher entwickelte Google ein Framework, das es dem Benutzer erlaubt sein
- Problem in zwei Phasen zu definieren und die anschliessende Verteilung
- übernimmt.
- Dabei kümmert sich das Framework zum Beispiel darum, was passiert, wenn
- eine Maschine im ausfällt oder wie die einzelnen Arbeittsschritte auf die
- verschiedenen Maschinen aufgeteilt werden.
+ Datenmengen vereinfachen soll und erstmals von Google beschrieben 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MapReduce"
+
+\end_inset
+
+ sowie in einem Framework implementiert wurde.
+ Google ist mit dem Problem grosser Datenmengen zum Beispiel beim erstellen
+ der Google Suche konfrontiert, hierbei muss quasi das gesammte Internet
+ indexiert werden.
+ 
 \end_layout
 
 \begin_layout Standard
-Die zwei Phasen sind, wie der Name suggeriert, Map und Reduce (und eine
- optionale, für das Verständnis irrelevante, Combiner Phase).
+Um ein Programm so zu entwickeln, dass es auf einer verteilten Architektur
+ gut skaliert, ist jedoch ein enormer Aufwand, welcher nichts mit dem eigentlich
+ zu lösenden Problem zu tun hat, nötig.
+ Daher wurde das Framework so konzipiert, dass es Benutzern erlaubt ihr
+ Problem in zwei nur Phasen zu definieren ohne sich Gedanken um die anschliessen
+de Verteilung und Berechnung machen zu müssen.
+ So kümmert sich das Framework zum Beispiel darum, was passiert, wenn eine
+ Maschine im ausfällt oder wie die einzelnen Arbeittsschritte auf die verschiede
+nen Maschinen aufgeteilt werden.
+\end_layout
+
+\begin_layout Standard
+Die zwei Phasen des Entwurfsmusters sind, wie der Name berieits suggeriert,
+ Map und Reduce (mit einer eine optionalen, zwischenliegenden, für das Verständn
+is irrelevanten, Combiner Phase).
  In diesen Phasen werden im Wesentlichen die beiden Funktionen Map und Reduce
  aufgerufen, welche hier kurz erklärt werden sollen.
 \end_layout
@@ -398,10 +274,24 @@ map\footnote{Schreibweise:\, a\, ist\, ein\, Element\, aus\, einer\, Menge\, A}:
 Die Map Funktion bildet eine Menge von Elementen elementweise auf eine neue
  Menge ab.
  Dazu muss ihr zwei Parameter übergeben werden – eine Funktion, welche eine
- Element aus der Menge A auf ein Element in der Menge B abbildet und eine
- Menge von Elementen A.
- Daraufhin wird die Funktion sukzessive auf die Elemente der Liste A angewendet
- und somit die Menge B konstruiert, welche das Resultat ist.
+ Element aus der Menge 
+\begin_inset Formula $A$
+\end_inset
+
+ auf ein Element in der Menge 
+\begin_inset Formula $B$
+\end_inset
+
+ abbildet und eine Menge von Elementen A.
+ Daraufhin wird die Funktion sukzessive auf die Elemente der Liste 
+\begin_inset Formula $A$
+\end_inset
+
+ angewendet und somit die Menge 
+\begin_inset Formula $B$
+\end_inset
+
+ konstruiert, welche das Resultat ist.
  
 \end_layout
 
@@ -417,13 +307,36 @@ reduce:(b\rightarrow c\rightarrow c)\rightarrow c\rightarrow B\rightarrow c
 \end_layout
 
 \begin_layout Standard
-Die Reduce Funktion bildet eine Menge B auf einen einzelnen Wert ab.
+Die Reduce Funktion bildet eine Menge 
+\begin_inset Formula $B$
+\end_inset
+
+ auf einen einzelnen Wert ab 
+\begin_inset Formula $c$
+\end_inset
+
+.
  Dafür erhält sie als ersten Parameter eine Funktion, mit einen Wert aus
- der Menge B sowie einen Akkumulator, welcheeinen Wert b zurückgibt.
+ der Menge 
+\begin_inset Formula $B$
+\end_inset
+
+ sowie einen Akkumulator, welche einen Wert 
+\begin_inset Formula $b$
+\end_inset
+
+ zurückgibt.
  Als zweiten Parameter erhält die Reduce Funktion einen initialen Wert für
- den Akkumulator und als dritten und letzten Parameter die Menge B.
- Dann wird die übergebene Funktion mit jedem Element aus der Menge B und
- dem Akkumulator aufgerufen.
+ den Akkumulator und als dritten und letzten Parameter die Menge 
+\begin_inset Formula $B$
+\end_inset
+
+.
+ Dann wird die übergebene Funktion mit jedem Element aus der Menge 
+\begin_inset Formula $B$
+\end_inset
+
+ und dem Akkumulator aufgerufen.
  Dabei ist das Resulat der Funktion jeweils der neue Wert für den Akkumulator.
  Sobald die ganze Liste traversiert wurde, ist der Wert vom Akkumulator
  das Resultat.
@@ -431,52 +344,110 @@ Die Reduce Funktion bildet eine Menge B auf einen einzelnen Wert ab.
 
 \begin_layout Standard
 Der Benutzer des MapReduce Frameworks muss also für eine auszuführende Berechnun
-g nur noch eine Funktion schrieben, welche ein Element aus der Menge A auf
- ein Element in der Menge B abbildet (Map Phase) anschliessend die Menge
- A bereitstellen.
- Auch muss eine Funktion geschrieben werden, welche für ein Element aus
- der Menge B, kombiniert mit einem Akkumulator, auf ein Element aus der
- Menge C abbildet (Reduce Phase).
- Für das MapReduce Framework ist es daraufhin möglich zum Beispiel die erste
- Funktion mit einem Element aus der Menge A an eine berechnende Maschine
- senden.
- Wie die Grafik
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-muss noch gezeichnet werden..
-\end_layout
-
+g nur noch eine Funktion schrieben, welche ein Element aus der Menge 
+\begin_inset Formula $A$
 \end_inset
 
- zur Map Funktion illustriert, gibt es keine Datenabhängigkeiten (1:1 Mapping),
- weshalb jede Funktionsanwendung sehr gut auf verschiedenen Maschinen ausgeführt
- werden kann.
- Die Map Phase gilt als abgeschlossen, wenn sämtliche Elemente aus der Menge
- A auf ein Element in der Menge B abgebildet wurden.
- Nun kann das MapReduce Framework auf einer Maschine die Reduce-Phase durchführe
-n.
- Hierbei ist wichtig zu bemerken, dass die Reduce Funktion nicht äquivalent
- parallelisiert werden dann, da es Datenabhängigkeiten gibt.
- Eine parallele Verarbeitung ist nur möglich, wenn die Reduce Funktion assoziati
-v ist.
- Dann könnte die Reduce-Phase in einer Art Baum-Struktur ausgeführt werden
- – darauf soll aber nicht weiter eingegangen werden.
+ auf ein Element in der Menge 
+\begin_inset Formula $B$
+\end_inset
+
+ abbildet (Map Phase), eine Funktion schreiben, welche für ein Element aus
+ der Menge 
+\begin_inset Formula $B$
+\end_inset
+
+, kombiniert mit einem Akkumulator, auf ein Element aus der Menge 
+\begin_inset Formula $C$
+\end_inset
+
+ abbildet (Reduce Phase) und initial die Menge
+\begin_inset Formula $A$
+\end_inset
+
+ bereitstellen.
+ 
 \end_layout
 
 \begin_layout Standard
-Folgendendes Beispiel soll die Idee von den zwei Phasen verdeutlichen.
- Dafür definieren wir ein initiale Menge an Elementen A und je eine Funktion
- für die Map Phase 
-\begin_inset Formula $f_{m}$
+Für das MapReduce Framework ist es daraufhin möglich zum Beispiel die erste
+ Funktion mit einem Element aus der Menge 
+\begin_inset Formula $A$
 \end_inset
 
- und eine Funktion für die Reduce Phase 
-\begin_inset Formula $f_{r}$
+ an eine berechnende Maschine senden.
+ Auch ordnet das Framework in mit einem sogenannten Shuffle nach der Map
+ Phase die Elemente so an, dass sie von der Reduce Phase verarbeitet werden
+ können.
+ Die Anordnung der Elemente der Menge 
+\begin_inset Formula $B$
 \end_inset
 
-.
+ muss dabei zu beginn der Reduce Phase nicht zwingend ihrer Anordnung nach
+ der Map Phase entsprechen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename MapReduce Übersicht.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Übersicht über die Phasen des MapReduce
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wie die Grafik illustriert, gibt es in der Map Phase keine Datenabhängigkeiten
+ der einzelnen Elemente (1:1 Mapping), weshalb jede Funktionsanwendung sehr
+ gut auf verschiedenen Maschinen ausgeführt werden kann.
+ Die Map Phase gilt als abgeschlossen, wenn sämtliche Elemente aus der Menge
+ 
+\begin_inset Formula $A$
+\end_inset
+
+ auf ein Element in der Menge 
+\begin_inset Formula $B$
+\end_inset
+
+ abgebildet wurden.
+ Nun kann das MapReduce Framework auf einer Maschine die Reduce-Phase durchführe
+n.
+ Hierbei ist wichtig zu bemerken, dass die Reduce Funktion nicht äquivalent
+ parallelisiert werden kann, da es Datenabhängigkeiten gibt.
+ Eine parallele Verarbeitung ist nur möglich, wenn die Reduce Funktion assoziati
+v ist.
+ In diesem Fall könnte die Reduce-Phase in einer Art Baum-Struktur ausgeführt
+ werden – auf solche für das verständnis nicht förderlichen Details soll
+ jedoch im folgenden nicht weiter eingegangen werden.
+\end_layout
+
+\begin_layout Standard
+Hier ein Beispiel umd die Idee der zwei Phasen des MapReduce zu verdeutlichen.
+ Wir definieren ein initiale Menge an Elementen 
 \end_layout
 
 \begin_layout Verse
@@ -490,6 +461,10 @@ A=\left\{ 1,2,3,4\right\}
 
 \end_layout
 
+\begin_layout Standard
+eine Funktion für die Map Phase
+\end_layout
+
 \begin_layout Verse
 \begin_inset Formula 
 \[
@@ -501,10 +476,14 @@ f_{m}\: x=x^{2}
 
 \end_layout
 
+\begin_layout Standard
+und eine Funktion für die Reduce Phase
+\end_layout
+
 \begin_layout Verse
 \begin_inset Formula 
 \[
-f_{r}\: x\: a=x+a
+f_{r}\: x\: a=x+a.
 \]
 
 \end_inset
@@ -513,22 +492,40 @@ f_{r}\: x\: a=x+a
 \end_layout
 
 \begin_layout Standard
-In diesem Beispiel werden in der Map Phase die Elemente aus der Menge A
- quadriert.
- Somit entsteht eine Menge B = {1, 4, 9, 16}.
- In der Reduce Phase werden alle Elemente aus der Menge B aufaddiert
+Nach der Map Phase entsteht die Menge 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+B=\{1,4,9,16\}.
+\]
+
+\end_inset
+
+Welche in der der Reduce Phase aufaddiert
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Der initiale Akkumulator ist in diesem Fall das erste Element aus der Menge
- B.
+ B oder 0.
 \end_layout
 
 \end_inset
 
-.
- Das Endresultat ist also 30.
+ wird und als Endresultat die einelementige Menge 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+C=\{30\}
+\]
+
+\end_inset
+
+ergibt
 \end_layout
 
 \begin_layout Subsection
@@ -536,21 +533,19 @@ Abgeleitete Aufgabenstellung
 \end_layout
 
 \begin_layout Standard
-Basierend auf unserem Wissen aus den Algebra - Vorlesungen sowie unserem
- Interesse für verteilte Berechnungen und dem bestehenden MapReduce Framework,
- haben wir uns mit Herrn Heuberger so geeinigt, dass wir in einem ersten
- Teil die Prüfung eines Satzes für ein bestimmtes Axiomsystem als MapReduce
- Problem formulieren und dieses dann mit unserem Framework ausführen.
- Die konkrete Aufgabenstellung für den zweiten Teil haben wir zu beginn
- noch offen gelassen.
- Einen Variantenvergleich ist im Kapitel 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sub:Möglichkeiten-der-Vertiefung"
-
-\end_inset
-
+Basierend auf unserem Wissen aus den Algebra-Vorlesungen, unserem Interesse
+ für verteilte Berechnungen und dem bestehenden MapReduce Framework, einigten
+ wir uns mit Herrn Heuberger dahingehend, dass wir in einem ersten Teil
+ die Prüfung eines Satzes für ein bestimmtes Axiomsystem als MapReduce Problem
+ formulieren und dieses dann mit unserem Framework ausführen sollten.
  
+\end_layout
+
+\begin_layout Standard
+Anschliessend daran wurde uns die Option gewährt selbst eine vertiefende
+ Weiterführung der Projektarbeit mit den in Teil 1 erworbenen Kenntnissen
+ wählen.
+ Hierzu mehr im Kapitel 
 \begin_inset Quotes pld
 \end_inset
 
@@ -565,11 +560,15 @@ reference "sub:Möglichkeiten-der-Vertiefung"
 \begin_inset Quotes prd
 \end_inset
 
- zu finden.
+.
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
-Umsetzung - Teil 1 Gültigkeit des Satzes zur Rechtsauslöschung in Gruppen
+Teil 1 Gültigkeit des Satzes zur Rechtsauslöschung in Gruppen
 \end_layout
 
 \begin_layout Subsection
@@ -579,7 +578,7 @@ name "sub:Ausgangslage"
 
 \end_inset
 
-Ausgangslage
+Mathematische Grundlagen
 \end_layout
 
 \begin_layout Subsubsection
@@ -646,14 +645,22 @@ Es gibt verschiedene Strukturen, die diese Eigenschaften haben.
 \end_inset
 
 ).
- Es gibt weit mehr Strukturen, die als Gruppe eingestuft werden und mit
- ausprobieren findet man einige.
- Diese mechanische Arbeit, also das Suchen solcher Strukturen, könnte uns
- ein Computer abnehmen und genau das ist ein Teil unserer Arbeit.
- Natürlich gibt es unendlich viele Möglichkeiten, weshalb wir diese Aufgabe
- zwar einschränken werden müssen, aber um trotzdem eine möglichst hohe Rechenpow
-er zur Verfügung zu haben, haben wir uns entschieden, die Suche mit unserem
- MapReduce Framework auszuführen.
+ 
+\end_layout
+
+\begin_layout Standard
+Es gibt weit mehr Strukturen, die als Gruppe eingestuft werden können.
+ Es ist zum Beispiel durch stupides ausprobieren möglich diese zu finden.
+ Diese mechanische Arbeit eignet sich bestens für einen Computer, da sie
+ strikt Regelgesteuert abläuft.
+ Genau dies ist der erste Schritt unserer Arbeit.
+ Natürlich gibt es unendlich viele Möglichkeiten für mögliche Gruppen.
+ Daher ist es klar, dass wir unsere Berechnunfen auf ein klar abgegrenztes
+ Gebiet einschränken müssen, doch bereits bei wenigen Elementen ist eine
+ grosse Rechenleistung erforderlich, die sequenziell de facto undenkbar
+ ist.
+ Genau hier kommt unser MapReduce Framework zur paralellen Berechnung ins
+ Spiel.
 \end_layout
 
 \begin_layout Subsubsection
@@ -664,13 +671,9 @@ Satz
 Ein Satz oder Theorem ist in der Mathematik eine widerspruchsfreie logische
  Aussage, die mittels eines Beweises als wahr erkannt, das heißt, aus Axiomen
  und bereits bekannten Sätzen hergeleitet werden kann.
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-Aus Wikipedia, der freien Enzyklopädie: http://de.wikipedia.org/wiki/Satz_(Mathema
-tik)
-\end_layout
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Satz_Wiki"
 
 \end_inset
 
@@ -687,11 +690,11 @@ Nachdem wir mittels dem MapReduce Framework irgendwelche Strukturen gefunden
  Es werden ständig neue Sätze gefunden und ausserdem existieren Sätze, für
  die noch nicht allgemeingültig bewiesen werden konnte, dass sie für sämtliche
  Gruppen gelten - es wurde aber auch noch kein Gegenbespiel gefunden.
- Während wir mit dem MapReduce Framework zwar keine allgemeingültigen Beweise
- führen können, können wir aber mit sehr viel Rechenpower nach Gegenbespielen
- suchen, also bestimmte Konstellationen von Mengen und Verknüpfungen auf
- diesen, welche zwar eine Gruppe sind, aber einen bestimmten Satz nicht
- erfüllen.
+ Trotzdem wir den vorhandenen Mitteln keine allgemeingültigen Beweise führen
+ können, ist es mit genügend Rechenleistung ein Ansatz nach Gegenbespielen,
+ also bestimmte Konstellationen von Mengen und Verknüpfungen auf diesen,
+ welche zwar eine Gruppe sind, aber einen bestimmten Satz nicht erfüllen,
+ zu suchen.
  Ein Beispiel eines Satzes, ist der Satz der Rechtsauslöschung:
 \end_layout
 
@@ -710,12 +713,9 @@ Nachdem wir mittels dem MapReduce Framework irgendwelche Strukturen gefunden
 Sämtliche Strukturen, welche die Axiome der Gruppe erfüllen, erfüllen auch
  diesen Satz.
  Den Beweis dazu findet man online
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-http://www.proofwiki.org/wiki/Cancellation_Laws
-\end_layout
+\begin_inset CommandInset citation
+LatexCommand cite
+key "CancellationLawsProofWiki"
 
 \end_inset
 
@@ -734,15 +734,24 @@ name "sub:Generieren-von-Gruppen"
 \end_layout
 
 \begin_layout Standard
-Da es unendlich viele mögliche Mengen und Verknüpfungen gibt, haben wir
- uns auf die Restklassen als Mengen beschränkt.
- Eine bestimmte Restklasse kann beim Programmstart angegeben werden.
- Um mögliche Verknüpfungen auf einer Restklasse zu finden, haben wir einen
- Algorithmus implementiert, welcher alle möglichen zweistelligen Verknüpfungen
- auf einer endlichen Menge generiert.
+Es gibt unendlich viele Mengen und darauf mögliche Verknüpfungen.
+ In unserer Implementation kann bei Programmstart angegeben werden nach
+ Mengen mit wie vielen Elementen gesucht werden soll
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Aus technischen Gründen war es jedoch nötig die mögliche Anzahl an Elementen
+ auf 9 zu beschränken.
+\end_layout
+
+\end_inset
+
+.
+ Um Gruppen zu finden, haben wir einen Algorithmus implementiert, welcher
+ alle möglichen zweistelligen Verknüpfungen auf einer endlichen Menge generiert.
  Grafisch können diese Verknüpfungen als Wertetabellen interpreiert werden.
- Folgend sind drei Beispiele für mögliche Verknüpfungen auf der Restklasse
- 2.
+ Hier drei Beispiele für mögliche Verknüpfungen mit zwei Elementen:
 \end_layout
 
 \begin_layout Standard
@@ -750,7 +759,7 @@ Da es unendlich viele mögliche Mengen und Verknüpfungen gibt, haben wir
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -869,10 +878,6 @@ Intuitive Addition der Restklasse 2
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -883,7 +888,7 @@ Intuitive Addition der Restklasse 2
 placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -1099,15 +1104,11 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Weitere mögliche Wertetabellen der Verknüpfung von Zwei Elementen
+Weitere mögliche Wertetabellen der Verknüpfung
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -1117,24 +1118,217 @@ Weitere mögliche Wertetabellen der Verknüpfung von Zwei Elementen
 \end_layout
 
 \begin_layout Standard
-Die obere Tabelle ist die intuitive Addition auf dieser Restklasse und die
- beiden anderen sind mit zufälligen Werten gefüllt.
- Insgesamt gibt es für die Restklasse 2 also 16 mögliche Wertetabellen,
- welche mit dem Computer generiert werden können.
- Aus diesem Beispiel wird ersichtlich, dass es für die Restklasse 2 16 mögliche
- Verknüpfungstabellen gibt, welche wir mit dem Computer simuliert haben.
- Für die Restklasse 3 sind es schon deren 19683.
- Eine Restklasse n hat allgemein fomuliert 
+Insgesamt gibt es 16 mögliche Permutationen für Wertetabellen von zweistellige
+ Verknüpfungen bei einer Menge aus 2 Elementen.
+ Für eine Menge aus 3 Elementen sind es Bereits 19 683.
+ Allgemein fomuliert besitzt eine Menge mit 
+\begin_inset Formula $n$
+\end_inset
+
+-Elementen 
 \begin_inset Formula $n^{n*n}$
 \end_inset
 
- mögliche Verknüpfungen.
+ mögliche Wertetabellen für zweistellige Verknüpfungen.
 \end_layout
 
 \begin_layout Standard
-Ausserdem gibt es in jeder Gruppe ein inverses Element.
- Um alle möglichen inversen Elemente zu finden, haben wir auch für diese
- einstellige Verknüpfung Wertetabellen generiert.
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+n
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mögliche Wertetabellen für zweistellige Verknüpfungen
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19 683
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4 294 967 296
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+298 023 223 876 953 125
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10 314 424 798 490 535 546 171 949 056
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+256 923 577 521 058 878 088 611 477 224 235 621 321 607
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Mögliche Permutationen einer zweistelligen Verknüpfung in einem n-Elementigen
+ System 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Weiterhin gibt es in jeder Gruppe ein für jedes Element ein inverses Element
+ bezüglich der zweistelligen Verknüpfung.
+ Um alle möglichen inversen Elemente zu finden, haben wir für diese einstellige
+ Verknüpfung ebenfalls Wertetabellen generiert.
  Folgend zwei Beispiele für Verknüpfungen auf der Restklasse 2.
 \end_layout
 
@@ -1317,22 +1511,24 @@ Beispiele für einstellige Verknüpfungen mit zwei Elementen
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-Für die Restklasse 2 gibt es also 4 mögliche Wertetabellen und für eine
- Restklasse n gibt es 
+Für eine Gruppe aus zwei Elementen gibt es also 4 mögliche Wertetabellen
+ und allgemein gibt es 
 \begin_inset Formula $2^{n}$
 \end_inset
 
- Möglichkeiten.
+ Möglichkeiten für einstellige Verknüpgungen aus Gruppen mit 
+\begin_inset Formula $n$
+\end_inset
+
+-Elementen.
  Auch diese Tabellen können wir mit unserem Algorithmus simulieren.
+ 
 \end_layout
 
 \begin_layout Standard
-Das neutrale Element ist einfach zu finden, weil jedes Element als neutrales
- gelten kann.
+Das neutrale Element ist anschliessend einfach zu finden, da es schlicht
+ das Ergebnis der zweistelligen Verknüpfung eines Elementes mit seinem Inversen
+ ist.
 \end_layout
 
 \begin_layout Standard
@@ -1345,26 +1541,26 @@ Schlussendlich suchen wir Gruppen indem wir eine zweistellige Verknüpfung,
 \end_layout
 
 \begin_layout Subsubsection
-Implementationsdetails zur Generierung sämtlicher Wertetabellen
+Generierung der Wertetabellen
 \end_layout
 
 \begin_layout Standard
-Bereits für die Restklasse 3 gibt es bei der zweistelligen Verknüpfung tausende
- von Möglichkeiten.
- Die Restklasse 4 passt wahrscheinlich schon nicht mehr in den Hauptspeicher
- eines Computers.
- Da wir diese Berechnung verteilen müssen wir also einerseits einen Algorithmus
- finden, der sich auf verschiedene Rechner aufteilen lässt, sodass jeder
- Rechner eine Teilmenge der Wertetabellen überprüfen kann, und diese Teilmenge
- sollte nicht zu viel Speicher verbrauchen.
- Auf dem Master alle Wertetabellen zu generieren und diese dann an die verschied
-enen Worker (Rechner) über das Netz zu schicken ist also nicht praktikabel.
+Bereits für Mengen mit drei Elementen gibt es, wie oben gezeitg, bei der
+ zweistelligen Verknüpfung tausende von Möglichkeiten.
+ Da wir die Prüfung der Axiome, spätestens für die Berechnung von Gruppen
+ aus einer vier-Elementigen Menge, verteilen müssen, gilt es einerseits
+ einen Algorithmus finden, der sich auf verschiedene Rechner aufteilen lässt,
+ sodass jeder Rechner eine Teilmenge der Wertetabellen überprüfen kann,
+ und andererseits diese Teilmengen so abzubilden, dass sie nicht zu viel
+ Speicher verbrauchen.
+ Auf einem Rechner alle Wertetabellen zu generieren und diese dann an die
+ verschiedenen Rechner über das Netz zu schicken ist also nicht praktikabel.
 \end_layout
 
 \begin_layout Standard
-Nehmen wir als Beispiel die Restklasse 2.
+Nehmen wir als Beispiel die Menge mit zwei Elementen.
  Bei genauerer Betrachtung einer Wertetablle sieht man, dass diese anstatt
- zweidimensional auch eindimensional interpretiert werden können.
+ zweidimensional auch eindimensional interpretiert werden könnte
 \end_layout
 
 \begin_layout Standard
@@ -1491,17 +1687,9 @@ Logischer Aufbau einer zweistelligen Verknüpfung für zwei Elemente
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-Eindimensional sähe die abgebildete Wertetabelle folgendermassen aus: 
+eindimensional sähe die abgebildete Wertetabelle folgendermassen aus: 
 \end_layout
 
 \begin_layout Standard
@@ -1512,12 +1700,9 @@ Eindimensional sähe die abgebildete Wertetabelle folgendermassen aus:
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-Vor allem in der Restklasse 2 kann man sich leicht überzeugen, dass sämtliche
- Kombinationen die Binärwerte der Zahlen zwischen 0 und 15 sind: z.B.
+Für eine Menge mit zwei Elementen kann man sich leicht überzeugen, dass
+ sämtliche Kombinationen die Binärwerte der Zahlen zwischen 0 und 15 sind:
+ z.B.
  
 \begin_inset Formula $0=\left\{ 0,0,0,0\right\} $
 \end_inset
@@ -1558,15 +1743,23 @@ sentation 0110 und für den Index
 \end_layout
 
 \begin_layout Subsubsection
-Implementierung von Quantoren in Java
+Implementation von Quantoren in Java
 \end_layout
 
 \begin_layout Standard
 Wie im Kapitel 
+\begin_inset Quotes pld
+\end_inset
+
+
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "sub:Ausgangslage"
 
+\end_inset
+
+
+\begin_inset Quotes prd
 \end_inset
 
  beschrieben, werden Axiome einer Gruppe und Sätze einer beliebigen Struktur
@@ -1602,21 +1795,15 @@ n formuliert werden kann: In einer Gruppe gibt es ein Element e, welches,
 \end_layout
 
 \begin_layout Standard
-Da es in Java keine Quantoren gibt, haben wir uns Schleifen zu hilfe genommen
+Da es in Java keine Quantoren gibt, haben wir uns Schleifen zu Hilfe genommen
  um die Axiome zu implementieren.
  Mittels der folgenden Funktion wird für ein bestimmtes Element e geprüft,
- ob es das neutrale Element einer bestimmten Restklasse
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-Wir haben als Beispiel die Restklassen verwendet, aber dies würde genauso
- mit anderen Gruppen funktionieren.
-\end_layout
-
+ ob es das neutrale Element zweistellligen Verknüpfung für eine Gruppe mit
+ 
+\begin_inset Formula $n$
 \end_inset
 
- für eine bestimmte Wertetabelle ist.
+-Elementen ist.
 \end_layout
 
 \begin_layout Standard
@@ -1633,17 +1820,17 @@ status open
 
 \begin_layout Plain Layout
 
-boolean isNeutral(int modulo, int aPerm, int e) {
+boolean isNeutral(int numEle, int aPerm, int e) {
 \end_layout
 
 \begin_layout Plain Layout
 
-  for (int a = 0; a < modulo; a++) {
+  for (int a = 0; a < numEle; a++) {
 \end_layout
 
 \begin_layout Plain Layout
 
-    int b = map2d(a, e, aPerm, modulo);
+    int b = map2d(a, e, aPerm, numEle);
 \end_layout
 
 \begin_layout Plain Layout
@@ -1653,7 +1840,7 @@ boolean isNeutral(int modulo, int aPerm, int e) {
 
 \begin_layout Plain Layout
 
-    int c = map2d(e, a, aPerm, modulo);
+    int c = map2d(e, a, aPerm, numEle);
 \end_layout
 
 \begin_layout Plain Layout
@@ -1693,82 +1880,89 @@ Beispielimplementation von Quantoren
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
-
+Diese Funktion besitzt drei Parameter: Der erste ist ein Wert vom Typ Integer,
+ also eine Ganzzahl, welcher die Anzahl an Elementen der zu prüfenden Gruppe
+ repräsentiert.
+ 
 \end_layout
 
 \begin_layout Standard
-Diese Funktion nimmt drei Parameter: Der erste ist ein Wert vom Typ Integer,
- also eine Ganzzahl, welcher die Restklasse repräsentiert.
- Der zweite Parameter ist der Identifikator für die zweistellige Wertetabelle,
+Der zweite Parameter ist der Identifikator für die zweistellige Wertetabelle,
  welcher auch als Ganzzahl modelliert ist.
- Der letzte ist schliesslichen das vermeindlich neutrale Element, für das
- diese Funktion prüft, ob es wirklich das neutrale Element ist.
- In der zweiten Zeile wird durch alle Elemente der Restklasse iteriert,
- wodurch die Variable a den Wert jedes Elementes einmal annimmt (beginnend
- bei 0).
+ 
+\end_layout
+
+\begin_layout Standard
+Der letzte Parameter ist schliesslich das vermeindlich neutrale Element,
+ für welches diese Funktion prüft, ob es wirklich das neutrale Element ist.
+ 
+\end_layout
+
+\begin_layout Standard
+In der zweiten Zeile wird durch alle Elemente der Menge iteriert, wodurch
+ die Variable a den Wert jedes Elementes einmal annimmt (beginnend bei 0).
  In der dritten Zeile wird die Funktion map2d aufgerufen, welche das Element
- a (also jedes Element der Restklasse einmal) mit dem neutralen Element
- e verknüpft.
+ a (also jedes Element der Menge einmal) mit dem neutralen Element e verknüpft.
  Diese Funktion map2d funktioniert nach unserem eigents erfundenen Algorithmus,
- den wir im Kapitel '
+ den wir im Kapitel 
+\begin_inset Quotes pld
+\end_inset
+
+
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "sub:Generieren-von-Gruppen"
 
 \end_inset
 
-' beschrieben haben.
+
+\begin_inset Quotes prd
+\end_inset
+
+ beschrieben haben.
  Der Rückgabewert dieser Funktion wird der Variable b zugewiesen um in der
  nächsten Zeile mit der Variable a verglichen zu werden.
  Wenn diese Bedingung zutrifft, bedeutet das, dass 
 \begin_inset Formula $a\diamond e=e$
 \end_inset
 
- gilt, also ist das e schonmal linksneutral.
- Wenn es nicht linksneutral ist, dann wir die ganze Funktion sofort abgebrochen,
- weil das Prädikat einen Allquantor beinhaltet - es muss also für alle Elemente
+ gilt, also ist das e bereits linksneutral.
+ Wenn es nicht linksneutral ist, wird die Funktion sofort abgebrochen, da
+ das Prädikat einen Allquantor beinhaltet - es muss also für alle Elemente
  gelten.
  Auf den folgenden Zeilen fünf und sechs wird die Variable a nochmals mit
  dem vermeindlich neutralen Element verknüft - diesmal aber um die Rechtsneutral
 ität zu überprüfen (deshalb sind hier die Parameter a und e für die Funktion
  map2d vertauscht).
- Wenn sämtliche Elemente dieser Restklasse links- und rechtsneutral sind,
- dann wird die Schleife verlassen und die Funktion gerät zur Zeile acht,
- wo der boolsche Wert 'wahr' zurückgegeben wird.
+ Wenn sämtliche Elemente dieser Gruppe links- und rechtsneutral sind, wird
+ die Schleife verlassen und die Funktion erreicht die Zeile Nr.8, in der
+ der boolsche Wert 'wahr' zurückgegeben wird.
  Dies bedeutet, dass das Element e tatsächlich das neutrale Element in dieser
  Struktur ist.
 \end_layout
 
 \begin_layout Subsection
-Map und Reduce Funktionen für das Finden von Gruppen und Prüfen von Sätzen
+Map und Reduce Funktionen für die Aufgabenstellung
 \end_layout
 
 \begin_layout Subsubsection
-Prüfen derAxiome als Map-Funktion
+Prüfen der Axiome als Map-Funktion
 \end_layout
 
 \begin_layout Standard
-Das CPU-intensive Suchen generieren der Strukturen, welche möglicherweise
- die Axiome erfüllen, wurde als MAP-Funktion definiert.
- 
-\end_layout
-
-\begin_layout Standard
-der Axiome wurde als MAP-Funktion definiert.
- Dabei werden den einzelnen Workern jeweils ein Bereich an Permutationen
- der Additionstabelle und ein 
+Das CPU-intensive überprüfen der Strukturen, welche möglicherweise die Axiome
+ erfüllen, wurde als MAP-Funktion definiert.
+ Dabei werden den einzelnen rechnenden Einheiten, im folgenden Worker genannt,
+ da auch schon ein Rechner mehrere rechnende Einheiten besitzen kann, jeweils
+ ein Bereich an Permutationen der Additionstabelle und ein 
 \begin_inset Formula $n$
 \end_inset
 
- im Sinne der derzeit vorhandenen Anzahl an verschiedenen Objekten als Input
- gegeben.
- Die Worker führen dann die Überprüfung der Axiome durch indem sie jeweils
+ im Sinne der derzeit vorhandenen Anzahl an verschiedenen Elementen als
+ Input übergeben.
+ Die Worker führen dann die Überprüfung der Axiome durch, indem sie jeweils
  für alle Additionstabellen in ihrem Bereich alle möglichen Inversentabellen
  mit allen möglichen neutralen Elementen prüfen.
 \end_layout
@@ -1780,9 +1974,23 @@ Hierbei gibt es Vereinfachungen, die inhaltlich korrekt sind jedoch die
 
 \begin_layout Itemize
 Sowohl die Additions- wie auch die Permutationstabelle werden nicht immer
- vollständig vor der Prüfung der Axiome aufgestellt, sondern es wird eine
- Funktion implementiert mit der zu einer gegebenen Permutationsnummer eines
- beliebigen 
+ vollständig vor der Prüfung der Axiome aufgestellt, sondern durch die oben
+ beschriebene Funktion (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Generieren-von-Gruppen"
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sub:Generieren-von-Gruppen"
+
+\end_inset
+
+) implementiert, mit der zu einer gegebenen Permutationsnummer eines beliebigen
+ 
 \begin_inset Formula $n$
 \end_inset
 
@@ -1797,9 +2005,11 @@ elle und, abhängig von Erfolg oder Misserfolg der Überprüfungen, auch nur
 Für eine gegebene Additions- und Inversen-Tabellenkombination wird jeweils
  nur das neutrale Element, das für den ersten Eintrag in der Inversentabelle
  berechnet wurde, geprüft.
- Da logischerweise nur ein neutrales Element für eine spezifische Kombination
- aus Tabellen existiert, kann das Ergebnis der ersten Rechnung verwendet
- werden, da dieses bereits alle anderen möglichen neutralen Elemente wiederlegt.
+ Da per Definition nur ein neutrales Element für eine spezifische Kombination
+ aus Tabellen existiert, muss es auch für alle weiteren Einträge an Inversentabe
+llen gelten.
+ Sobald ein Eintrag gefunden wurde für den ein anderes neutrales Element
+ gelten würde, wird die Berechnung für die vorliegenden Tabellen verworfen
  Auch diese Annahme reduziert substantiell die durchgeführten, nicht zielführend
 en Rechnungen.
 \end_layout
@@ -1850,6 +2060,10 @@ Wenn der Output leer ist, ist der Satz für die geprüften Gruppen wahr.
 \begin_layout Itemize
 Wenn der Output nicht leer ist, ist der Satz für die geprüften Gruppen falsch
  (was einer mathematischen Sensation gleich käme).
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1867,6 +2081,13 @@ name "sub:Möglichkeiten-der-Vertiefung"
 
 \end_layout
 
+\begin_layout Standard
+Wie bereits geschildert, wurde uns die genaue Vertiefung der Aufgabenstellung
+ selbst überlassen.
+ Für uns kamen drei mögliche Schwerpunkte in Frage auf die im folgenden
+ näher eingegangen werden soll.
+\end_layout
+
 \begin_layout Subsubsection
 \noindent
 Erweiterung des MapReduce Frameworks
@@ -1875,12 +2096,12 @@ Erweiterung des MapReduce Frameworks
 \begin_layout Standard
 \noindent
 Bei diesem Schwerpunkt wäre die Zielsetzung eine möglichst grosse Kapazität
- Gültigkeiten zu beweisen mit dem MapReduce Framework und verteiltem Rechnen
- zu erzielen.
+ um Gültigkeiten zu beweisen mit dem MapReduce Framework und verteiltem
+ Rechnen zu erzielen.
  Die enormen Datenmengen, die bereits bei kleinen Eingabewerten entstehen
- sind auf einem einzelnen System quasi nicht zu bewältigen dabei ist primär
- die Rechenzeit relevant.
- Daher müssten Möglichkeiten gefunden werden um eine Menge an Inputwerten
+ sind auf einem einzelnen Rechner spätestens ab Gruppen mit 4 Elementen
+ quasi nicht zu bewältigen dabei ist primär die Rechenzeit relevant.
+ Es müssten daher Möglichkeiten gefunden werden, um eine Menge an Inputwerten
  zu anderen Computern zu senden, dort berechnen zu lassen und für das weitere
  Vorgehen relevante Daten zu returnieren.
 \end_layout
@@ -1899,8 +2120,8 @@ Freie Eingabe von auf Gültigkeit zu prüfenden Annahmen
 \begin_layout Standard
 \paragraph_spacing single
 \noindent
-Hierbei läge das Hauptaugenmerk darauf quasi eine Eingabesprache für ein
- automatisiertes Gültigkeitsbeweis-Programm zu erstellen.
+Hierbei läge das Hauptaugenmerk darauf eine Eingabesprache für ein automatisiert
+es Gültigkeitsbeweis-Programm zu erstellen.
  Es müsste eine Möglichkeit gefunden werden dem Programm mathematische Strukture
 n mit bestimmten Eigenschaften, darauf gültige Axiome und daraus resultierend
  zu prüfende Sätze zu übermitteln.
@@ -1962,7 +2183,7 @@ Freie Eingabe von auf Gültigkeit zu prüfenden Annahmen
 \end_inset
 
  dar.
- Die in dem Schwerpunkt vorkommenden Themen wurdenweitestgehend im bisherigen
+ Die in dem Schwerpunkt vorkommenden Themen wurden weitestgehend im bisherigen
  Studium noch nicht behandelt und böten somit eine gute Möglichkeit neues
  kennenzulernen.
  
@@ -2000,12 +2221,116 @@ Das Kriterium der Beherrschbarkeit gab schlussendlich auch den Ausschlag
  grossen Ansporn dar.
 \end_layout
 
-\begin_layout Section
-Umsetzung - Teil 2 MapReduce Framework zur verteilten Berechnung
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Section
+Teil 2 MapReduce Framework zur verteilten Berechnung
+\end_layout
+
+\begin_layout Subsection
 Technologie
+\end_layout
+
+\begin_layout Standard
+In Absprache mit unserem betreuenden Dozenten Herrn Albert Heuberger soll
+ an dieser Stelle nur sehr Abstrakt auf die Implementation eingegangen werden.
+ Um einen groben Überblick zu gewähren, sind die nun folgende Buzzwords
+ leider unumgänglich.
+\end_layout
+
+\begin_layout Standard
+Als Programmiersprache wählten wir, aufgrund der für den Aufbau eines verteilten
+ Rechnernetzes sehr vorteilhaften Betriebssystem Unabhängigkeit und unserer
+ bereits vorhandenen Kenntnisse Java aus.
+ Git 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GIT_Home"
+
+\end_inset
+
+ wurde als Versionsverwaltungstool eingesetzt und mit den verschiedenen
+ Bitbucket Projekten verknüpft.
+ Für Build Management wurde Maven 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MVN_Home"
+
+\end_inset
+
+ eingesetzt, zum Tracking der testcoverage Cobertura 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Cobertura_Home"
+
+\end_inset
+
+, für Dependency Injection Guice 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GUICE_Home"
+
+\end_inset
+
+und für das essentielle Logging die Standardmässige Java Logging API.
+\end_layout
+
+\begin_layout Standard
+Auf ein GUI wurde mangels Notwendigkeit weitestgehend verzichtet.
+ Die Applikation und das Framework lassen sich über Property-Files steuern
+ und geben, neben einem Log mit variablem Detailierungsgerad, HTML-Files
+ mit den gefundenen Gruppen zurück.
+ 
+\end_layout
+
+\begin_layout Standard
+Das Framework besitzt 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+LOC FRAMEWORK
+\end_layout
+
+\end_inset
+
+ Lines of code, die Applikation 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+LOC Applikation
+\end_layout
+
+\end_inset
+
+.
+ Es wurden insgesamt 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+#Testklassen
+\end_layout
+
+\end_inset
+
+ Testklassen mit 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+#Tests
+\end_layout
+
+\end_inset
+
+ Tests im Rahmen des Projektes genutzt.
 \end_layout
 
 \begin_layout Subsection
@@ -2014,28 +2339,44 @@ Master als zentrale Kontrollinstanz
 
 \begin_layout Standard
 Der Master ist ein Server, welcher die Aufgaben (Tasks) und Worker verwaltet.
- Ein Task ist eine abstrakte Einheit, welche von einem Worker erledigt werden
- kann, also entweder ein Teil einer Map- oder Reduce-Berechnung.
+ Ein Task ist eine abstrakte Einheit, welche von einem Worker erfüllt werden
+ kann, hier also entweder ein Teil einer Map- oder einer Reduce-Berechnung.
  Im klassischen MapReduce, wie es von Google beschrieben wurde, ist ein
- Worker eine Maschine.
+ Worker eine Maschine (PC).
  Somit verteilt eine Hauptmaschine (Master) die verschiedenen Aufgaben an
  verschiedene Rechner in einem Netzwerk.
- In unserer Implementation ist aber ein Worker nicht zwingend eine anderen
- Maschine, sondern wir haben diese Einheit abstrahiert.
- In der ersten Version unseres Frameworks gab es nur eine Art von Workern
- - Threads - aber mittlerweile kann via Plugin irgendeine Art von Worker
- dem Master übergeben werden.
- Die konkrete Verwaltung wird dabei vom Pool übernommen, welcher den Status
- der Worker kennt (z.B.
- beschäftigt, frei, unauffindbar, etc) und weiss, welche Tasks gerade zu
- erledigen sind.Ein Plugin ist Stück Code, welches eine Worker-Technologie
- zur Verfügung stellt.
+ 
+\end_layout
+
+\begin_layout Standard
+Davon abweichend ist in unserer Implementation ein Worker nicht zwingend
+ eine andere Maschine, sondern schlicht eine abstrakte Einheit, die Arbeit
+ ausführen kann.
+ In der ersten Version unseres Frameworks gab es, mit lokalen Threads auf
+ Maschine des Master, nur eine Art von Workern.
+ 
+\end_layout
+
+\begin_layout Standard
+Im Rahmen dieser Projektarbeit wurde die Möglichkeit geschaffen via Plugin
+ irgendeine Art von Worker dem Master zu übergeben.
+ Ein Plugin ist Stück Code, welches eine Worker-Technologie zur Verfügung
+ stellt.
  Somit gibt es also zum Beispiel ein Plugin, welches Threads als Worker
- zur Verfügung stellt und ein Plugin, welches andere Rechner über eine Socket-Ve
-rbindung zur Verfügung stellt.
- Dies wurde so abstrahiert, dass in Zukunft auch weitere Arten von Workern
- hinzugeügt werden können.
- Denkbar wäre zum Beispiel CUDA (NVidia Grafikkarten) oder Android Smartphones.
+ zur Verfügung stellt und ein Plugin, welches andere Rechner über eine Netzwerk-
+Verbindung zur Verfügung stellt.
+ Dies wurde soweit abstrahiert, dass in Zukunft auch weitere Arten von Workern
+ erstellt werden könnten.
+ Denkbar wären hier zum Beispiel CUDA (NVidia Grafikkarten) oder Android
+ Smartphones.
+\end_layout
+
+\begin_layout Standard
+Die konkrete Verwaltung der Worker wird anschliessend vom sogenannten Pool
+ übernommen, dieser kennt den Status seiner Worker (z.B.
+ beschäftigt, frei, unauffindbar, etc) und weiss, welche Tasks gerade zu
+ erledigen sind.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -2043,49 +2384,132 @@ Ablauf
 \end_layout
 
 \begin_layout Standard
-Wenn eine Berechnung mit dem MapReduce Framework ausgeführt werden soll,
- ist der Ablauf folgendermassen (vereinfacht): Der Benutzer implementiert
- die beiden Interfaces MapInstruction und ReduceInstruction (sowie optional
- eine CombinerInstruction, aber diese soll zur Vereinfachung weggelassen
- werden) und erstellt zusammen mit einer Menge an Input einen MapReduceTask.
- Dieser MapReduceTask ist die ursprüngliche Berechnungseinheit, welche dem
- Master zur Berechnung übergeben wird.Daraus kann dann der Master die Map-
- und Reduce Instruktionen extrahieren und erstellt zunächst aus je einem
- Teil vom Input und einer Instanz der MapInstruction einen MapTask.
- Somit entstehen für eine MapReduce Berechnung mehrere MapTasks, welche
- dem Pool vom Master zur Verarbeitung übergeben werden.
- Gleichzeitig wird vorausgesetzt, dass dem Pool durch ein oder mehrere Plugins
- bereits Worker zur Verfügung gestellt worden sind (donaten).
- Somit kann der Pool einen auszuführenden MapTask einem verfügbaren Worker
+Wie im Kapitel 
+\begin_inset Quotes pld
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sub:MapReduce"
+
+\end_inset
+
+
+\begin_inset Quotes prd
+\end_inset
+
+ beschrieben muss der Benutzer nur eine Map- und eine Reduce Funktion zur
+ Nutzung des Frameworks erstellen.
+\end_layout
+
+\begin_layout Standard
+In unserer Implementation geschieht dies durch die beiden Interfaces 
+\emph on
+MapInstruction 
+\emph default
+und 
+\emph on
+ReduceInstruction
+\emph default
+ die in einer MapReduceTask zusammengefasst und anschliessend mit einer
+ Menge an Input dem Framework übergeben werden.
+ 
+\end_layout
+
+\begin_layout Standard
+Daraus kann dann der Master die Map- und Reduce Instruktionen extrahieren
+ und erstellt zunächst aus je einem Teil vom Input und einer Instanz der
+ MapInstruction einen MapTask.
+ Folglich entstehen für eine MapReduce Berechnung viele MapTasks, welche
+ dem Pool zur Verarbeitung übergeben werden.
+ Hier wird vorausgesetzt, dass dem Pool durch ein oder mehrere Plugins bereits
+ Worker zur Verfügung gestellt worden sind, da die Tasks sonst niemals ausgeführ
+t werden könnten.
+ 
+\end_layout
+
+\begin_layout Standard
+Nun kann der Pool einen auszuführenden MapTask einem verfügbaren Worker
  übergeben.
  Wenn dieser Worker eine andere Maschine im Netz abstrahiert, würde das
- bedeuten, dass dieser MapTask auf einem anderen Rechner ausgeführt wird.Um
- diesen Task auszuführen, muss ein Kontext erstellt werden, in welchem der
- Task ausgeführt werden kann, denn ein Task (Map sowie Reduce) arbeitet
- jeweils gegen ein Emitter, in welchem die Zwischenresultate abgespeichert
- werden können.
- Aus der Sicht einer Instruktion (Map sowie Reduce) ist es also transparent,
- wo sie ausgeführt wird.
- Sie muss lediglich in den Kontext emitten.Sobald die Berechnung (z.B.
+ bedeuten, dass dieser MapTask auf einem anderen Rechner ausgeführt wird.
+ 
+\end_layout
+
+\begin_layout Standard
+Zur Speicherung von Zwischenergebnissen werden den einzelnen Tasks Kontexte
+ übergeben.
+ Somit ist es aus Sicht des Tasks nicht transparent, ob die berechneten
+ Zwischenergebnisse im Arbeitsspeicher, auf der Festplatte oder an einem
+ völlig andern Ort gespeichert werden.
+ Diese weitere Abstraktion hilft auch enorm bei der Abstraktion des Workers.
+ 
+\end_layout
+
+\begin_layout Standard
+Sobald die Berechnung (z.B.
  auf einem anderen Rechner) ausgeführt wurde, meldet sich der Worker wieder
  beim Pool, dass er wieder bereit ist, Aufgaben anzunehmen.
  Also könnte eine ganze Berechnung entweder von einem einzelnen Worker in
  mehreren Schritten ausgeführt werden oder auf mehrere Worker aufgeteilt,
  je nach dem wie schnell ein einzelner ist.
- Gleichzeitig prüft der Master kontinuierlich, ob alle MapTasks ausgeführt
- worden sind.Sobald alle MapTasks für eine Berechnung ausgeführt worden sind,
- beginnt der Master alle Resultate zu sammeln und schliesst somit die Map-Phase
+ 
+\end_layout
+
+\begin_layout Standard
+Gleichzeitig prüft der Master kontinuierlich, ob alle MapTasks ausgeführt
+ worden sind.
+ Sobald alle MapTasks für eine Berechnung ausgeführt worden sind, beginnt
+ der Master alle Resultate zu sammeln und schliesst somit die Map-Phase
  ab.
- Darauf folgt die Combiner-Phase, in welcher die Resultate der Map-Phase
- nach Schlüssel gruppiert werden und somit auf die Reduce-Phase vorbereitet.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Pool verhalten.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Interaktion von Task, Pool, Worker und Kontext
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Darauf folgt die Shuffle-Phase, die die Resultate der Map-Phase nach Schlüssel
+ gruppiert und somit auf die Reduce-Phase vorbereitet.
  Da vor der Shuffle-Phase alle MapTasks ausgeführt werden sein müssen, gilt
- dies als Bottleneck von MapReduce.Nach der Shuffle-Phase beginnt der Master
- damit die einzelnen ReduceTasks, bestehend aus einer Instanz der ReduceInstruct
-ion und einem Teil der Shuffle Resultate, zu erstellen und diese wieder
- dem Pool zu übergeben.
+ dies als Bottleneck von MapReduce.
+ Nach der Shuffle-Phase beginnt der Master damit die einzelnen ReduceTasks,
+ bestehend aus einer Instanz der ReduceInstruction und einem Teil der Shuffle
+ Resultate, zu erstellen und diese wieder dem Pool zu übergeben.
  Dann beginnt der Pool wieder diese ReduceTasks den verfügbaren Worker zuzuteile
 n und der Master wartet wiederum auf deren Fertigstellung.
- Sobald auch diese fertig sind, ist die ganze MapReduce Berechnung fertig.
+ Sobald auch diese fertig sind, ist die MapReduce Berechnung abgeschlossen.
 \end_layout
 
 \begin_layout Subsection
@@ -2094,12 +2518,10 @@ Ablauf bei verteilter Berechnung
 
 \begin_layout Standard
 Für das Ausführen von verteilen Berechnungen haben wir das Framework SIMON
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-http://dev.root1.de/projects/simon
-\end_layout
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SIMON_Home"
 
 \end_inset
 
@@ -2111,8 +2533,15 @@ http://dev.root1.de/projects/simon
  entfernte Instanz, auf dem Server genauso wie ein gewöhnlicher Thread als
  Worker im Pool registriert.
  Die konkrete Implementation dieses Workers ruft aber, anstatt den Task
- direkt auszuführen, via RPC eine Methode auf dem Client auf und übermittelt
- im die Instruktion mit zugehörigen Eingabewerten.
+ direkt auszuführen, via Remote Procedure Call 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RPC_Wiki"
+
+\end_inset
+
+ eine Methode auf dem Client auf und übermittelt im die Instruktion mit
+ zugehörigen Eingabewerten.
 \end_layout
 
 \begin_layout Standard
@@ -2143,10 +2572,6 @@ Interaktion von Client und Server
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -2161,8 +2586,19 @@ Auf dem Client wartet ein sogenannter SocketAgent ständig darauf, dass er
  und meldet dem Pool, dass er wieder Arbeit aufnehmen kann.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Ergebnisse
+\end_layout
+
+\begin_layout Subsection
+Anwendung der Applikation
 \end_layout
 
 \begin_layout Subsection
@@ -2170,7 +2606,31 @@ Durchführung
 \end_layout
 
 \begin_layout Subsection
+Auswertung der gefundenen Gruppen
+\end_layout
+
+\begin_layout Subsection
 Schlusswort
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Nutzen der Implementation vs Framework
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -2196,8 +2656,8 @@ Apendix
 \begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
-bibfiles "acompat"
-options "plain"
+bibfiles "Quellen"
+options "alphadin"
 
 \end_inset
 

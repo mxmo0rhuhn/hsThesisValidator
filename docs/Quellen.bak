@@ -1,0 +1,19 @@
+% This file was created with JabRef 2.9.2.
+% Encoding: UTF-8
+
+@ELECTRONIC{CancellationLawsProofWiki,
+  title = {Rechtsauslöschung im Proofwiki},
+  note = {Stand 30.05.2013},
+  url = {http://www.proofwiki.org/wiki/Cancellation_Laws},
+  owner = {mo0rhuhn},
+  timestamp = {2013.05.30}
+}
+
+@ELECTRONIC{Wiki_Satz,
+  title = {Satz auf Wikipedia},
+  note = {Stand 30.05.2013},
+  url = {http://de.wikipedia.org/wiki/Satz_(Mathematik)},
+  owner = {mo0rhuhn},
+  timestamp = {2013.05.30}
+}
+
