@@ -10,6 +10,13 @@
   timestamp = {2013.05.30}
 }
 
+@ELECTRONIC{Bitbucket_Home,
+  title = {Bitbucket Homepage},
+  url = {https://bitbucket.org},
+  owner = {mo0rhuhn},
+  timestamp = {2013.06.01}
+}
+
 @ELECTRONIC{CancellationLawsProofWiki,
   title = {Rechtsausloeschung im Proofwiki},
   note = {Stand: 30.05.2013},
