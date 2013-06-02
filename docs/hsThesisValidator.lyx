@@ -2160,14 +2160,14 @@ name "sub:Prüfen-der-Axiome"
 Das CPU-intensive überprüfen der Strukturen, welche möglicherweise die Axiome
  erfüllen, wurde als MAP-Funktion definiert.
  Dabei werden den einzelnen rechnenden Einheiten, im folgenden Worker genannt,
- jeweils eine Anzahl an Permutationen der Additionstabelle und ein 
+ jeweils eine Anzahl an Permutationen der Verknüpfungstabelle und ein 
 \begin_inset Formula $n$
 \end_inset
 
  im Sinne der derzeit vorhandenen Anzahl an verschiedenen Elementen als
  Input übergeben.
  Die Worker führen dann die Überprüfung der Axiome durch, indem sie jeweils
- für alle Additionstabellen in ihrem Bereich alle möglichen Inversentabellen
+ für alle Verknüpfungstabellen in ihrem Bereich alle möglichen Inversentabellen
  mit allen möglichen neutralen Elementen prüfen.
 \end_layout
 
@@ -2177,7 +2177,7 @@ Hierbei gibt es Vereinfachungen, die inhaltlich korrekt sind jedoch die
 \end_layout
 
 \begin_layout Itemize
-Sowohl die Additions- wie auch die Permutationstabelle werden nicht immer
+Sowohl die Verknüpfungs- wie auch die Inversentabellen werden nicht immer
  vollständig vor der Prüfung der Axiome aufgestellt, sondern nur bei Bedarf
  bei Bedarf durch die oben beschriebene Algorithmus (
 \begin_inset CommandInset ref
@@ -2195,13 +2195,13 @@ reference "sub:Generieren-der-Wertetabellen"
 
 ) generiert.
  Das heisst der Rechenaufwand wird substantiell reduziert da bei einer Prüfung
- der Axiome im Normalfall nur ein quasi vernachlässigbarer Teil der Additionstab
-elle und, abhängig von Erfolg oder Misserfolg der Überprüfungen, auch nur
- ein minimer Teil der Inversentabelle benötigt wird.
+ der Axiome im Normalfall nur ein quasi vernachlässigbarer Teil der Verknüpfungs
+tabelle und, abhängig von Erfolg oder Misserfolg der Überprüfungen, auch
+ nur ein minimer Teil der Inversentabelle benötigt wird.
 \end_layout
 
 \begin_layout Itemize
-Für eine gegebene Additions- und Inversen-Tabellenkombination wird jeweils
+Für eine gegebene Verknüpfungs- und Inversen-Tabellenkombination wird jeweils
  nur das neutrale Element, das für den ersten Eintrag in der Inversentabelle
  berechnet wurde, geprüft.
  Da per Definition nur ein neutrales Element für eine spezifische Kombination
@@ -2220,7 +2220,7 @@ Die Ausgabe der Map-Funktion sind schlussendlich alle Gruppen auf die die
 \end_layout
 
 \begin_layout Itemize
-Die eindimensionale Repräsentation der Additionstabelle als String.
+Die eindimensionale Repräsentation der Verknüpfungstabelle als String.
  
 \end_layout
 
@@ -3193,6 +3193,13 @@ status open
 
 \begin_layout Subsection
 Auswertung der gefundenen Gruppen
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Auswertung-der-gefundenen"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3221,7 +3228,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Tabular
@@ -3577,7 +3584,7 @@ Erste gefundene Gruppe
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Tabular
@@ -3929,10 +3936,13 @@ Zweite gefundene Gruppe
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Tabular
@@ -4298,21 +4308,91 @@ Vergleich der Gruppen mit drei Elementen
 
 \end_layout
 
+\begin_layout Standard
+Wie leicht erkennbar entspricht die erste gefundene Gruppe, wenn man die
+ Verknüpfung als Addition interpretiert der Gruppe aus der Restklasse 3
+ und der Addition.
+ Verdeutlicht durch die farbliche Hervorhebung ist offensichtlich, dass
+ in allen gefundenen Gruppen die innere Struktur der Verknüpfungs- und Inversent
+abelle identisch ist.
+ Diese Einsicht ist hochgeradig ernüchternd, da erstens aus über 19'000
+ Untersuchten Kombinationen nur drei Gruppen resultieren und diese dann
+ zweitens auch noch eine identische Struktur aufweisen, man also somit sagen
+ kann, dass sie für die Untersuchung des Satzes äquivalent sind.
+ Ohne dies hier näher untersuchen zu wollen, drängt sich der Verdacht auf,
+ dass die 16 gefunenen Gruppen aus den über vier Miliarden untersuchten
+ möglichen Verknüpfungen mit 4 Elementen, ebenfalls von der Inneren Struktur
+ her, weitestgehend oder vollstänfig identisch sind.
+ 
+\end_layout
+
 \begin_layout Subsection
 Schlusswort
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Nutzen der Implementation vs Framework
+Die Arbeit an diesem Software-Projekt war hochgradig spannend und von vielen
+ neuen Erkenntnissen sowie interessanten Erfahrungen geprägt.
+ Die von uns gewählte Vertiefung bereuten wir, trotzdem sie anfänglich nicht
+ die favorisierte Wahl war, zu keinem Zeitpunkt.
+ Das konstante Ziel mit Hilfe der ZHAW Infrastruktur einmal einen eigenen
+ Cluster zu realisieren war zu sehr motivierend.
+ Daher stellte es auch kein so grosses Problem dar (weit) über den anfänglich
+ geplanten Zeitumfang hinaus zu schiessen.
 \end_layout
+
+\begin_layout Standard
+Die vielen Teilerfolge, welche schlussendlich sogar vom maximalen Ziel gekrönt
+ werden konnten erhielten eine in weiten teilen recht hohe Begeisterung
+ aufrecht die sich schlussendlich in der Implementation merklich niederschlug.
+ Das Letztlich entstandene Framework und die prototypische Anwendung für
+ den Gültigkeitsbeweis erfüllen uns somit mit einigem Stolz.
+ 
+\end_layout
+
+\begin_layout Standard
+Schade ist nur, dass trotz all der Rechenleistung keine besonders weitreichenden
+ Erkenntnisse zur Gültigkeit der Rechtsauslöschung gewonnen werden konnten.
+ Dass mit dem enormen Aufwand, das Framework von einfacher Paralelisierung
+ auf einem Rechner zur echt verteilten Berechnung auf nahezu beliebig vielen
+ Rechnern umzuschreiben, nur Gruppen mit einem Element mehr gefunden werden
+ konnten, dämpfte am Ende des Projektes die Euphorie geringfügig.
+ Zu trivial für die investierte Mühe erscheinen die gewonnenen Erkenntnisse.
+ Gerade unter dem Aspekt, dass die Gruppen wie im Kapitel 
+\begin_inset Quotes pld
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "sub:Auswertung-der-gefundenen"
 
 \end_inset
 
 
+\begin_inset Quotes prd
+\end_inset
+
+ intern eine enorme Ähnlichkeit aufweisen und somit nach ersten Überlegungen
+ extrem einfach konstruiert werden könnten lässt den investierten Rechenaufwand
+ unnötig erscheinen.
+\end_layout
+
+\begin_layout Standard
+Eine andere Gruppe des Software Projektes war von der Idee sehr angetan
+ das von uns geschriebene Framework im für die Lösung eines Teilproblemes
+ ihrer Aufgabenstellung ebenfalls einzusetzen, musste dies dann jedoch aus
+ Zeitmangel unterlassen.
+ Diese Überlegung unterstützten wir mit viel Begeisterung, da sie unser
+ Framework wohl noch mit anderen Problemstellungen als den jetzt bereits
+ bekannten konfrontiert hätte.
+ Obgleich dieser Schritt leider nicht bereits im Rahmen dieses Softwareprojektes
+ getätigt werden konnte, sind wir der Überzeugung, dass das von uns Geschaffene
+ auch zukünftig, sei es im Rahmen von Fächern wie Wissenschaftlichem Rechnen
+ oder auch im Rahmen von Arbeiten wie der Semester- oder Bachelor-Arbeit,
+ von Nutzen sein kann.
+ Auf den Augenblick, an dem die Software für einen in eigener Cluster von
+ Vorteil sein wird freuen wir uns jedenfalls schon jetzt.
 \end_layout
 
 \begin_layout Standard
