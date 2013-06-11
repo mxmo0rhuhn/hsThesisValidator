@@ -328,8 +328,8 @@ map\footnote{Schreibweise:\, a\, ist\, ein\, Element\, aus\, einer\, Menge\, A}:
 \begin_layout Standard
 Die Map Funktion bildet eine Menge von Elementen elementweise auf eine neue
  Menge ab.
- Dazu müssen ihr zwei Parameter übergeben werden – eine Funktion, welche
- eine Element aus der Menge 
+ Dazu muss ihr zwei Parameter übergeben werden: Eine Funktion, welche ein
+ Element aus der Menge 
 \begin_inset Formula $A$
 \end_inset
 
@@ -496,7 +496,7 @@ n.
  Eine parallele Verarbeitung ist nur möglich, wenn die Reduce Funktion assoziati
 v ist.
  In diesem Fall könnte die Reduce-Phase in einer Art Baum-Struktur ausgeführt
- werden – auf solche für das verständnis nicht förderlichen Details soll
+ werden; auf solche für das verständnis nicht förderlichen Details soll
  jedoch im folgenden nicht weiter eingegangen werden.
 \end_layout
 
@@ -672,14 +672,14 @@ Es gibt verschiedene Strukturen, die diese Eigenschaften haben.
 \end_layout
 
 \begin_layout Standard
-Es gibt weit mehr Strukturen, die als Gruppe eingestuft werden können.
- Es ist zum Beispiel durch stupides ausprobieren, also mechanische Arbeit,
- die bestens für einen Computer geeignet ist, da sie strikt regelgesteuert
- abläuft, möglich diese zu finden.
+Weitere Strukturen zu finden, welche diese Eigenschaften haben, ist durch
+ ausprobiere möglich.
+ Diese mechanische Arbeit eignet sich bestens für einen Computer, da sie
+ strikt regelgesteuert abläuft.
  Genau dies soll der erste Schritt unserer Arbeit sein.
- Natürlich gibt es unendlich viele Möglichkeiten für Gruppen, daher ist
- es klar, dass wir mit unseren Berechnungen nur einen gewissen Bereich abdecken
- können.
+ Natürlich gibt es schon bei nur wenigen Elementen sehr viele Knadidaten
+ für mögliche Gruppen, daher ist es klar, dass wir mit unseren Berechnungen
+ nur einen gewissen Bereich abdecken können.
  Jedoch ist dieser Bereich enorm klein, da bereits bei wenigen Elementen
  eine enorme Rechenleistung, welche sequenziell de facto unerreichbar wäre,
  erforderlich ist.
@@ -688,20 +688,69 @@ Es gibt weit mehr Strukturen, die als Gruppe eingestuft werden können.
 \end_layout
 
 \begin_layout Subsubsection
-Satz
+Prädikatenlogik erster Stufe
 \end_layout
 
-\begin_layout Quotation
-Ein Satz oder Theorem ist in der Mathematik eine widerspruchsfreie logische
- Aussage, die mittels eines Beweises als wahr erkannt, das heißt, aus Axiomen
- und bereits bekannten Sätzen hergeleitet werden kann.
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Satz_Wiki"
+\begin_layout Standard
+Semantischer Aspekt: Die Axiome, welche ein mathematisches Konzept, in unserem
+ Beispiel das das Konzept “Gruppe” beschreiben, sind als Formeln in einer
+ prädikatenlogischen Sprache 1.
+ Stufe notiert.
+ Die Gesamtheit dieser Axiome nennen wir eine Theorie.
+ in unserem Beispiel die Theorie der Gruppen.
+ Die Sprache (Signatur), in welcher diese Theorie formuliert ist, enthält
+ ein 2-stelliges Funktionszeichen (“ ° “ für die Verknüpfung) und ein Konstanten
+zeichen ( “0” für das Neutralelement bei dieser Verknüpfung).
+ Eine Interpretation dieser Sprache ist eine Struktur bestehend aus einer
+ Menge S von Objekten, einer 2-stelligen Funktion, welche je 2 Elementen
+ aus S ein Element aus S zuordnet als Interpretation von “ ° “ und einem
+ Element aus S als Interpretation von “ 0 “.
+ Ein Modell der Theorie ist eine Interpretation, für welche die Axiome der
+ Theorie gültig sind (im Sinne von nachrechenbar richtig), in unserem Beispiel
+ also eine Gruppe.
+ Unter dem Aspekt der Gültigkeit ist ein Satz der Theorie eine Formel, welche
+ bei jedem Modell der Theorie gültig ist.
+\end_layout
 
-\end_inset
+\begin_layout Standard
+In diesem Projekt soll als Beispiel die Gültigkeit des Satzes der Rechtsauslösch
+ung für Modelle mit 3 Elementen nachgewiesen werden.
+ Dazu werden alle möglichen Interpretationen der verwendeten Sprache mit
+ einer Grundmenge aus 3 Elementen anhand der Axiome daraufhin geprüft, ob
+ sie Modelle der Theorie sind und falls dies zutrifft, ob damit auch der
+ zu prüfende Satz erfüllt ist.
+ “Im Vorbeiweg” werden so alle Modelle der Gtuppentheorie mit 3 Elementen
+ ermittelt.
+ Da es davon bekanntlich bis auf Isomorphie nur eines gibt, werden die gefundene
+n Modelle alle isomorph zur Struktur “Restklassen modulo 3” sein.
+\end_layout
 
+\begin_layout Subsubsection
+Syntaktischer Aspekt
+\end_layout
 
+\begin_layout Standard
+Unter dem Aspekt der Beweisbarkeit ist ein Satz der Theorie eine Formel,
+ welche aus den Axiomen der Theorie und bereits bekannten Sätzen durch logische
+ Schlussfolgerung beweisbar ist.
+ [Sat] Ein Beweis erfolgt durch Anwenden von gegebenen Regeln für Beweisschritte
+ (z.B.
+ Sequenzenkalkül nach Gentzen) http://de.wikipedia.org/wiki/Sequenzenkalkül
+\end_layout
+
+\begin_layout Standard
+Bei einer widerspruchsfrteien Theorie sind alle beweisbaren Sätze gültig,
+ bei einer vollständigen Theorie sind alle gültigen Sätze beweisbar.
+ Die Untersuchung dieser Eigenschaften von formalen Systemen spielt bei
+ der Beschäftigung mit den Grundlagen der Mathematik eine wichtige Rolle.
+ (z.B.
+ Gödelscher Unvollständigkeitssatz: Jedes hinreichend mächtige formale System
+ ist entweder widersprüchlich oder unvollständig.) http://de.wikipedia.org/wiki/Göd
+elscher_Unvollständigkeitssatz
+\end_layout
+
+\begin_layout Subsubsection
+Beispiel eines zu prüfenden Satzes
 \end_layout
 
 \begin_layout Standard
@@ -709,17 +758,8 @@ Nachdem wir mittels des MapReduce Frameworks irgendwelche Strukturen gefunden
  haben, welche, eventuell per Zufall, die Axiome einer Gruppe erfüllen,
  können wir in einem zweiten Schritt noch prüfen, ob für diese auch bestimmte
  Sätze zutreffen.
- Im Gegensatz zu den Gruppen-Axiomen gibt es keine definierte Menge an Sätzen,
- welche für eine Gruppe gültig sind.
- Es werden ständig neue Sätze gefunden und ausserdem existieren Sätze, für
- die noch nicht allgemeingültig bewiesen werden konnte, dass sie für sämtliche
- Gruppen gelten, für die aber ebenso noch kein Gegenbespiel oder Gegebeweis
- gefunden werden konnte.
- Trotzdem wir mit den vorhandenen Mitteln keine allgemeingültigen Beweise
- führen können, ist es mit genügend Rechenleistung ein Ansatz nach Gegenbespiele
-n, also bestimmte Konstellationen von Mengen und Verknüpfungen, welche zwar
- eine Gruppe sind, aber einen bestimmten Satz nicht erfüllen, zu suchen.
- Ein Beispiel eines Satzes, ist der Satz der Rechtsauslöschung:
+ Ein Beispiel eines Satzes aus der Gruppentheorie ist der Satz der Rechtsauslösc
+hung:
 \end_layout
 
 \begin_layout Verse
@@ -759,7 +799,7 @@ name "sub:Generieren-von-Gruppen"
 
 \begin_layout Standard
 Es gibt unendlich viele Mengen und darauf mögliche Verknüpfungen.
- In unserer Implementation kann bei Programmstart angegeben werden nach
+ In unserer Implementation kann bei Programmstart angegeben werden, nach
  Mengen mit wie vielen Elementen gesucht werden soll
 \begin_inset Foot
 status collapsed
@@ -2100,7 +2140,7 @@ Auf den folgenden Zeilen fünf und sechs wird die Variable
 \begin_layout Standard
 Wenn sämtliche Elemente dieser Gruppe links- und rechtsneutral sind, wird
  die Schleife verlassen und die Funktion erreicht die Zeile Nr.8, in der
- der boolsche Wert 'wahr' zurückgegeben wird.
+ der boolesche Wert 'wahr' zurückgegeben wird.
  Dies bedeutet, dass das Element 
 \begin_inset Formula $e$
 \end_inset
@@ -2246,7 +2286,7 @@ In der Reduce-Phase wird für die, relativ zur Menge der möglichen Gruppen,
  enorm kleine Menge an effektiven Gruppen der Satz jeweils geprüft.
  Als Output gibt sie die Gruppen für die der Satz nicht zutrifft.
  Da anzunehmen ist, dass somit der Output immer leer ist, kann er auch als
- booleanscher Wahrheitswert interpretiert werden:
+ boolescher Wahrheitswert interpretiert werden:
 \end_layout
 
 \begin_layout Itemize
