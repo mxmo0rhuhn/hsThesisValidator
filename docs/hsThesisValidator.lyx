@@ -26,7 +26,7 @@ float=h
 \use_default_options true
 \maintain_unincluded_children false
 \language german-ch
-\language_package auto
+\language_package default
 \inputencoding auto
 \fontencoding global
 \font_roman default
@@ -113,6 +113,12 @@ Reto Hablützel, Max Schrimpf
 \end_layout
 
 \begin_layout Standard
+\align center
+Betreut durch Albert Heuberger
+\end_layout
+
+\begin_layout Standard
+\align center
 \begin_inset Newpage pagebreak
 \end_inset
 
@@ -144,8 +150,8 @@ Aufgabenstellung
 \end_layout
 
 \begin_layout Quote
-Es soll augehend von einem gegebenen einfachen Axiomensystem (z.B “Gruppe”)
- ein einfacher Satz einereits bewiesen werden und anderseits seine “Gültigkeit”
+Es soll ausgehend von einem gegebenen einfachen Axiomensystem (z.B “Gruppe”)
+ ein einfacher Satz einerseits bewiesen werden und anderseits seine “Gültigkeit”
  illustriert werden.
  Ein Beweis soll entlang von gegebenen formalisierten Schlussregeln erfolgen,
  von der Gültigkeit soll man sich mittels “durchrechnen” überzeugen, bei
@@ -156,7 +162,7 @@ Es soll augehend von einem gegebenen einfachen Axiomensystem (z.B “Gruppe”)
 \begin_layout Standard
 Ausgehend von dieser vorgegebenen Aufgabenstellung soll in der vorliegenden
  Projektarbeit eine Implementation mit der Fähigkeit die Gültigkeit eines
- Axiomsystemes in den Grundsätzen zu bewisen, erarbeitet werden.
+ Axiomsystemes in den Grundsätzen zu beweisen, erarbeitet werden.
  Durch das enorme Wachstum der Ausgangswerte sind dabei schon relativ kleine
  Systeme mit bedeutendem Rechenaufwand verbunden, weshalb ein sinnvoller
  Ansatz zum Umhang mit rechenintensiven Aufgaben gefunden werden muss.
@@ -166,7 +172,7 @@ Ausgehend von dieser vorgegebenen Aufgabenstellung soll in der vorliegenden
 \begin_layout Standard
 Die genaue Schwerpunktsetzung bei der Umsetzung und das Vorgehen war dabei
  durch die offene Aufgabenstellung dem Projektteam überlassen.
- Vorgegeben war mur die Implementation eines automatisierten Gültigkeitsbeweises
+ Vorgegeben war nur die Implementation eines automatisierten Gültigkeitsbeweises
  des Satzes zur Rechtsauslöschung in Gruppen.
 \end_layout
 
@@ -184,7 +190,7 @@ Algorithmen und Datenstrukturen
 \end_inset
 
  mit dem Thema MapReduce beschäftigen.
- Dazu hatten wir, anhand des Entwrufsmuster (
+ Dazu hatten wir, anhand des Entwurfsmuster (
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sub:MapReduce"
@@ -289,7 +295,7 @@ Google Suche
 \end_inset
 
  konfrontiert.
- Hierbei muss quasi das gesammte Internet indexiert werden und durchsucht
+ Hierbei muss quasi das gesamte Internet indexiert werden und durchsucht
  werden um es für die Suche in geeigneter Form aufzubereiten.
  
 \end_layout
@@ -302,14 +308,14 @@ Um ein Programm so zu entwickeln, dass es auf einer verteilten Architektur
  Problem in zwei nur Phasen zu definieren ohne sich Gedanken um die anschliessen
 de Verteilung und Berechnung machen zu müssen.
  So kümmert sich das Framework zum Beispiel darum, was passiert, wenn eine
- Maschine ausfällt oder wie die einzelnen Arbeittsschritte auf die verschiedenen
+ Maschine ausfällt oder wie die einzelnen Arbeitsschritte auf die verschiedenen
  Maschinen aufgeteilt werden.
 \end_layout
 
 \begin_layout Standard
-Die zwei Phasen des Entwurfsmusters sind, wie der Name berieits suggeriert,
- Map und Reduce (mit einer eine optionalen, zwischenliegenden, für das Verständn
-is irrelevanten Combiner Phase).
+Die zwei Phasen des Entwurfsmusters sind, wie der Name bereits suggeriert,
+ Map und Reduce (mit einer eine optionalen, zwischen liegenden, für das
+ Verständnis irrelevanten Combiner Phase).
  In diesen Phasen werden im Wesentlichen die beiden Funktionen Map und Reduce
  aufgerufen, welche hier kurz erklärt werden sollen.
 \end_layout
@@ -380,7 +386,7 @@ Die Reduce Funktion bildet eine Menge
 \begin_inset Formula $b$
 \end_inset
 
- zurückgibt.
+ zurück gibt.
  Als zweiten Parameter erhält die Reduce Funktion einen initialen Wert für
  den Akkumulator und als dritten und letzten Parameter die Menge 
 \begin_inset Formula $B$
@@ -392,7 +398,7 @@ Die Reduce Funktion bildet eine Menge
 \end_inset
 
  und dem Akkumulator aufgerufen.
- Dabei ist das Resulat der Funktion jeweils der neue Wert für den Akkumulator.
+ Dabei ist das Resultat der Funktion jeweils der neue Wert für den Akkumulator.
  Sobald die ganze Liste traversiert wurde, ist der Wert vom Akkumulator
  das Resultat.
 \end_layout
@@ -496,12 +502,12 @@ n.
  Eine parallele Verarbeitung ist nur möglich, wenn die Reduce Funktion assoziati
 v ist.
  In diesem Fall könnte die Reduce-Phase in einer Art Baum-Struktur ausgeführt
- werden; auf solche für das verständnis nicht förderlichen Details soll
+ werden; auf solche für das Verständnis nicht förderlichen Details soll
  jedoch im folgenden nicht weiter eingegangen werden.
 \end_layout
 
 \begin_layout Standard
-Hier ein Beispiel umd die Idee der zwei Phasen des MapReduce zu verdeutlichen.
+Hier ein Beispiel um die Idee der zwei Phasen des MapReduce zu verdeutlichen.
  Wir definieren ein initiale Menge an Elementen 
 \end_layout
 
@@ -677,18 +683,29 @@ Weitere Strukturen zu finden, welche diese Eigenschaften haben, ist durch
  Diese mechanische Arbeit eignet sich bestens für einen Computer, da sie
  strikt regelgesteuert abläuft.
  Genau dies soll der erste Schritt unserer Arbeit sein.
- Natürlich gibt es schon bei nur wenigen Elementen sehr viele Knadidaten
+ Natürlich gibt es schon bei nur wenigen Elementen sehr viele Kandidaten
  für mögliche Gruppen, daher ist es klar, dass wir mit unseren Berechnungen
  nur einen gewissen Bereich abdecken können.
  Jedoch ist dieser Bereich enorm klein, da bereits bei wenigen Elementen
  eine enorme Rechenleistung, welche sequenziell de facto unerreichbar wäre,
  erforderlich ist.
- Genau hier kommt unser MapReduce Framework zur paralellen Berechnung ins
+ Genau hier kommt unser MapReduce Framework zur parallelen Berechnung ins
  Spiel.
 \end_layout
 
 \begin_layout Subsubsection
 Prädikatenlogik erster Stufe
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Die vertiefende Erläuterungen in diesem Abschnitt stammen vom Betreuer Albert
+ Heuberger 
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -719,7 +736,7 @@ ung für Modelle mit 3 Elementen nachgewiesen werden.
  einer Grundmenge aus 3 Elementen anhand der Axiome daraufhin geprüft, ob
  sie Modelle der Theorie sind und falls dies zutrifft, ob damit auch der
  zu prüfende Satz erfüllt ist.
- “Im Vorbeiweg” werden so alle Modelle der Gtuppentheorie mit 3 Elementen
+ “Im Vorbeiweg” werden so alle Modelle der Gruppentheorie mit 3 Elementen
  ermittelt.
  Da es davon bekanntlich bis auf Isomorphie nur eines gibt, werden die gefundene
 n Modelle alle isomorph zur Struktur “Restklassen modulo 3” sein.
@@ -727,26 +744,57 @@ n Modelle alle isomorph zur Struktur “Restklassen modulo 3” sein.
 
 \begin_layout Subsubsection
 Syntaktischer Aspekt
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Die vertiefende Erläuterungen in diesem Abschnitt stammen vom Betreuer Albert
+ Heuberger 
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 Unter dem Aspekt der Beweisbarkeit ist ein Satz der Theorie eine Formel,
  welche aus den Axiomen der Theorie und bereits bekannten Sätzen durch logische
  Schlussfolgerung beweisbar ist.
- [Sat] Ein Beweis erfolgt durch Anwenden von gegebenen Regeln für Beweisschritte
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Satz_Wiki"
+
+\end_inset
+
+ Ein Beweis erfolgt durch Anwenden von gegebenen Regeln für Beweisschritte
  (z.B.
- Sequenzenkalkül nach Gentzen) http://de.wikipedia.org/wiki/Sequenzenkalkül
+ Sequenzenkalkül nach Gentzen) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Seq_Wiki"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Bei einer widerspruchsfrteien Theorie sind alle beweisbaren Sätze gültig,
+Bei einer widerspruchsfreien Theorie sind alle beweisbaren Sätze gültig,
  bei einer vollständigen Theorie sind alle gültigen Sätze beweisbar.
  Die Untersuchung dieser Eigenschaften von formalen Systemen spielt bei
  der Beschäftigung mit den Grundlagen der Mathematik eine wichtige Rolle.
  (z.B.
  Gödelscher Unvollständigkeitssatz: Jedes hinreichend mächtige formale System
- ist entweder widersprüchlich oder unvollständig.) http://de.wikipedia.org/wiki/Göd
-elscher_Unvollständigkeitssatz
+ ist entweder widersprüchlich oder unvollständig.) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Goedel_Wiki"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -814,7 +862,7 @@ Aus technischen Gründen war es jedoch nötig die mögliche Anzahl an Elementen
 .
  Um Gruppen zu finden, haben wir einen Algorithmus implementiert, welcher
  alle möglichen zweistelligen Verknüpfungen auf einer endlichen Menge generiert.
- Grafisch können diese Verknüpfungen als Wertetabellen interpreiert werden.
+ Grafisch können diese Verknüpfungen als Wertetabellen interpretiert werden.
  So wie bei diesen Beispielen für mögliche Verknüpfungen mit zwei Elementen:
 \end_layout
 
@@ -1185,7 +1233,7 @@ Weitere mögliche Wertetabellen einer Verknüpfung
 Insgesamt gibt es 16 mögliche Permutationen für Wertetabellen von zweistellige
  Verknüpfungen bei einer Menge aus 2 Elementen.
  Für eine Menge aus 3 Elementen sind es Bereits 19 683.
- Allgemein fomuliert besitzt eine Menge mit 
+ Allgemein formuliert besitzt eine Menge mit 
 \begin_inset Formula $n$
 \end_inset
 
@@ -1588,7 +1636,7 @@ Für eine Gruppe aus zwei Elementen gibt es also 4 mögliche Wertetabellen
 \begin_inset Formula $2^{n}$
 \end_inset
 
- Möglichkeiten für einstellige Verknüpgungen aus Gruppen mit 
+ Möglichkeiten für einstellige Verknüpfungen aus Gruppen mit 
 \begin_inset Formula $n$
 \end_inset
 
@@ -1629,7 +1677,7 @@ Datenstruktur der Wertetabellen
 \end_layout
 
 \begin_layout Standard
-Bereits für Mengen mit drei Elementen gibt es, wie oben gezeitgt, bei der
+Bereits für Mengen mit drei Elementen gibt es, wie oben gezeigt, bei der
  zweistelligen Verknüpfung tausende von Möglichkeiten.
  Da wir die Prüfung der Axiome, spätestens für die Berechnung von Gruppen
  aus einer vier-Elementigen Menge, verteilen müssen, gilt es einerseits
@@ -1643,7 +1691,7 @@ Bereits für Mengen mit drei Elementen gibt es, wie oben gezeitgt, bei der
 
 \begin_layout Standard
 Nehmen wir als Beispiel die Menge mit zwei Elementen.
- Bei genauerer Betrachtung einer Wertetablle sieht man, dass diese anstatt
+ Bei genauerer Betrachtung einer Wertetabelle sieht man, dass diese anstatt
  zweidimensional auch eindimensional interpretiert werden könnte
 \end_layout
 
@@ -1880,7 +1928,7 @@ mit der oben beschriebenen Funktion
 
 interpretiert.
  Allgemein können also alle Wertetabellen zweistelliger Verknüpfungen somit
- durch einfache Addition der 1 als zahl in ihrem jeweils korrospondierenden
+ durch einfache Addition der 1 als zahl in ihrem jeweils korrespondierenden
  Stellenwertsystem interpretiert werden.
 \end_layout
 
@@ -1947,7 +1995,7 @@ In einer Gruppe gibt es ein Element e, welches, wenn es mit irgendeinem
 Da es in Java keine Quantoren gibt, mussten wir Schleifen nutzen, um die
  Axiome zu implementieren.
  Mittels der folgenden Methode wird für ein bestimmtes Element e geprüft,
- ob es das neutrale Element zweistellligen Verknüpfung für eine Gruppe mit
+ ob es das neutrale Element zweistelligen Verknüpfung für eine Gruppe mit
  
 \begin_inset Formula $n$
 \end_inset
@@ -2051,7 +2099,7 @@ Der Identifikator für die zweistellige Wertetabelle, welcher auch als Ganzzahl
 \end_layout
 
 \begin_layout Enumerate
-Das vermeindlich neutrale Element, für welches diese Funktion prüft, ob
+Das vermeintlich neutrale Element, für welches diese Funktion prüft, ob
  es wirklich das neutrale Element ist.
  
 \end_layout
@@ -2104,12 +2152,12 @@ reference "sub:Generieren-der-Wertetabellen"
 \begin_inset Formula $e$
 \end_inset
 
- bereits linksneutral.
+ bereits links neutral.
  Falls 
 \begin_inset Formula $e$
 \end_inset
 
- es nicht linksneutral ist, wird die Funktion sofort abgebrochen, da das
+ es nicht links neutral ist, wird die Funktion sofort abgebrochen, da das
  Prädikat einen Allquantor beinhaltet und es somit für alle Elemente gelten
  muss.
  
@@ -2120,8 +2168,8 @@ Auf den folgenden Zeilen fünf und sechs wird die Variable
 \begin_inset Formula $a$
 \end_inset
 
- nochmals mit dem vermeindlich neutralen Element verknüft um die Rechtsneutralit
-ät zu überprüfen (daher sind hier die Parameter 
+ nochmals mit dem vermeintlich neutralen Element verknüpft um die Rechtsneutrali
+tät zu überprüfen (daher sind hier die Parameter 
 \emph on
 
 \begin_inset Formula $a$
@@ -2138,7 +2186,7 @@ Auf den folgenden Zeilen fünf und sechs wird die Variable
 \end_layout
 
 \begin_layout Standard
-Wenn sämtliche Elemente dieser Gruppe links- und rechtsneutral sind, wird
+Wenn sämtliche Elemente dieser Gruppe links- und rechts neutral sind, wird
  die Schleife verlassen und die Funktion erreicht die Zeile Nr.8, in der
  der boolesche Wert 'wahr' zurückgegeben wird.
  Dies bedeutet, dass das Element 
@@ -2237,7 +2285,7 @@ reference "sub:Generieren-der-Wertetabellen"
  Das heisst der Rechenaufwand wird substantiell reduziert da bei einer Prüfung
  der Axiome im Normalfall nur ein quasi vernachlässigbarer Teil der Verknüpfungs
 tabelle und, abhängig von Erfolg oder Misserfolg der Überprüfungen, auch
- nur ein minimer Teil der Inversentabelle benötigt wird.
+ nur ein minimaler Teil der Inversentabelle benötigt wird.
 \end_layout
 
 \begin_layout Itemize
@@ -2249,8 +2297,8 @@ Für eine gegebene Verknüpfungs- und Inversen-Tabellenkombination wird jeweils
 llen gelten.
  Sobald ein Eintrag gefunden wurde für den ein anderes neutrales Element
  gelten würde, wird die Berechnung für die vorliegenden Tabellen verworfen
- Auch diese Annahme reduziert substantiell die durchgeführten, nicht zielführend
-en Rechnungen.
+ Auch diese Annahme reduziert substantiell die durchgeführten, nicht ziel
+ führenden Rechnungen.
 \end_layout
 
 \begin_layout Standard
@@ -2265,7 +2313,7 @@ Die eindimensionale Repräsentation der Verknüpfungstabelle als String.
 \end_layout
 
 \begin_layout Itemize
-Die indimensionale Repräsentation der Inversentabelle als String.
+Die eindimensionale Repräsentation der Inversentabelle als String.
 \end_layout
 
 \begin_layout Itemize
@@ -2367,7 +2415,7 @@ n mit bestimmten Eigenschaften, darauf gültige Axiome und daraus resultierend
  Dazu müsste, gleich ob interaktiv oder durch die Auswertung von Eingabedateien,
  eine Eingabesyntax definiert werden und, was wohl die wirkliche Problemstellung
  des Schwerpunktes wäre, eine Auflösung der Syntax und eine darauf basierende
- dynamische Umsezuung in ausführbaren Code.
+ dynamische Umsetzung in ausführbaren Code.
 \end_layout
 
 \begin_layout Standard
@@ -2412,7 +2460,7 @@ Entscheidung
 \end_layout
 
 \begin_layout Standard
-Der auf Anhieb spannendste Schwerpunkt stellte nach der ersten Bertrachtung
+Der auf Anhieb spannendste Schwerpunkt stellte nach der ersten Betrachtung
  die 
 \begin_inset Quotes pld
 \end_inset
@@ -2431,7 +2479,7 @@ Freie Eingabe von auf Gültigkeit zu prüfenden Annahmen
 \begin_layout Standard
 Die Automatisierte Beweisbarkeit zeigte sich bereits bei der ersten Betrachtung
  als eine eher unwahrscheinliche Vertiefung, da der schlussendliche Nutzen
- massiv in Frage gestellt werdern kann.
+ massiv in Frage gestellt werden kann.
  Es wäre zu befürchten, dass eine enorme Menge an Arbeitszeit und Herzblut
  investiert würde um Schlussendlich eine Applikation zu erstellen welche
  Mathematisch völlig irrelevante Sätze herleiten würde.
@@ -2442,7 +2490,7 @@ Die Automatisierte Beweisbarkeit zeigte sich bereits bei der ersten Betrachtung
 Eine Erweiterung des MapReduce Framework erschien hingegen bereits nach
  der ersten Analyse als überschaubares Problem im Sinne der Beherrschbarkeit
  der Problemstellung.
- Zwar ist der mit der Vertiefung verbundene Aufand alles andere als als
+ Zwar ist der mit der Vertiefung verbundene Aufwand alles andere als als
  klein zu erachten, jedoch sollten keine vollkommen unvorhergesehenen Fragestell
 ungen, zu denen ohne eine sehr grosse Menge an Vertiefung keine Lösung gefunden
  werden könnte, auftreten.
@@ -2453,10 +2501,10 @@ Das Kriterium der Beherrschbarkeit gab schlussendlich auch den Ausschlag
  anstatt der Vertiefung Nr.
  2 eine Erweiterung des Frameworkes anzustreben.
  Die Gefahr durch die enorme Komplexität am Ende nur eine mehr prototypisch
- als sinnvolle Implementation eines Programmes zu erstellen schreckte uns
+ als sinnvolle Implementation eines Programms zu erstellen schreckte uns
  ab.
- Desweiteren stellte die Idee mit der gegebenen Infrastruktur der Fachhochschule
- eventuell eine grosse Menge an PCs für einen Feldversuch zu besitzen einen
+ Des weiteren stellte die Idee mit der gegebenen Infrastruktur der Fachhochschul
+e eventuell eine grosse Menge an PCs für einen Feldversuch zu besitzen einen
  grossen Ansporn dar.
 \end_layout
 
@@ -2529,7 +2577,7 @@ key "GUICE_Home"
 
 \end_inset
 
-und für das essentielle Logging die Standardmässige Java Logging API.
+und für das essentielle Logging die standardmässige Java Logging API.
 \end_layout
 
 \begin_layout Standard
@@ -2660,7 +2708,7 @@ Der zentrale MapReduce Server, der die Berechnungen verteilt etc.
 Ein Projekt, das das Framework nutzen will ist hierbei völlig unabhängig
  von Client und Server, da es ausschliesslich die in der API befindlichen
  Interfaces und Klassen einbinden muss.
- Die Konkreten Umsetzungen des API befinden sich davon losgelösst in den
+ Die Konkreten Umsetzungen des API befinden sich davon losgelöst in den
  Client und Server Projekten, von denen eines dem Build Path des Anwendungsproje
 ktes hinzugefügt werden muss
 \begin_inset Foot
@@ -2900,7 +2948,7 @@ reference "sub:MapReduce"
 Pool beginnt wiederum diese ReduceTasks den verfügbaren Worker zuzuteilen
  während der Master wieder auf deren Fertigstellung wartet.
  Sobald auch die ReduceTasks berechnet und ihre Ergebnisse abgeholt sind,
- ist die gesammte MapReduce Berechnung abgeschlossen und das Ergebnis wird
+ ist die gesamte MapReduce Berechnung abgeschlossen und das Ergebnis wird
  zurückgegeben 
 \family sans
 \series bold
@@ -2961,8 +3009,8 @@ key "SIMON_Home"
 \end_inset
 
 .
- Mit Hilfe dieses Frameworks ist es möglch lokale Methoden Aufrufe auf einer
- entfernten Instanz an einem beliebigen Ort im Netzwerk auszuführen.
+ Mit Hilfe dieses Frameworks ist es möglich lokale Methoden Aufrufe auf
+ einer entfernten Instanz an einem beliebigen Ort im Netzwerk auszuführen.
  Damit sich der Master nicht um die Komplexitäten im Zusammenhang mit Remote
  Procedure Call (RPC) 
 \begin_inset CommandInset citation
@@ -2999,9 +3047,9 @@ Die Speicherung der Zwischenergebnisse der einzelnen Berechnungen stellt,
  Die Rahmenbedingungen sind, dass für den Benutzer die Speicherung in den
  einzelnen Instructions immer gleich erscheinen soll, für den Master eine
  schnelle Rückgabe, wenn er die Zwischenergebnisse von einem Task erwartet,
- relevant ist und für Grosse Datenmengen ein Medium gewählt werden muss.
- Diese wiederstrebenden Anforderungen sind wieder mit einer Abstraktion
- gelöst worden: Dem sogenannten Kontext und der Persistenz.
+ relevant ist und für grosse Datenmengen ein Medium gewählt werden muss.
+ Diese widerstrebenden Anforderungen sind wieder mit einer Abstraktion gelöst
+ worden: Dem sogenannten Kontext und der Persistenz.
 \end_layout
 
 \begin_layout Standard
@@ -3047,13 +3095,13 @@ Zur Speicherung von Zwischenergebnissen werden den einzelnen Instructions
  Somit ist es aus Sicht des Tasks und der Instruction nicht transparent
  und nicht relevant, wie gespeichert werden.
  Diese weitere Abstraktion hilft auch enorm bei der Abstraktion des Workers,
- da dieser mit dem Speicherkonzept ansich nicht tangiert wird.
+ da dieser mit dem Speicherkonzept an sich nicht tangiert wird.
 \end_layout
 
 \begin_layout Standard
 Die Kontexte sind an die Existenz der einzelnen Tasks gekoppelt und können
  von Ihnen ausgelesen werden daher müssen sie dem Master für seine Abfrage
- der Ergebisse nicht bekannt sein.
+ der Ergebnisse nicht bekannt sein.
  Ausserdem kann eine Task an einem beliebigen Ort, der ihm einen Kontext
  bietet, so auch auf einer anderen Maschine, ausgeführt werden.
  Intern speichern die Kontexte wiederum ihre Daten in eine wie auch immer
@@ -3064,7 +3112,7 @@ Die Kontexte sind an die Existenz der einzelnen Tasks gekoppelt und können
 Eine Persistenz kümmert sich um die tatsächliche Speicherung und das Auslesen
  der Daten um auch diese Aufgabe zu abstrahieren.
  Daraus folgt, dass zum Beispiel der Master und ein Client für verteilte
- Berechnungen ihre Daten auf unterschiedliche Arten, je nach beschaffenheit
+ Berechnungen ihre Daten auf unterschiedliche Arten, je nach Beschaffenheit
  des Clients, speichern.
 \end_layout
 
@@ -3203,8 +3251,8 @@ Im Maximum kamen somit 38 ZHAW PCs, welche je 5 Worker zur Verfügung stellen
  Dabei kamen wir zu der Erkenntnis, dass die Berechnungen mit 5 Threads
  je PC am schnellsten liefen.
  Diese Beobachtung führt unter dem Gesichtspunkt, dass die PCs jeweils CPU-Kerne
-n bestückt sind, zu der Vermutung, dass die PCs quasi die gesammte Zeit
- am Rechnen waren und kaum Zeit mit anderen Aufgaben wie Netzwerkverbindungen
+n bestückt sind, zu der Vermutung, dass die PCs quasi die gesamte Zeit am
+ Rechnen waren und kaum Zeit mit anderen Aufgaben wie Netzwerkverbindungen
  verbrachten.
  Eine solche Verteilung ist bei verteiltem rechnen natürlich äusserst wünschensw
 ert.

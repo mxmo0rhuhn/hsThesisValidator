@@ -39,6 +39,14 @@
   timestamp = {2013.05.31}
 }
 
+@ELECTRONIC{Goedel_Wiki,
+  title = {Gödelscher Unvollständigkeitssatz auf Wikipedia},
+  note = {Stand 12.06.2013},
+  url = {http://de.wikipedia.org/wiki/Gödelscher_Unvollständigkeitssatz},
+  owner = {mo0rhuhn},
+  timestamp = {2013.06.12}
+}
+
 @ELECTRONIC{GUICE_Home,
   title = {google-guice Hompage},
   url = {http://code.google.com/p/google-guice/},
@@ -67,6 +75,14 @@
   url = {http://de.wikipedia.org/wiki/Satz_(Mathematik)},
   owner = {mo0rhuhn},
   timestamp = {2013.05.30}
+}
+
+@ELECTRONIC{Seq_Wiki,
+  title = {Sequenzenkalkül auf Wikipedia},
+  note = {Stand 12.06.2013},
+  url = {http://de.wikipedia.org/wiki/Sequenzenkalkül},
+  owner = {mo0rhuhn},
+  timestamp = {2013.06.12}
 }
 
 @ELECTRONIC{SIMON_Home,
