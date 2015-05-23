@@ -38,6 +38,7 @@ public class ProjectLauncher {
 
 		// Pfad, an dem die Output Files gespeichert werden
 		String path = System.getProperty("java.io.tmpdir");
+        String gui = "no";
 		File outDirectory = null;
 
 		// Wert, bei dem die Berechnung startet
@@ -55,7 +56,8 @@ public class ProjectLauncher {
 			startValue = Integer.parseInt(prop.getProperty("start"));
 			stopValue = Integer.parseInt(prop.getProperty("stop"));
 			path = prop.getProperty("path");
-			
+            gui = prop.getProperty("gui", "no");
+
 			offset = Integer.parseInt(prop.getProperty("permoffset"));
 
 		} catch (IOException e) {
@@ -82,7 +84,11 @@ public class ProjectLauncher {
 		MapReduceFactory.getMapReduce().start();
 
 		ThesisValidator validator = new ThesisValidator(new MAPResultHTMLFormatterFactory(outDirectory), offset);
-		validator.addObserver(new ConsoleObserver(outDirectory, startValue));
+        if(gui.equals("yes")) {
+            validator.addObserver(new ConsoleObserver(outDirectory, startValue, true));
+        } else {
+            validator.addObserver(new ConsoleObserver(outDirectory, startValue, false));
+        }
 
 		if (stopValue > 0) {
 			validator.start(startValue, stopValue);

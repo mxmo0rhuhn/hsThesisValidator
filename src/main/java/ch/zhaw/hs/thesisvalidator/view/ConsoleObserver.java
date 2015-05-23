@@ -34,11 +34,15 @@ public class ConsoleObserver implements Observer {
 	private int curResidue;
 	private Date startTSD;
 
-	public ConsoleObserver(File outDirectory, int startResidue) {
+	public ConsoleObserver(File outDirectory, int startResidue, boolean redirectConsole) {
 		startTSD = new Date();
 
 		outFile = new File(outDirectory, "log.txt");
-		outConsole = new ConsoleOutput();
+        if(redirectConsole) {
+            outConsole = new ConsoleOutput();
+        } else {
+            outConsole = null;
+        }
 		curResidue = startResidue;
 
 		printStreams("HSThesisValidator - Software Projekt 2 - ZHAW FS 2013 - Reto Hablützel & Max Schrimpf");
@@ -118,7 +122,10 @@ public class ConsoleObserver implements Observer {
 	public void printStreams(String line) {
 		String tsd = logTsdFormat.format(Calendar.getInstance().getTime());
 
-		outConsole.println(tsd + " " + line);
+        if(outConsole != null) {
+            outConsole.println(tsd + " " + line);
+        }
+
 		fileWriteLn(tsd + " " + line);
 	}
 
